@@ -25,4 +25,11 @@ public class Presentador implements iCalculadora.iPresentador{
 
     }
 
+    @Override
+    public void showErrorP(String error) {
+        if (iVista != null){
+            iVista.showErrorV(error);
+        }
+    }
+
 }

@@ -9,14 +9,42 @@ public class Modelo implements iCalculadora.iModelo {
     }
     @Override
     public void calcularM(String num1, String num2, String tipo) {
+        if(!num1.equals("") && !num2.equals("")){
+            switch (tipo){
+                case "Sumar":
+                    resultado = Double.valueOf(num1) + Double.valueOf(num2);
+                    iPresentador.mostrarRespP(String.valueOf(resultado));
+                    break;
 
-        if (tipo.equals("Sumar")){
-            resultado = Double.valueOf(num1) + Double.valueOf(num2);
-            iPresentador.mostrarRespP(String.valueOf(resultado));
+                case "Restar":
+                    resultado = Double.valueOf(num1) - Double.valueOf(num2);
+                    iPresentador.mostrarRespP(String.valueOf(resultado));
+                    break;
 
-        }else  if (tipo.equals("Restar")){
-            resultado = Double.valueOf(num1) - Double.valueOf(num2);
-            iPresentador.mostrarRespP(String.valueOf(resultado));
+                case "Multiplicar":
+                    resultado = Double.valueOf(num1) * Double.valueOf(num2);
+                    iPresentador.mostrarRespP(String.valueOf(resultado));
+                    break;
+
+                case "Dividir":
+                    if((Double.valueOf(num1)==0) && (Double.valueOf(num2)==0)){
+                        iPresentador.showErrorP("Resultado Indefinido!");
+                        break;
+                    }else if(Double.valueOf(num2)==0){
+                        iPresentador.showErrorP("No se puede dividir para 0!");
+                        break;
+                    }else {
+                        resultado = Double.valueOf(num1) / Double.valueOf(num2);
+                        iPresentador.mostrarRespP(String.valueOf(resultado));
+                        break;
+                    }
+
+                default:
+                    iPresentador.mostrarRespP("Operación incorrecta");
+                    break;
+            }
+        }else{
+            iPresentador.showErrorP("Es necesario ingresar los dos números!");
         }
     }
 }
