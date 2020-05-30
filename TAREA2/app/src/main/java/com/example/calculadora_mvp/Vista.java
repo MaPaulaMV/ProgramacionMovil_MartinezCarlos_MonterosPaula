@@ -26,12 +26,15 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
     }
 
     public void Sumar(View view){
-        Log.e("MSG: ", String.valueOf(findViewById(R.id.suma)));
+
         iPresentador.calcularP(num1.getText().toString(),num2.getText().toString(),"Sumar");
+    }
+    public void Restar(View view){
+        iPresentador.calcularP(num1.getText().toString(),num2.getText().toString(),"Restar");
     }
 
     @Override
     public void mostrarRespV(String resp) {
-        result.setText(resp);
+        result.setText("RESULTADO: " + resp);
     }
 }

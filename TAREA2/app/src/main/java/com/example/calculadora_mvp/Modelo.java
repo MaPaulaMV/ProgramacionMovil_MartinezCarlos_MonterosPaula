@@ -10,14 +10,13 @@ public class Modelo implements iCalculadora.iModelo {
     @Override
     public void calcularM(String num1, String num2, String tipo) {
 
-        if (tipo.equals("suma")){
+        if (tipo.equals("Sumar")){
             resultado = Double.valueOf(num1) + Double.valueOf(num2);
             iPresentador.mostrarRespP(String.valueOf(resultado));
 
-        }else  if (tipo.equals("resta")){
+        }else  if (tipo.equals("Restar")){
             resultado = Double.valueOf(num1) - Double.valueOf(num2);
             iPresentador.mostrarRespP(String.valueOf(resultado));
-
         }
     }
 }
