@@ -31,4 +31,81 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/num1" />
 
+    <GridLayout
+
+        android:id="@+id/gridLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:columnCount="2"
+        android:paddingTop="15dp"
+        android:rowCount="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/num2">
+
+        <ImageButton
+            android:id="@+id/suma"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:onClick="Sumar"
+            android:src="@drawable/add" />
+
+        <ImageButton
+            android:id="@+id/suma2"
+
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:onClick="Sumar"
+            android:src="@drawable/resta"
+            android:textSize="40dp" />
+
+        <ImageButton
+            android:id="@+id/suma3"
+
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:onClick="Sumar"
+            android:src="@drawable/mult"
+            android:textSize="40dp" />
+
+        <ImageButton
+            android:id="@+id/suma4"
+
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:onClick="Sumar"
+            android:src="@drawable/ic_division" />
+
+    </GridLayout>
+
+    <TextView
+
+        android:id="@+id/res"
+        android:layout_width="206dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="68dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="239dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="164dp"
+        android:gravity="center"
+        android:text="By: MyM"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/res"
+        app:layout_constraintVertical_bias="0.868" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
