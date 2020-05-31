@@ -18,10 +18,11 @@ public class Presentador implements iCalculadora.iPresentador{
     }
 
     @Override
-    public void calcularP(String num1, String num2,String operacion) {
+    public String calcularP(String num1, String num2,String operacion) {
         if (iVista != null){
             iModelo.calcularM(num1,num2,operacion);
         }
+        return "OK";
 
     }
 
