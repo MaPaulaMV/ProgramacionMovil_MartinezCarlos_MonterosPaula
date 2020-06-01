@@ -5,15 +5,29 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Clase para las pruebas unitarias que se realizarán en la aplicación.
+ *
+ * @author Carlos Martínez
+ * @author Paula Monteros
+ */
 public class CalculadoraTest {
 
     private Modelo modelo;
 
+    /**
+     * Método set para instanciar un objeto de tipo
+     * Modelo.
+     *
+     */
     @Before
     public void setModelo(){
         modelo = new Modelo();
     }
 
+    /**
+     * Prueba Unitaria para la operación Suma entre 2 números.
+     */
     @Test
     public void testSuma() {
         assertEquals("3.0", modelo.calcularM("1","2","Sumar"));
@@ -27,6 +41,10 @@ public class CalculadoraTest {
         assertEquals("mal", modelo.calcularM("asd","qwe","Sumar"));
         assertEquals("mal", modelo.calcularM("...","***","Sumar"));
     }
+
+    /**
+     * Prueba Unitaria para la operación Resta entre 2 números.
+     */
     @Test
     public void testResta(){
         assertEquals("-1.0", modelo.calcularM("1","2","Restar"));
@@ -40,6 +58,10 @@ public class CalculadoraTest {
         assertEquals("mal", modelo.calcularM("asd","qwe","Restar"));
         assertEquals("mal", modelo.calcularM("...","***","Restar"));
     }
+
+    /**
+     * Prueba Unitaria para la operación Multiplicación entre 2 números.
+     */
     @Test
     public void testMultiplicacion() {
         assertEquals("2.0", modelo.calcularM("1","2","Multiplicar"));
@@ -53,6 +75,10 @@ public class CalculadoraTest {
         assertEquals("mal", modelo.calcularM("asd","qwe","Multiplicar"));
         assertEquals("mal", modelo.calcularM("...","***","Multiplicar"));
     }
+
+    /**
+     * Prueba Unitaria para la operación División entre 2 números.
+     */
     @Test
     public void testDivision(){
         assertEquals("0.5", modelo.calcularM("1","2","Dividir"));
