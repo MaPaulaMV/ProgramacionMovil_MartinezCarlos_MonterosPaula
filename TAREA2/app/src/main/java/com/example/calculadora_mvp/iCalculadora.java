@@ -24,7 +24,7 @@ public interface iCalculadora {
      */
     interface iPresentador{
         void mostrarRespP(String resp);
-        void calcularP(String num1, String num2, String tipo);
+        String calcularP(String num1, String num2, String tipo);
         void showErrorP(String error);
 
     }
@@ -34,6 +34,6 @@ public interface iCalculadora {
      * por las clases que implementen esta interfaz.
      */
     interface iModelo{
-        void calcularM(String num1, String num2, String tipo);
+        String calcularM(String num1, String num2, String tipo);
     }
 }

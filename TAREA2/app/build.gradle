@@ -10,7 +10,14 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner "android.test.InstrumentationTestRunner"
+        //testApplicationId "com.example.calculadora_mvp.test"
     }
+    /*testOptions{
+        testReportDir = "$project.buildDir/results/report"
+        testResultsDir = "$project.buildDir/results"
+    }*/
+
     buildTypes {
         release {
             minifyEnabled false

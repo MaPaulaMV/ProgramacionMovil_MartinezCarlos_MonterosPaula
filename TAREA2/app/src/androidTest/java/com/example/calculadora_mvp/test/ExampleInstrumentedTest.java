@@ -1,4 +1,4 @@
-package com.example.calculadora_mvp;
+package com.example.calculadora_mvp.test;
 
 import android.content.Context;
 
@@ -27,4 +27,9 @@ public class ExampleInstrumentedTest {
 
         assertEquals("com.example.calculadora_mvp", appContext.getPackageName());
     }
+
+    /*@Test
+    public void testSuma(){
+        assertEquals(2.0,2.3);
+    }*/
 }

@@ -45,10 +45,11 @@ public class Presentador implements iCalculadora.iPresentador{
      * @param operacion Tipo de operación a realizar
      */
     @Override
-    public void calcularP(String num1, String num2,String operacion) {
+    public String calcularP(String num1, String num2,String operacion) {
         if (iVista != null){
             iModelo.calcularM(num1,num2,operacion);
         }
+        return "OK";
 
     }
 
