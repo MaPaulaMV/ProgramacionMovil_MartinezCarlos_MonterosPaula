@@ -9,6 +9,8 @@ import android.util.Log;
  * @author Paula Monteros
  */
 public class Modelo implements iCalculadora.iModelo {
+    private double mplus = 0;
+
     private iCalculadora.iPresentador iPresentador;
     private double resultado;
 
@@ -40,7 +42,7 @@ public class Modelo implements iCalculadora.iModelo {
     public String calcularM(String num1, String num2, String tipo) {
         String resu = "mal";
         try {
-            if(!num1.equals("") && !num2.equals("")){
+            if(!num1.equals("") && !num2.equals("")&& !tipo.equals("mPLus")){
                 switch (tipo){
                     case "Sumar":
                         resultado = Double.valueOf(num1) + Double.valueOf(num2);
@@ -79,7 +81,22 @@ public class Modelo implements iCalculadora.iModelo {
                         break;
                 }
 
-            }else{
+            }else if (tipo.equals("mPLus") && (!num1.equals("") || !num2.equals(""))){
+                if(num1.equals("") ){
+                    num1 = "0";
+                    mplus += Double.valueOf(num2);
+                }else if(num2.equals("") ){
+                    num2 = "0";
+                    mplus += Double.valueOf(num1);
+                }
+                else {
+                    mplus += resultado;
+                }
+                Log.e("MPLUS", String.valueOf(mplus));
+                resu = String.valueOf(mplus);
+                iPresentador.mostrarRespP(String.valueOf(mplus));
+            }
+            else{
                 iPresentador.showErrorP("Es necesario ingresar los dos números!");
 
             }
