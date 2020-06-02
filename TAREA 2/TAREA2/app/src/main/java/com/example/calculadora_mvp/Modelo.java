@@ -10,6 +10,7 @@ import android.util.Log;
  */
 public class Modelo implements iCalculadora.iModelo {
     private double mplus = 0;
+    private double mrest=0;
 
     private iCalculadora.iPresentador iPresentador;
     private double resultado;
@@ -82,19 +83,38 @@ public class Modelo implements iCalculadora.iModelo {
                 }
 
             }else if (tipo.equals("mPLus") && (!num1.equals("") || !num2.equals(""))){
-                if(num1.equals("") ){
-                    num1 = "0";
-                    mplus += Double.valueOf(num2);
-                }else if(num2.equals("") ){
-                    num2 = "0";
-                    mplus += Double.valueOf(num1);
+                switch(tipo){
+                    case "mPLus":
+                        if(num1.equals("") ){
+                            num1 = "0";
+                            mplus += Double.valueOf(num2);
+                        }else if(num2.equals("") ){
+                            num2 = "0";
+                            mplus += Double.valueOf(num1);
+                        }
+                        else {
+                            mplus += resultado;
+                        }
+                        Log.e("MPLUS", String.valueOf(mplus));
+                        resu = String.valueOf(mplus);
+                        iPresentador.mostrarRespP(String.valueOf(mplus));
+                        break;
+                    case "mRest":
+                        if(num1.equals("") ){
+                            num1 = "0";
+                            mrest -= Double.valueOf(num2);
+                        }else if(num2.equals("") ){
+                            num2 = "0";
+                            mrest -= Double.valueOf(num1);
+                        }
+                        else {
+                            mrest -= resultado;
+                        }
+                        Log.e("MREST", String.valueOf(mrest));
+                        resu = String.valueOf(mrest);
+                        iPresentador.mostrarRespP(String.valueOf(mrest));
+                        break;
                 }
-                else {
-                    mplus += resultado;
-                }
-                Log.e("MPLUS", String.valueOf(mplus));
-                resu = String.valueOf(mplus);
-                iPresentador.mostrarRespP(String.valueOf(mplus));
             }
             else{
                 iPresentador.showErrorP("Es necesario ingresar los dos números!");

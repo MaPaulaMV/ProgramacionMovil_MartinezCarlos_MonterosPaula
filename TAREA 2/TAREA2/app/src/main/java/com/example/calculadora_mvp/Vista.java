@@ -79,9 +79,26 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
         iPresentador.calcularP(numero1.getText().toString(), numero2.getText().toString(),"Dividir");
     }
 
+    /**
+     * Método que envia los parámetros a la clase presentador para realizar
+     * el proceso de M+.
+     *
+     * @param view Vista actual
+     */
     public  void  mPlus(View view){
         iPresentador.calcularP(numero1.getText().toString(), numero2.getText().toString(),"mPLus");
     }
+
+    /**
+     * Método que envia los parámetros a la clase presentador para realizar
+     * el proceso de M-.
+     *
+     * @param view Vista actual
+     */
+    public  void  mRest(View view){
+        iPresentador.calcularP(numero1.getText().toString(), numero2.getText().toString(),"mRest");
+    }
+
     /**
      * Método que muestra la respuesta retornada por el presentador
      * en un text View.

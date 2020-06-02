@@ -89,6 +89,14 @@
             android:onClick="mPlus"
             android:src="@drawable/add" />
 
+        <ImageButton
+            android:id="@+id/mRest"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:onClick="mRest"
+            android:src="@drawable/resta" />
+
     </GridLayout>
 
     <TextView
