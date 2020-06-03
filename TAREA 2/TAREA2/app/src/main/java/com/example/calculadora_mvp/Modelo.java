@@ -1,3 +1,14 @@
+/*
+ * ESPE - DCC - PROGRAMACIÓN MÓVIL
+ * Sistema: Calculadora_MVP
+ * Creado 29/05/2020
+ *
+ * Los contenidos de este archivo son propiedad privada y estan protegidos por
+ * la licencia BSD
+ *
+ * Se puede utilizar, reproducir o copiar el contenido de este archivo.
+ */
+
 package com.example.calculadora_mvp;
 
 import android.util.Log;
@@ -11,8 +22,8 @@ import static android.content.ContentValues.TAG;
  * @author Paula Monteros
  */
 public class Modelo implements iCalculadora.iModelo {
-    private double mplus = 0;
-    private double mrest=0;
+    private double mPlus = 0;
+    private double mRest=0;
     private iCalculadora.iPresentador iPresentador;
     private double resultado;
 
@@ -89,43 +100,40 @@ public class Modelo implements iCalculadora.iModelo {
                     case "mPLus":
                         if(num1.equals("") ){
                             num1 = "0";
-                            mplus += Double.valueOf(num2);
+                            mPlus += Double.valueOf(num2);
 
                         }else if(num2.equals("") ){
                             num2 = "0";
-                            mplus += Double.valueOf(num1);
+                            mPlus += Double.valueOf(num1);
                         }
                         else {
-                            mplus += resultado;
+                            mPlus += resultado;
                         }
-                        resu = String.valueOf(mplus);
-                        Log.e("MPLUS", String.valueOf(mplus));
+                        resu = String.valueOf(mPlus);
+                        Log.e("MPLUS", String.valueOf(mPlus));
                         //resu = String.valueOf(mplus);
 
-                        iPresentador.mostrarRespP(String.valueOf(mplus));
+                        iPresentador.mostrarRespP(String.valueOf(mPlus));
                         break;
                     case "mRest":
-
-
                         if(num1.equals("")){
-
                             num1 = "0";
-                            mrest -= Double.valueOf(num2);
+                            mRest -= Double.valueOf(num2);
 
                         }else if(num2.equals("") ){
 
                             num2 = "0";
-                            mrest -= Double.valueOf(num1);
+                            mRest -= Double.valueOf(num1);
                         }
                         else {
 
-                            mrest -= resultado;
+                            mRest -= resultado;
                         }
 
-                        resu = String.valueOf(mrest);
-                        Log.e("MREST", String.valueOf(mrest));
+                        resu = String.valueOf(mRest);
+                        Log.e("MREST", String.valueOf(mRest));
 
-                        iPresentador.mostrarRespP(String.valueOf(mrest));
+                        iPresentador.mostrarRespP(String.valueOf(mRest));
                         break;
                 }
             }

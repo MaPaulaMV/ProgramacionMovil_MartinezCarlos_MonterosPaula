@@ -1,3 +1,13 @@
+/*
+ * ESPE - DCC - PROGRAMACIÓN MÓVIL
+ * Sistema: Calculadora_MVP
+ * Creado 29/05/2020
+ *
+ * Los contenidos de este archivo son propiedad privada y estan protegidos por
+ * la licencia BSD
+ *
+ * Se puede utilizar, reproducir o copiar el contenido de este archivo.
+ */
 package com.example.calculadora_mvp;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,6 +61,11 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
         mrest = (ImageButton) findViewById(R.id.mRest);
         iPresentador = new Presentador(this);
 
+        /**
+         * Setea el método onclick para que se envíen los parámetros al presentador para poder
+         * realizar la operación Suma
+         *
+         */
         suma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +73,11 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onclick para que se envíen los parámetros al presentador para poder
+         * realizar la operación Resta
+         *
+         */
         resta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +85,11 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onclick para que se envíen los parámetros al presentador para poder
+         * realizar la operación Multiplicación
+         *
+         */
         multiplicacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +97,11 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onclick para que se envíen los parámetros al presentador para poder
+         * realizar la operación División
+         *
+         */
         division.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +109,11 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onclick para que se envíen los parámetros al presentador para poder
+         * realizar la operación MSuma
+         *
+         */
         mplus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +121,11 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onclick para que se envíen los parámetros al presentador para poder
+         * realizar la operación MResta
+         *
+         */
         mrest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,3 +1,13 @@
+/*
+ * ESPE - DCC - PROGRAMACIÓN MÓVIL
+ * Sistema: Calculadora_MVP
+ * Creado 29/05/2020
+ *
+ * Los contenidos de este archivo son propiedad privada y estan protegidos por
+ * la licencia BSD
+ *
+ * Se puede utilizar, reproducir o copiar el contenido de este archivo.
+ */
 package com.example.calculadora_mvp;
 
 import org.junit.Before;
@@ -23,6 +33,14 @@ public class CalculadoraTest {
     @Before
     public void setModelo(){
         modelo = new Modelo();
+    }
+
+    /**
+     * Prueba unitaria para verificar que el objeto no sea NULL.
+     */
+    @Test
+    public void testNotNull(){
+        assertNotNull(modelo);
     }
 
     /**
@@ -92,11 +110,19 @@ public class CalculadoraTest {
         assertEquals("mal", modelo.calcularM("asd","qwe","Dividir"));
         assertEquals("mal", modelo.calcularM("...","***","Dividir"));
     }
+
+    /**
+     * Prueba unitaria para la operación MSuma
+     */
     @Test
     public void testMplus(){
         assertEquals("5.0", modelo.calcularM("","5","mPLus"));
         assertEquals("8.0", modelo.calcularM("3","","mPLus"));
     }
+
+    /**
+     * Prueba unitaria para la operación MResta
+     */
     @Test
     public void testMrest(){
         assertEquals("-5.0", modelo.calcularM("","5","mRest"));
