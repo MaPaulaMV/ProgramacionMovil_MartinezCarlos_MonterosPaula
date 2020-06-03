@@ -2,6 +2,8 @@ package com.example.calculadora_mvp;
 
 import android.util.Log;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Clase que contiene toda la lógica del programa, la misma realiza todas las operaciones.
  *
@@ -11,7 +13,6 @@ import android.util.Log;
 public class Modelo implements iCalculadora.iModelo {
     private double mplus = 0;
     private double mrest=0;
-
     private iCalculadora.iPresentador iPresentador;
     private double resultado;
 
@@ -43,7 +44,7 @@ public class Modelo implements iCalculadora.iModelo {
     public String calcularM(String num1, String num2, String tipo) {
         String resu = "mal";
         try {
-            if(!num1.equals("") && !num2.equals("")&& !tipo.equals("mPLus")){
+            if(!num1.equals("") && !num2.equals("")&& !tipo.equals("mPLus")&& !tipo.equals("mRest")){
                 switch (tipo){
                     case "Sumar":
                         resultado = Double.valueOf(num1) + Double.valueOf(num2);
@@ -82,12 +83,14 @@ public class Modelo implements iCalculadora.iModelo {
                         break;
                 }
 
-            }else if (tipo.equals("mPLus") && (!num1.equals("") || !num2.equals(""))){
+            }else if (((tipo.equals("mPLus"))|| (tipo.equals("mRest"))) && (!num1.equals("") || !num2.equals(""))){
+
                 switch(tipo){
                     case "mPLus":
                         if(num1.equals("") ){
                             num1 = "0";
                             mplus += Double.valueOf(num2);
+
                         }else if(num2.equals("") ){
                             num2 = "0";
                             mplus += Double.valueOf(num1);
@@ -95,23 +98,33 @@ public class Modelo implements iCalculadora.iModelo {
                         else {
                             mplus += resultado;
                         }
-                        Log.e("MPLUS", String.valueOf(mplus));
                         resu = String.valueOf(mplus);
+                        Log.e("MPLUS", String.valueOf(mplus));
+                        //resu = String.valueOf(mplus);
+
                         iPresentador.mostrarRespP(String.valueOf(mplus));
                         break;
                     case "mRest":
-                        if(num1.equals("") ){
+
+
+                        if(num1.equals("")){
+
                             num1 = "0";
                             mrest -= Double.valueOf(num2);
+
                         }else if(num2.equals("") ){
+
                             num2 = "0";
                             mrest -= Double.valueOf(num1);
                         }
                         else {
+
                             mrest -= resultado;
                         }
-                        Log.e("MREST", String.valueOf(mrest));
+
                         resu = String.valueOf(mrest);
+                        Log.e("MREST", String.valueOf(mrest));
+
                         iPresentador.mostrarRespP(String.valueOf(mrest));
                         break;
                 }

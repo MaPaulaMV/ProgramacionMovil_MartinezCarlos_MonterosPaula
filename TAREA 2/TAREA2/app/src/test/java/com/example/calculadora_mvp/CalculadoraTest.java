@@ -92,4 +92,14 @@ public class CalculadoraTest {
         assertEquals("mal", modelo.calcularM("asd","qwe","Dividir"));
         assertEquals("mal", modelo.calcularM("...","***","Dividir"));
     }
+    @Test
+    public void testMplus(){
+        assertEquals("5.0", modelo.calcularM("","5","mPLus"));
+        assertEquals("8.0", modelo.calcularM("3","","mPLus"));
+    }
+    @Test
+    public void testMrest(){
+        assertEquals("-5.0", modelo.calcularM("","5","mRest"));
+        assertEquals("-8.0", modelo.calcularM("3","","mRest"));
+    }
 }

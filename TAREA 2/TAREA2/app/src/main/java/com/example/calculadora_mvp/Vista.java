@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,12 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
     private EditText numero1;
     private EditText numero2;
     private TextView resultado;
+    private ImageButton suma;
+    private ImageButton resta;
+    private ImageButton multiplicacion;
+    private ImageButton division;
+    private ImageButton mplus;
+    private ImageButton mrest;
     private iCalculadora.iPresentador iPresentador;
 
     /**
@@ -36,68 +43,57 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
         numero1 =(EditText)findViewById(R.id.num1);
         numero2 =(EditText)findViewById(R.id.num2);
         resultado = (TextView) findViewById(R.id.res);
+        suma = (ImageButton) findViewById(R.id.suma);
+        resta = (ImageButton) findViewById(R.id.resta);
+        multiplicacion = (ImageButton) findViewById(R.id.multiplicacion);
+        division = (ImageButton) findViewById(R.id.division);
+        mplus = (ImageButton) findViewById(R.id.mPlus);
+        mrest = (ImageButton) findViewById(R.id.mRest);
         iPresentador = new Presentador(this);
+
+        suma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iPresentador.calcularP(numero1.getText().toString(), numero2.getText().toString(),"Sumar");
+            }
+        });
+
+        resta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iPresentador.calcularP(numero1.getText().toString(), numero2.getText().toString(),"Restar");
+            }
+        });
+
+        multiplicacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iPresentador.calcularP(numero1.getText().toString(), numero2.getText().toString(),"Multiplicar");
+            }
+        });
+
+        division.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iPresentador.calcularP(numero1.getText().toString(), numero2.getText().toString(),"Dividir");
+            }
+        });
+
+        mplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iPresentador.calcularP(numero1.getText().toString(), numero2.getText().toString(),"mPLus");
+            }
+        });
+
+        mrest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iPresentador.calcularP(numero1.getText().toString(), numero2.getText().toString(),"mRest");
+            }
+        });
     }
 
-    /**
-     * Método que envia los parámetros a la clase presentador para realizar
-     * la suma.
-     *
-     * @param view Vista actual
-     */
-    public void Sumar(View view){
-        iPresentador.calcularP(numero1.getText().toString(), numero2.getText().toString(),"Sumar");
-    }
-
-    /**
-     * Método que envia los parámetros a la clase presentador para realizar
-     * la resta.
-     *
-     * @param view Vista actual
-     */
-    public void Restar(View view){
-        iPresentador.calcularP(numero1.getText().toString(), numero2.getText().toString(),"Restar");
-    }
-
-    /**
-     * Método que envia los parámetros a la clase presentador para realizar
-     * la multiplicación.
-     *
-     * @param view Vista actual
-     */
-    public void Multiplicar(View view){
-        iPresentador.calcularP(numero1.getText().toString(), numero2.getText().toString(),"Multiplicar");
-    }
-
-    /**
-     * Método que envia los parámetros a la clase presentador para realizar
-     * la División.
-     *
-     * @param view Vista actual
-     */
-    public void Dividir(View view){
-        iPresentador.calcularP(numero1.getText().toString(), numero2.getText().toString(),"Dividir");
-    }
-
-    /**
-     * Método que envia los parámetros a la clase presentador para realizar
-     * el proceso de M+.
-     *
-     * @param view Vista actual
-     */
-    public  void  mPlus(View view){
-        iPresentador.calcularP(numero1.getText().toString(), numero2.getText().toString(),"mPLus");
-    }
-
-    /**
-     * Método que envia los parámetros a la clase presentador para realizar
-     * el proceso de M-.
-     *
-     * @param view Vista actual
-     */
-    public  void  mRest(View view){
-        iPresentador.calcularP(numero1.getText().toString(), numero2.getText().toString(),"mRest");
-    }
 
     /**
      * Método que muestra la respuesta retornada por el presentador
