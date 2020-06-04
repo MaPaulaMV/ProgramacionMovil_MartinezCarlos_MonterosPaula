@@ -144,7 +144,7 @@ public class Modelo implements iCalculadora.iModelo {
 
         }
         catch (Exception e){
-
+                Log.e("ERROR", e.getMessage());
         }
         return resu;
     }

@@ -11,6 +11,8 @@
 
 package com.example.calculadora_mvp;
 
+import android.util.Log;
+
 /**
  * Clase que actúa como intermediario entre la Vista y
  * el Modelo de la aplicación.
@@ -41,9 +43,15 @@ public class Presentador implements iCalculadora.iPresentador{
      */
     @Override
     public void mostrarRespP(String resp) {
-        if (iVista != null){
-            iVista.mostrarRespV(resp);
+        try{
+            if (iVista != null){
+                iVista.mostrarRespV(resp);
+            }
         }
+        catch (Exception e){
+            Log.e("ERROR", e.getMessage());
+        }
+
 
     }
 
@@ -57,11 +65,15 @@ public class Presentador implements iCalculadora.iPresentador{
      */
     @Override
     public String calcularP(String num1, String num2,String operacion) {
-        if (iVista != null){
-            iModelo.calcularM(num1,num2,operacion);
+        try {
+            if (iVista != null){
+                iModelo.calcularM(num1,num2,operacion);
+            }
+            return "OK";
+        }catch (Exception e){
+            Log.e("ERROR", e.getMessage());
+            return "ERROR";
         }
-        return "OK";
-
     }
 
     /**
