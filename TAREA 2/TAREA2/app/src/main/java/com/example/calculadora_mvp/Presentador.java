@@ -49,7 +49,7 @@ public class Presentador implements iCalculadora.iPresentador{
             }
         }
         catch (Exception e){
-            Log.e("ERROR", e.getMessage());
+            Log.e("ERROR mostrar respuesta", e.getMessage());
         }
 
 
@@ -71,7 +71,7 @@ public class Presentador implements iCalculadora.iPresentador{
             }
             return "OK";
         }catch (Exception e){
-            Log.e("ERROR", e.getMessage());
+            Log.e("ERROR en el cálculo", e.getMessage());
             return "ERROR";
         }
     }
@@ -84,9 +84,14 @@ public class Presentador implements iCalculadora.iPresentador{
      */
     @Override
     public void showErrorP(String error) {
-        if (iVista != null){
-            iVista.showErrorV(error);
+        try {
+            if (iVista != null){
+                iVista.showErrorV(error);
+            }
+        }catch (Exception e){
+            Log.e("ERROR en mensaje", e.getMessage());
         }
+
     }
 
 }
