@@ -10,6 +10,7 @@ public class Presentador implements iCalculadora.iPresentador {
 
     public Presentador(iCalculadora.iVista iVista) {
         this.iVista = iVista;
+        this.iModelo=new Modelo(this);
     }
 
     public iCalculadora.iVista getiVista() {

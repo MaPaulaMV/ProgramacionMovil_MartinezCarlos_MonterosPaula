@@ -15,11 +15,7 @@ public class Operacion {
     }
 
     public Numero division(Numero num1, Numero num2){
-        try{
-            return new Numero(num1.getValor()/num2.getValor());
-        }catch (Exception e){
-            return null;
-        }
+        return new Numero(num1.getValor()/num2.getValor());
     }
 
     public Numero exponencial(Numero num1,Numero num2){
