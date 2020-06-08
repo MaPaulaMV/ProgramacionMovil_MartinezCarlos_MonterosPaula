@@ -5,7 +5,13 @@ import android.util.Log;
 public class Operacion {
 
     public  Numero sumar(Numero num1, Numero num2){
+        try {
             return new Numero(num1.getValor()+num2.getValor());
+        }
+        catch (Exception e){
+            return null;
+        }
+
     }
 
     public  Numero restar(Numero num1, Numero num2){
