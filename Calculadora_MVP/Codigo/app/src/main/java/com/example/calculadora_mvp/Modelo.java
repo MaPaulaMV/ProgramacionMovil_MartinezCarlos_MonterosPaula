@@ -1,5 +1,6 @@
 package com.example.calculadora_mvp;
 
+import android.graphics.Path;
 import android.util.Log;
 
 import java.text.DecimalFormat;
@@ -27,11 +28,12 @@ public class Modelo implements iCalculadora.iModelo{
         numero_dos = "";
         current_operator="";
         sanswer="";
-        result.setValor(0.0);
-        numberone.setValor(0.0);
-        numbertwo.setValor(0.0);
-        temp.setValor(0.0);
-        temp2.setValor(0.0);
+        result = new Numero(0.0);
+        numberone=new Numero(0.0);
+        numbertwo=new Numero(0.0);
+        temp=new Numero(0.0);
+        temp2=new Numero(0.0);
+        operacion=new Operacion();
     }
 
     public iCalculadora.iPresentador getiPresentador() {
@@ -98,7 +100,7 @@ public class Modelo implements iCalculadora.iModelo{
                     }
                     break;
             }
-            sanswer = format.format(temp);
+            sanswer = format.format(temp.getValor());
             iPresentador.mostrarPantallaP(scalculation,sanswer);
         }
     }
@@ -149,43 +151,136 @@ public class Modelo implements iCalculadora.iModelo{
 
     @Override
     public void onClickDotM() {
+        if(!dot){
+            if(numero_uno.length()==0 && sanswer.equals("")){
+                numero_uno="0.";
+                scalculation="0.";
+                sanswer="0.";
+                dot=true;
+                iPresentador.mostrarPantallaP(scalculation,sanswer);
+            }else if(numero_uno.length()==0 && sanswer!=""){
+                numero_uno="0.";
+                scalculation +="0.";
+                dot=true;
+                iPresentador.mostrarPantallaP(scalculation,sanswer);
+            }
+            else {
+                numero_uno += ".";
+                scalculation+=".";
+                dot=true;
+                iPresentador.mostrarPantallaP(scalculation,sanswer);
+            }
+        }
 
     }
 
     @Override
     public void onClickEqualM() {
-
+        if(scalculation!=""){
+            scalculation=sanswer;
+            sanswer=" ";
+            result.setValor(0.0);
+            numero_uno=scalculation;
+            numberone.setValor(Double.valueOf(numero_uno));
+            numero_dos="";
+            numbertwo.setValor(0.0);
+            num_allow=false;
+            pow_present=false;
+            dot=true;
+            factorial_present=false;
+            iPresentador.mostrarPantallaP(scalculation,sanswer);
+        }
     }
 
     @Override
     public void onClickPowM() {
-
+        if(scalculation!="" && !pow_present ){
+            if(getLastChar(scalculation,1)!=' '){
+                scalculation+="^";
+                numero_dos=numero_uno;
+                numbertwo.setValor(numberone.getValor());
+                numero_uno="";
+                pow_present=true;
+                num_allow=true;
+                iPresentador.mostrarPantallaP(scalculation,sanswer);
+            }
+        }
     }
 
     @Override
     public void onClickFactorialM() {
+        if (!scalculation.equals("") && !factorial_present && !pow_present && !dot) {
+
+            if (getLastChar(scalculation, 1) != ' ') {
+
+                if (numberone.getValor().equals(0.0)) {
+                    numberone.setValor(1.0);
+                }
+                else{
+                    operacion.factorial(numberone);
+                }
+
+                numero_uno = format.format(numberone.getValor());
+                Log.e("ENTRA", numero_uno);
+                Log.e("ENTRA", numberone.toString());
+                switch (current_operator) {
+                    case "":
+                        result = numberone;
+                        break;
+                    case "+":
+                        result.setValor(result.getValor()+numberone.getValor());
+                        break;
+                    case "-":
+                        result.setValor(result.getValor()-numberone.getValor());
+                        break;
+                    case "*":
+                        result.setValor(result.getValor()*numberone.getValor());
+                        break;
+                    case "/":
+                        try {
+                            result.setValor(result.getValor()/numberone.getValor());
+                        } catch (Exception e) {
+                            sanswer = e.getMessage();
+                        }
+
+                        break;
+                }
+                dot=true;
+                sanswer = result.toString();
+                temp = result;
+                scalculation += "! ";
+                factorial_present = true;
+                num_allow = false;
+                iPresentador.mostrarPantallaP(scalculation,sanswer);
+            }
+        }
 
     }
 
     @Override
     public void onClickMplusM() {
+        if (scalculation.equals("")){
+            temp2.setValor(0.0);
+        }
+        else {
+            temp2 =operacion.sumar(temp2,numberone);
+        }
 
     }
 
     @Override
     public void onClickMrestM() {
-
-    }
-
-    @Override
-    public void onClickMrM() {
         if (scalculation.equals("")){
             temp2.setValor(0.0);
         }
         else {
             temp2 =operacion.restar(temp2,numberone);
         }
-        Log.e("MREST", temp2.toString());
+    }
+
+    @Override
+    public void onClickMrM() {
+        iPresentador.mostrarMrP(temp2.getValor().toString());
     }
 
     @Override

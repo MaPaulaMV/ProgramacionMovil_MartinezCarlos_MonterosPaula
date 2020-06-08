@@ -41,6 +41,17 @@ public class Presentador implements iCalculadora.iPresentador {
     }
 
     @Override
+    public void mostrarMrP(String mr) {
+        try{
+            if(iVista!=null){
+                iVista.mostrarMr(mr);
+            }
+        }catch (Exception e){
+            Log.e("ERROR mostrar respuesta", e.getMessage());
+        }
+    }
+
+    @Override
     public void onClickNumberP(String valor) {
         try{
             if(iVista!=null){

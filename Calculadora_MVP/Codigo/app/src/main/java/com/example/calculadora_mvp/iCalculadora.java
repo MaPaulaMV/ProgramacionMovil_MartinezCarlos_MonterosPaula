@@ -9,6 +9,7 @@ public interface iCalculadora {
 
     interface iPresentador{
         void mostrarPantallaP(String scalculation, String sanswer);
+        void mostrarMrP(String mr);
         void onClickNumberP(String valor);
         void onClickOperatorP(String operator);
         void onClickClearP();

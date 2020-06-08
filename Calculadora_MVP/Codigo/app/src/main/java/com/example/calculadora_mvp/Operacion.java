@@ -1,5 +1,7 @@
 package com.example.calculadora_mvp;
 
+import android.util.Log;
+
 public class Operacion {
 
     public  Numero sumar(Numero num1, Numero num2){
@@ -24,7 +26,7 @@ public class Operacion {
         return new Numero(Math.pow(base,exponente));
     }
 
-    public  Numero factorial(Numero num1, Numero num2) {
+    public  Numero factorial(Numero num1) {
         double resultado =num1.getValor();
         for (int i = 1; i < num1.getValor(); i++) {
             resultado*=i;
