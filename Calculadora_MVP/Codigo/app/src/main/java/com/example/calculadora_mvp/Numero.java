@@ -22,7 +22,7 @@ public class Numero {
     private Double valor;
 
     /**
-     * Constructor. Constructor con parámetros de la clase Numero
+     * Constructor con parámetros de la clase Numero
      * @param valor
      */
     public Numero(Double valor) {

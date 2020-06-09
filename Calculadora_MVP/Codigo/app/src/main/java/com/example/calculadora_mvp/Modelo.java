@@ -36,13 +36,13 @@ public class Modelo implements iCalculadora.iModelo{
     private Operacion operacion;
 
     /**
-     * Constructor. Constructor vacío de la clase Modelo.
+     * Constructor vacío de la clase Modelo.
      */
     public Modelo() {
     }
 
     /**
-     * Constructor. Constructor con parámetros de la clase Modelo.
+     * Constructor con parámetros de la clase Modelo.
      *
      * @param iPresentador Objeto que implementa la interfaz iCalculadora.iPresentador
      */

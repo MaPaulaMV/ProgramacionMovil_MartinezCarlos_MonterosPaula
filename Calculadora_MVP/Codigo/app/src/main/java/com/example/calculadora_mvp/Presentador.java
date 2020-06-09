@@ -25,13 +25,13 @@ public class Presentador implements iCalculadora.iPresentador {
     private iCalculadora.iModelo iModelo;
 
     /**
-     * Constructor. Constructor vacío de la clase Presentador.
+     * Constructor vacío de la clase Presentador.
      */
     public Presentador() {
     }
 
     /**
-     * Constructor. Constructor con parámetros de la clase Presentador.
+     * Constructor con parámetros de la clase Presentador.
      *
      * @param iVista Objeto que implementa la interfaz iCalculadora.iVista.
      */
