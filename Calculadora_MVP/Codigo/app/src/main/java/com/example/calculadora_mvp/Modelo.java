@@ -163,6 +163,9 @@ public class Modelo implements iCalculadora.iModelo{
                     }
                     break;
             }
+            if(temp.getValor()==-0.0){
+                temp.setValor(0.0);
+            }
             sanswer = format.format(temp.getValor());
             iPresentador.mostrarPantallaP(scalculation,sanswer);
         }
@@ -177,24 +180,26 @@ public class Modelo implements iCalculadora.iModelo{
     public void onClickOperatorM(String operator) {
         num_allow=true;
         if (sanswer!="" || operator.equals("-")){//para ver si es que hay un numero para hacer la operacion
-            if(current_operator!=""){
+            if(current_operator!="" && !mod_present){
 
                 char c = getLastChar(scalculation,2);
 
                 if (c=='+' || c=='-' ||c=='*' ||c=='/'){
                     scalculation=scalculation.substring(0,scalculation.length()-3);
                 }
+            }else if(!mod_present){
+                scalculation=scalculation + " "+ operator + " ";
+                numero_uno="";
+                result=temp;
+                current_operator=operator;
+                numbertwo.setValor(0.0);
+                numero_dos="";
+                pow_present=false;
+                factorial_present=false; //la validacion se hace en la funcion de factorial mismo
+                iPresentador.mostrarPantallaP(scalculation,sanswer);
+                dot=false;
             }
-            scalculation=scalculation + " "+ operator + " ";
-            numero_uno="";
-            result=temp;
-            current_operator=operator;
-            numbertwo.setValor(0.0);
-            numero_dos="";
-            pow_present=false;
-            factorial_present=false; //la validacion se hace en la funcion de factorial mismo
-            iPresentador.mostrarPantallaP(scalculation,sanswer);
-            dot=false;
+
         }
     }
 
@@ -339,6 +344,12 @@ public class Modelo implements iCalculadora.iModelo{
                         break;
                 }
                 dot=true;
+
+                if(temp.getValor()==-0.0){
+                    temp.setValor(0.0);
+                }
+
+                sanswer = format.format(temp.getValor());
                 sanswer = result.getValor().toString();
                 temp = result;
                 scalculation += "! ";
@@ -392,7 +403,7 @@ public class Modelo implements iCalculadora.iModelo{
     public void onClickModM() {
         if(scalculation!="" && !mod_present ){
             if(getLastChar(scalculation,1)!=' '){
-                scalculation+="MOD";
+                scalculation=scalculation + " "+ "MOD" + " ";
                 numero_dos=temp.toString();
                 numbertwo.setValor(Double.valueOf(numero_dos));
                 numero_uno="";
@@ -442,11 +453,17 @@ public class Modelo implements iCalculadora.iModelo{
                     case "-":
                         if (mod_present){
                             temp=operacion.modulo(numbertwo,numberone);
+                            removeuntilchar(scalculation, ' ');
+                            scalculation += numero_uno;
                         }
                         else {
                             temp=operacion.restar(result,numberone);
                         }
                         break;
+                }
+
+                if(temp.getValor()==-0.0){
+                    temp.setValor(0.0);
                 }
 
                 sanswer = format.format(temp.getValor());
@@ -460,7 +477,6 @@ public class Modelo implements iCalculadora.iModelo{
         char c = getLastChar(str, 1);
 
         if (c != chr) {
-            //remove last char
             str = removechar(str, 1);
             scalculation = str;
             iPresentador.mostrarPantallaP(scalculation,sanswer);
@@ -470,7 +486,6 @@ public class Modelo implements iCalculadora.iModelo{
 
     public String removechar(String str, int i) {
         char c = str.charAt(str.length() - i);
-        //we need to check if dot is removed or not
         if (c == '.' && !dot) {
             dot = false;
         }
