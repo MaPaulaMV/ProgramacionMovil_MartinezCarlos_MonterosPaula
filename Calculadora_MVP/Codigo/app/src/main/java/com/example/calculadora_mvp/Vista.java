@@ -1,3 +1,15 @@
+/*
+ * ESPE - DCC - PROGRAMACIÓN MÓVIL
+ * NRC: 6112
+ *
+ * Sistema: Calculadora_MVP
+ * Creado 07/06/2020
+ *
+ * Los contenidos de este archivo son propiedad privada y estan protegidos por
+ * la licencia BSD
+ *
+ * Se puede utilizar, reproducir o copiar el contenido de este archivo.
+ */
 package com.example.calculadora_mvp;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +23,13 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
+/**
+ * Clase que permite instanciar y manejar todos los elementos de la
+ * vista o interfaz de usuario, implementa la interfaz iVista.
+ *
+ * @author Carlos Martínez
+ * @author Paula Monteros
+ */
 public class Vista extends AppCompatActivity implements iCalculadora.iVista{
     private iCalculadora.iPresentador iPresentador;
     private TextView input, resultado;
@@ -20,7 +39,11 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             btnmplus,btnmrest,btnigual,btnpow,btnfact, btnmr;
     private ImageButton btnclear;
 
-
+    /**
+     * Método que se encarga de inicializar los elemnetos de la vista.
+     *
+     * @param savedInstanceState Objeto Vista actual
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -50,60 +73,109 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
         btnmrest = (Button)findViewById(R.id.mRest);
         btnmr = (Button)findViewById(R.id.mr);
 
+        /**
+         * Setea el método onClick para que se envíen los parámetros y datos al presentador para poder
+         * realizar las operaciones.
+         */
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iPresentador.onClickNumberP(btn0.getText().toString());
             }
         });
+
+        /**
+         * Setea el método onClick para que se envíen los parámetros y datos al presentador para poder
+         * realizar las operaciones.
+         */
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iPresentador.onClickNumberP(btn1.getText().toString());
             }
         });
+
+        /**
+         * Setea el método onClick para que se envíen los parámetros y datos al presentador para poder
+         * realizar las operaciones.
+         */
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iPresentador.onClickNumberP(btn2.getText().toString());
             }
         });
+
+        /**
+         * Setea el método onClick para que se envíen los parámetros y datos al presentador para poder
+         * realizar las operaciones.
+         */
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iPresentador.onClickNumberP(btn3.getText().toString());
             }
         });
+
+        /**
+         * Setea el método onClick para que se envíen los parámetros y datos al presentador para poder
+         * realizar las operaciones.
+         */
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iPresentador.onClickNumberP(btn4.getText().toString());
             }
         });
+
+        /**
+         * Setea el método onClick para que se envíen los parámetros y datos al presentador para poder
+         * realizar las operaciones.
+         */
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iPresentador.onClickNumberP(btn5.getText().toString());
             }
         });
+
+        /**
+         * Setea el método onClick para que se envíen los parámetros y datos al presentador para poder
+         * realizar las operaciones.
+         */
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iPresentador.onClickNumberP(btn6.getText().toString());
             }
         });
+
+        /**
+         * Setea el método onClick para que se envíen los parámetros y datos al presentador para poder
+         * realizar las operaciones.
+         */
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iPresentador.onClickNumberP(btn7.getText().toString());
             }
         });
+
+        /**
+         * Setea el método onClick para que se envíen los parámetros y datos al presentador para poder
+         * realizar las operaciones.
+         */
         btn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iPresentador.onClickNumberP(btn8.getText().toString());
             }
         });
+
+        /**
+         * Setea el método onClick para que se envíen los parámetros y datos al presentador para poder
+         * realizar las operaciones.
+         */
         btn9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,36 +183,65 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para borra o limpiar la pantalla llamando al método
+         * del presentador.
+         */
         btnclear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iPresentador.onClickClearP();
             }
         });
+
+        /**
+         * Setea el método onClick para que el operador ingresado por teclado se envie como parámetro
+         * al presentador.
+         */
         btnsuma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iPresentador.onClickOperatorP(btnsuma.getText().toString());
             }
         });
+
+        /**
+         * Setea el método onClick para que el operador ingresado por teclado se envie como parámetro
+         * al presentador.
+         */
         btnresta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iPresentador.onClickOperatorP(btnresta.getText().toString());
             }
         });
+
+        /**
+         * Setea el método onClick para que el operador ingresado por teclado se envie como parámetro
+         * al presentador.
+         */
         btnmult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iPresentador.onClickOperatorP(btnmult.getText().toString());
             }
         });
+
+        /**
+         * Setea el método onClick para que el operador ingresado por teclado se envie como parámetro
+         * al presentador.
+         */
         btndiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iPresentador.onClickOperatorP(btndiv.getText().toString());
             }
         });
+
+        /**
+         * Setea el método onClick para enviar un punto (.) al presentador, indicando
+         * el ingreso de un decimal.
+         */
         btnpunto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,6 +249,10 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para mostrar el resultado de la operacióin y borrar la antreior cadena de
+         * operaciones en pantalla.
+         */
         btnigual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,6 +260,10 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para indicar que se está realizando la operación de
+         * exponente.
+         */
         btnpow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,6 +271,10 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para indicar que se está realizando la operación de
+         * factorial.
+         */
         btnfact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,6 +282,10 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para indicar que se está realizando la operación de
+         * M+.
+         */
         btnmplus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,6 +293,10 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para indicar que se está realizando la operación de
+         * M-.
+         */
         btnmrest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -183,6 +304,10 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para indicar que se está realizando la operación de
+         * MR.
+         */
         btnmr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -193,12 +318,25 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
 
     }
 
+    /**
+     * Método que muestra en pantalla la cadena de operaciones realizada y
+     * el resultado de la operación.
+     *
+     * @param scalculation Cadena de operaciones realizada.
+     * @param sanswer Resultado de la cadea de operaciones.
+     */
     @Override
     public void mostrarPantallaV(String scalculation, String sanswer) {
         input.setText(scalculation);
         resultado.setText(sanswer);
     }
 
+    /**
+     * Método que se encarga de mostrar en forma de mensaje o alerta
+     * el valor que posee M.
+     *
+     * @param mr Resultado del valor que guarda en memoria M
+     */
     @Override
     public void mostrarMr(String mr) {
         Toast.makeText(getApplicationContext(), "M: " + mr, Toast.LENGTH_LONG).show();

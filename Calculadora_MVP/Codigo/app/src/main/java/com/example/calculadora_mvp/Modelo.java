@@ -1,3 +1,15 @@
+/*
+ * ESPE - DCC - PROGRAMACIÓN MÓVIL
+ * NRC: 6112
+ *
+ * Sistema: Calculadora_MVP
+ * Creado 07/06/2020
+ *
+ * Los contenidos de este archivo son propiedad privada y estan protegidos por
+ * la licencia BSD
+ *
+ * Se puede utilizar, reproducir o copiar el contenido de este archivo.
+ */
 package com.example.calculadora_mvp;
 
 import android.graphics.Path;
@@ -7,6 +19,13 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 
+/**
+ * Clase que contiene toda la lógica del programa, la misma realiza todas las operaciones
+ * e implementa la interfaz iCalculadora.iModelo.
+ *
+ * @author Carlos Martínez
+ * @author Paula Monteros
+ */
 public class Modelo implements iCalculadora.iModelo{
     private iCalculadora.iPresentador iPresentador;
     private Numero result, numberone,temp, numbertwo, temp2;
@@ -16,9 +35,17 @@ public class Modelo implements iCalculadora.iModelo{
     private String scalculation, sanswer, numero_uno, current_operator, numero_dos;
     private Operacion operacion;
 
+    /**
+     * Constructor. Constructor vacío de la clase Modelo.
+     */
     public Modelo() {
     }
 
+    /**
+     * Constructor. Constructor con parámetros de la clase Modelo.
+     *
+     * @param iPresentador Objeto que implementa la interfaz iCalculadora.iPresentador
+     */
     public Modelo(iCalculadora.iPresentador iPresentador) {
         this.iPresentador = iPresentador;
         simb.setDecimalSeparator('.');
@@ -36,14 +63,31 @@ public class Modelo implements iCalculadora.iModelo{
         operacion=new Operacion();
     }
 
+    /**
+     * Método que retorna el valor del atributo iPresentador de la clase Modelo.
+     *
+     * @return Objeto que implementa la interfaz iCalculadora.iPresentador.
+     */
     public iCalculadora.iPresentador getiPresentador() {
         return iPresentador;
     }
 
+    /**
+     * Método que setea el valor del atributo iPresentador de la clase Modelo.
+     *
+     * @param iPresentador Objeto que implemente la interfaz iCalculadora.iPresentador.
+     */
     public void setiPresentador(iCalculadora.iPresentador iPresentador) {
         this.iPresentador = iPresentador;
     }
 
+    /**
+     * Método que agrega el valor o número ingresado a la cadena de operaciones,
+     * realiza el cálculo de acuerdo al operador guardado y envía el resultado
+     * al presentador.
+     *
+     * @param valor valor de un número.
+     */
     @Override
     public void onClickNumberM(String valor) {
         if(num_allow){
@@ -105,6 +149,11 @@ public class Modelo implements iCalculadora.iModelo{
         }
     }
 
+    /**
+     * Método que agrega el operador a la cadena de operaciones guardada.
+     *
+     * @param operator Operador
+     */
     @Override
     public void onClickOperatorM(String operator) {
         num_allow=true;
@@ -130,6 +179,10 @@ public class Modelo implements iCalculadora.iModelo{
         }
     }
 
+    /**
+     * Método que borra o limpia todas la variables de la calculadora, excepto la
+     * variable M.
+     */
     @Override
     public void onClickClearM() {
         num_allow=true;
@@ -149,6 +202,10 @@ public class Modelo implements iCalculadora.iModelo{
         dot=false;
     }
 
+    /**
+     * Método que agrega un punto (.) a la cadena de operaciones, indicando
+     * que el número es un decimal.
+     */
     @Override
     public void onClickDotM() {
         if(!dot){
@@ -174,6 +231,11 @@ public class Modelo implements iCalculadora.iModelo{
 
     }
 
+    /**
+     * Método que limpia la cadena de operaciones y la inicializa con el resultado anterior,
+     * de tal manera que en pantalla se muestre solo el resultado como nuevo inicio
+     * para la cadena de operaciones.
+     */
     @Override
     public void onClickEqualM() {
         if(scalculation!=""){
@@ -192,6 +254,10 @@ public class Modelo implements iCalculadora.iModelo{
         }
     }
 
+    /**
+     * Método que añade el operador o símbolo de exponente a la cadena de operaciones
+     * e identifica que valor es la base y exponente para realizar el cálculo.
+     */
     @Override
     public void onClickPowM() {
         if(scalculation!="" && !pow_present ){
@@ -207,6 +273,10 @@ public class Modelo implements iCalculadora.iModelo{
         }
     }
 
+    /**
+     * Método que añade el operador o símbolo de factorial, ejecuta esta operación sobre un número
+     * determinado, y suma el valor retornado al resultado de la cadena de operaciones.
+     */
     @Override
     public void onClickFactorialM() {
         if (!scalculation.equals("") && !factorial_present && !pow_present && !dot) {
@@ -257,6 +327,10 @@ public class Modelo implements iCalculadora.iModelo{
 
     }
 
+    /**
+     * Método que se encarga de sumar un valor a la variable M de
+     * la calculadora.
+     */
     @Override
     public void onClickMplusM() {
         if (scalculation.equals("")){
@@ -268,6 +342,10 @@ public class Modelo implements iCalculadora.iModelo{
 
     }
 
+    /**
+     * Método que se encarga de restar un valor a la variable M de
+     * la calculadora.
+     */
     @Override
     public void onClickMrestM() {
         if (scalculation.equals("")){
@@ -278,11 +356,23 @@ public class Modelo implements iCalculadora.iModelo{
         }
     }
 
+    /**
+     * Método que envía al presentador el valor de la variable M
+     * de la calculadora.
+     */
     @Override
     public void onClickMrM() {
         iPresentador.mostrarMrP(temp2.getValor().toString());
     }
 
+    /**
+     * Método que obtiene el caracter indicado de acuerdo a una posición en
+     * específico
+     *
+     * @param string
+     * @param iterator Posición
+     * @return Caracter
+     */
     @Override
     public char getLastChar(String string, int iterator) {
         char c = string.charAt(string.length()-iterator);
