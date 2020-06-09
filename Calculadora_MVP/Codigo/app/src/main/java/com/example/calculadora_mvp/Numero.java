@@ -54,8 +54,6 @@ public class Numero {
      */
     @Override
     public String toString() {
-        return "Numero{" +
-                "valor=" + valor +
-                '}';
+        return valor +"";
     }
 }

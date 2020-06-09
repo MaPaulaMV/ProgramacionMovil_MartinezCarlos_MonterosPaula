@@ -257,4 +257,26 @@ public class Presentador implements iCalculadora.iPresentador {
             Log.e("ERROR MR", e.getMessage());
         }
     }
+
+    @Override
+    public void onClickModP() {
+        try{
+            if(iVista!=null){
+                iModelo.onClickModM();
+            }
+        }catch (Exception e){
+            Log.e("ERROR MR", e.getMessage());
+        }
+    }
+
+    @Override
+    public void onClickMMP() {
+        try{
+            if(iVista!=null){
+                iModelo.onClickMM();
+            }
+        }catch (Exception e){
+            Log.e("ERROR MR", e.getMessage());
+        }
+    }
 }

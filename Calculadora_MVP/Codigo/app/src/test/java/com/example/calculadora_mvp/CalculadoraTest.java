@@ -63,6 +63,9 @@ public class CalculadoraTest {
         assertEquals(numero.getValor(),operacion.sumar(numero1,numero2).getValor());
         numero.setValor(666000.0);numero1.setValor(-123456.0);numero2.setValor(789456.0);
         assertEquals(numero.getValor(),operacion.sumar(numero1,numero2).getValor());
+
+        numero.setValor(-3.0);numero1.setValor(-3.0);numero2.setValor(-9.0);
+        assertEquals(numero.getValor(),operacion.modulo(numero1,numero2).getValor());
     }
 
     /**

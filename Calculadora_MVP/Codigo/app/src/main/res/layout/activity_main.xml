@@ -44,19 +44,40 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/botonBack"
-        android:weightSum="2"
+        android:weightSum="4"
 
         >
 
-        <ImageButton
+        <Button
             android:id="@+id/borrar"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="M+"
+            android:text="C"
+            android:textColor="@color/botonTxt"
             android:textAllCaps="false"
             android:src="@drawable/borrar"
+            android:textSize="40dp" />
+        <Button
+            android:id="@+id/mod"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="MOD"
+            android:textColor="@color/botonTxt"
+            android:textAllCaps="false"
+            android:textSize="40dp" />
+        <Button
+            android:id="@+id/mm"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="+/-"
+            android:textColor="@color/botonTxt"
+            android:textAllCaps="false"
             android:textSize="40dp" />
         <Button
             android:id="@+id/mr"

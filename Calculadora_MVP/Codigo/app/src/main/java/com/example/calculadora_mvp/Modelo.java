@@ -29,7 +29,7 @@ import java.text.NumberFormat;
 public class Modelo implements iCalculadora.iModelo{
     private iCalculadora.iPresentador iPresentador;
     private Numero result, numberone,temp, numbertwo, temp2;
-    private Boolean dot= false, num_allow = true, pow_present = false, factorial_present=false;
+    private Boolean dot= false, num_allow = true, pow_present = false, factorial_present=false, mod_present=false, invert_allow=true;
     private NumberFormat format;
     private DecimalFormatSymbols simb = new DecimalFormatSymbols();
     private String scalculation, sanswer, numero_uno, current_operator, numero_dos;
@@ -103,6 +103,10 @@ public class Modelo implements iCalculadora.iModelo{
                         temp=operacion.sumar(result,operacion.exponencial(numbertwo,numberone));
 
                     }
+                    else  if (mod_present){
+                        temp=operacion.modulo(numbertwo,numberone);
+                        Log.e("MOD", temp.getValor().toString());
+                    }
                     else {
                         temp=operacion.sumar(result,numberone);
                     }
@@ -119,6 +123,8 @@ public class Modelo implements iCalculadora.iModelo{
                     if(pow_present){
                         temp=operacion.restar(result,operacion.exponencial(numbertwo,numberone));
                         Log.e("POW", temp.toString());
+                    }else  if (mod_present){
+                        temp=operacion.modulo(numbertwo,numberone);
                     }
                     else {
                         temp=operacion.restar(result,numberone);
@@ -209,6 +215,7 @@ public class Modelo implements iCalculadora.iModelo{
         numbertwo.setValor(0.0);
         temp.setValor(0.0);
         pow_present=false;
+        mod_present=false;
         factorial_present=false;
         Log.e("ENTRA",current_operator + "...");
         iPresentador.mostrarPantallaP(scalculation,sanswer);
@@ -381,6 +388,22 @@ public class Modelo implements iCalculadora.iModelo{
         iPresentador.mostrarMrP(temp2.getValor().toString());
     }
 
+    @Override
+    public void onClickModM() {
+        if(scalculation!="" && !mod_present ){
+            if(getLastChar(scalculation,1)!=' '){
+                scalculation+="MOD";
+                numero_dos=temp.toString();
+                numbertwo.setValor(Double.valueOf(numero_dos));
+                numero_uno="";
+                pow_present=false;
+                num_allow=true;
+                mod_present=true;
+                iPresentador.mostrarPantallaP(scalculation,sanswer);
+            }
+        }
+    }
+
     /**
      * Método que obtiene el caracter indicado de acuerdo a una posición en
      * específico
@@ -393,5 +416,71 @@ public class Modelo implements iCalculadora.iModelo{
     public char getLastChar(String string, int iterator) {
         char c = string.charAt(string.length()-iterator);
         return  c;
+    }
+
+    public void onClickMM() {
+
+        if (invert_allow) {
+            Log.e("MM", numero_uno);
+            if (sanswer != "" && getLastChar(scalculation, 1) != ' ') {
+                numberone.setValor(numberone.getValor()*-1);
+                numero_uno = format.format(numberone.getValor()).toString();
+
+                switch (current_operator) {
+                    case "":
+                        if (mod_present){
+                            temp=operacion.modulo(numbertwo,numberone);
+                            Log.e("MOD", temp.getValor().toString());
+                            removeuntilchar(scalculation, ' ');
+                            scalculation += numero_uno;
+                        }
+                        else {
+                            temp=operacion.sumar(result,numberone);
+
+                        }
+                        break;
+                    case "-":
+                        if (mod_present){
+                            temp=operacion.modulo(numbertwo,numberone);
+                        }
+                        else {
+                            temp=operacion.restar(result,numberone);
+                        }
+                        break;
+                }
+
+                sanswer = format.format(temp.getValor());
+
+                iPresentador.mostrarPantallaP(scalculation,sanswer);
+            }
+        }
+    }
+
+    public void removeuntilchar(String str, char chr) {
+        char c = getLastChar(str, 1);
+
+        if (c != chr) {
+            //remove last char
+            str = removechar(str, 1);
+            scalculation = str;
+            iPresentador.mostrarPantallaP(scalculation,sanswer);
+            removeuntilchar(str, chr);
+        }
+    }
+
+    public String removechar(String str, int i) {
+        char c = str.charAt(str.length() - i);
+        //we need to check if dot is removed or not
+        if (c == '.' && !dot) {
+            dot = false;
+        }
+        if (c == '^') {
+            pow_present = false;
+        }
+        if (c == ' ') {
+            return str.substring(0, str.length() - (i - 1));
+        }
+        Log.e("CHAR",String.valueOf(c));
+        return str.substring(0, str.length() - i);
     }
 }

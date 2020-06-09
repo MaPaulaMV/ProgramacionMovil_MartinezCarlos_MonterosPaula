@@ -95,4 +95,28 @@ public class Operacion {
 
         return new Numero(resultado);
     }
+
+    public  Numero modulo (Numero numero1, Numero numero2){
+
+        Double res = 0.0;
+        res = numero1.getValor()%numero2.getValor();
+
+
+        if (numero1.getValor()<0 && numero2.getValor()<0){
+            return new Numero(res);
+        }
+        else {
+            if (numero1.getValor()<0){
+                return res<0 ? new Numero(res+numero2.getValor()): new Numero(res);
+            }
+            else if (numero2.getValor()<0){
+                return res>0 ? new Numero(res+numero2.getValor()): new Numero(res);
+            }
+            else {
+                return new Numero(res);
+            }
+        }
+
+
+    }
 }

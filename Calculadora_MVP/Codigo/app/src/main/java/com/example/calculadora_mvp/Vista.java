@@ -37,7 +37,7 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             btn6,btn7,btn8,btn9,btnpunto,
             btnsuma,btnresta,btnmult,btndiv,
             btnmplus,btnmrest,btnigual,btnpow,btnfact, btnmr;
-    private ImageButton btnclear;
+    private Button btnclear, btnmod,btnmm;
 
     /**
      * Método que se encarga de inicializar los elemnetos de la vista.
@@ -64,7 +64,7 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
         btnresta = (Button)findViewById(R.id.resta);
         btnmult = (Button)findViewById(R.id.multiplicacion);
         btndiv = (Button)findViewById(R.id.division);
-        btnclear = (ImageButton)findViewById(R.id.borrar);
+        btnclear = (Button) findViewById(R.id.borrar);
         btnpunto = (Button) findViewById(R.id.punto);
         btnigual = (Button) findViewById(R.id.igual);
         btnpow = (Button)findViewById(R.id.pow);
@@ -72,6 +72,9 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
         btnmplus = (Button)findViewById(R.id.mPlus);
         btnmrest = (Button)findViewById(R.id.mRest);
         btnmr = (Button)findViewById(R.id.mr);
+        btnmod = (Button)findViewById(R.id.mod);
+        btnmm = (Button)findViewById(R.id.mm);
+
 
         /**
          * Setea el método onClick para que se envíen los parámetros y datos al presentador para poder
@@ -313,6 +316,20 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             public void onClick(View v) {
                 iPresentador.onClickMrP();
 
+            }
+        });
+
+        btnmod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iPresentador.onClickModP();
+            }
+        });
+
+        btnmm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iPresentador.onClickMMP();
             }
         });
 
