@@ -30,12 +30,7 @@ public class Operacion {
      * @return Resultado de la suma
      */
     public  Numero sumar(Numero num1, Numero num2){
-        try {
-            return new Numero(num1.getValor()+num2.getValor());
-        }
-        catch (Exception e){
-            return null;
-        }
+        return new Numero(num1.getValor()+num2.getValor());
 
     }
 
@@ -93,9 +88,11 @@ public class Operacion {
      */
     public  Numero factorial(Numero num1) {
         double resultado =num1.getValor();
+
         for (int i = 1; i < num1.getValor(); i++) {
             resultado*=i;
         }
+
         return new Numero(resultado);
     }
 }

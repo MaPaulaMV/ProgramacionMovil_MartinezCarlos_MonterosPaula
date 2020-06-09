@@ -99,7 +99,9 @@ public class Modelo implements iCalculadora.iModelo{
                 case "":
                     if(pow_present){
                         Log.e("POW", numberone.toString());
+                        Log.e("POW", numbertwo.toString());
                         temp=operacion.sumar(result,operacion.exponencial(numbertwo,numberone));
+
                     }
                     else {
                         temp=operacion.sumar(result,numberone);
@@ -116,6 +118,7 @@ public class Modelo implements iCalculadora.iModelo{
                 case "-":
                     if(pow_present){
                         temp=operacion.restar(result,operacion.exponencial(numbertwo,numberone));
+                        Log.e("POW", temp.toString());
                     }
                     else {
                         temp=operacion.restar(result,numberone);
@@ -135,12 +138,22 @@ public class Modelo implements iCalculadora.iModelo{
                             temp=operacion.division(result,operacion.exponencial(numbertwo,numberone));
                         }
                         else {
-
+                            /*if (numberone.getValor()!=0 && result.getValor()!=0){
+                                temp=operacion.division(result,numberone);
+                            }
+                            else if (result.getValor()!=0 && numberone.getValor()==0){
+                                char c = getLastChar(scalculation,2);
+                                if (c=='/') {
+                                    scalculation = scalculation.substring(0, scalculation.length() - 3);
+                                }
+                            }*/
+                            temp=operacion.division(result,numberone);
+                            Log.e("DIV", temp.getValor().toString());
                         }
-                        temp=operacion.division(result,numberone);
+
                     }
                     catch (Exception e){
-                        sanswer = e.getMessage();
+                        //sanswer = e.getMessage();
                     }
                     break;
             }
@@ -249,6 +262,7 @@ public class Modelo implements iCalculadora.iModelo{
             num_allow=false;
             pow_present=false;
             dot=true;
+            current_operator="";
             factorial_present=false;
             iPresentador.mostrarPantallaP(scalculation,sanswer);
         }
@@ -260,15 +274,19 @@ public class Modelo implements iCalculadora.iModelo{
      */
     @Override
     public void onClickPowM() {
+
         if(scalculation!="" && !pow_present ){
+
             if(getLastChar(scalculation,1)!=' '){
                 scalculation+="^";
                 numero_dos=numero_uno;
-                numbertwo.setValor(numberone.getValor());
+                numbertwo.setValor(Double.valueOf(numero_dos));
+                //numbertwo.setValor(numberone.getValor());
                 numero_uno="";
                 pow_present=true;
                 num_allow=true;
                 iPresentador.mostrarPantallaP(scalculation,sanswer);
+                Log.e("PW", numero_dos);
             }
         }
     }
@@ -287,12 +305,10 @@ public class Modelo implements iCalculadora.iModelo{
                     numberone.setValor(1.0);
                 }
                 else{
-                    operacion.factorial(numberone);
+                    numberone.setValor(operacion.factorial(numberone).getValor());
                 }
 
                 numero_uno = format.format(numberone.getValor());
-                Log.e("ENTRA", numero_uno);
-                Log.e("ENTRA", numberone.toString());
                 switch (current_operator) {
                     case "":
                         result = numberone;
@@ -316,7 +332,7 @@ public class Modelo implements iCalculadora.iModelo{
                         break;
                 }
                 dot=true;
-                sanswer = result.toString();
+                sanswer = result.getValor().toString();
                 temp = result;
                 scalculation += "! ";
                 factorial_present = true;
