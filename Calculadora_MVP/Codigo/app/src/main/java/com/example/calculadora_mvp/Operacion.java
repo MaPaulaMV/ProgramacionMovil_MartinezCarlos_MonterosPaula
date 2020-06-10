@@ -75,9 +75,7 @@ public class Operacion {
      * @return Resultado del exponente.
      */
     public Numero exponencial(Numero num1,Numero num2){
-        double base=num1.getValor();
-        double exponente=num2.getValor();
-        return new Numero(Math.pow(base,exponente));
+        return new Numero(Math.pow(num1.getValor(),num2.getValor()));
     }
 
     /**
@@ -96,12 +94,18 @@ public class Operacion {
         return new Numero(resultado);
     }
 
+    /**
+     * Método que realiza la operación MOD, obteniendo el residuo
+     * de la división entre 2 números
+     *
+     * @param numero1 Primer número
+     * @param numero2 Segundo Número
+     * @return Residuo de la división
+     */
     public  Numero modulo (Numero numero1, Numero numero2){
 
         Double res = 0.0;
         res = numero1.getValor()%numero2.getValor();
-
-
         if (numero1.getValor()<0 && numero2.getValor()<0){
             return new Numero(res);
         }
@@ -116,7 +120,30 @@ public class Operacion {
                 return new Numero(res);
             }
         }
-
-
     }
+
+    public Numero logNatural(Numero num1){
+        double comp = 0.0;
+        double x1 = (num1.getValor() - 1) / (num1.getValor() + 1);
+        double x2 = x1 * x1;
+        double denominador = 1.0;
+        double fraccion = x1;
+        double sum = fraccion;
+
+        while (sum != comp) {
+            comp = sum;
+            denominador += 2.0;
+            fraccion *= x2;
+            sum += fraccion / denominador;
+        }
+        return new Numero(2.0*sum);
+    }
+
+    public Numero logBase10(Numero num1){ //:vvvvvv
+        return new Numero(Math.log10(num1.getValor()));
+    }
+
+
+
+
 }

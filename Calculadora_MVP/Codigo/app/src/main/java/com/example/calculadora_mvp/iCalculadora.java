@@ -50,6 +50,8 @@ public interface iCalculadora {
         void onClickModP();
         void onClickMMP();
         void onClickRootP();
+        void onClickLogP();
+        void onClickLnP();
     }
 
     /**
@@ -70,6 +72,8 @@ public interface iCalculadora {
         void onClickModM();
         void onClickMM();
         void onClickRootM();
+        void onClickLogM();
+        void onClickLnM();
         char getLastChar(String string, int iterator);
     }
 }

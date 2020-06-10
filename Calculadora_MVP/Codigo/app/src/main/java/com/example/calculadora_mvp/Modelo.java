@@ -31,7 +31,7 @@ public class Modelo implements iCalculadora.iModelo{
     private Numero result, numberone,temp, numbertwo, temp2;
     private Boolean dot= false, num_allow = true, pow_present = false,
             factorial_present=false, mod_present=false, invert_allow=true,
-            op_allow=true, root_present=false;
+            op_allow=true, root_present=false, funcion_present=false;
     private NumberFormat format;
     private DecimalFormatSymbols simb = new DecimalFormatSymbols();
     private String scalculation, sanswer, numero_uno, current_operator, numero_dos;
@@ -97,9 +97,13 @@ public class Modelo implements iCalculadora.iModelo{
             numero_uno+=valor;
             numberone.setValor(Double.parseDouble(numero_uno));
 
-            if(root_present){
+            if(funcion_present){
+                numberone.setValor(operacion.logNatural(new Numero(Double.parseDouble(numero_uno))).getValor());
+
+            }else if(root_present){
                 numberone.setValor(Math.sqrt(Double.parseDouble(numero_uno)));
             }
+
             switch (current_operator){
                 case "":
                     if(pow_present){
@@ -194,6 +198,9 @@ public class Modelo implements iCalculadora.iModelo{
                         scalculation = scalculation.substring(0, scalculation.length() - 3);
                     }
                 }
+                if(funcion_present){
+                    scalculation+=")";
+                }
                 scalculation = scalculation + " " + operator + " ";
                 numero_uno = "";
                 result.setValor(temp.getValor());
@@ -203,6 +210,7 @@ public class Modelo implements iCalculadora.iModelo{
                 pow_present = false;
                 factorial_present = false; //la validacion se hace en la funcion de factorial mismo
                 root_present=false;
+                funcion_present=false;
                 iPresentador.mostrarPantallaP(scalculation, sanswer);
                 dot = false;
                 invert_allow=true;
@@ -234,6 +242,7 @@ public class Modelo implements iCalculadora.iModelo{
         factorial_present=false;
         op_allow=true;
         root_present=false;
+        funcion_present=false;
         invert_allow=true;
         Log.e("ENTRA",current_operator + "...");
         iPresentador.mostrarPantallaP(scalculation,sanswer);
@@ -444,7 +453,9 @@ public class Modelo implements iCalculadora.iModelo{
         return  c;
     }
 
-
+    /**
+     *
+     */
     public void onClickMM() {
 
         if (invert_allow) {
@@ -580,6 +591,26 @@ public class Modelo implements iCalculadora.iModelo{
         }
 
 
+    }
+
+    @Override
+    public void onClickLogM() {
+
+    }
+
+    @Override
+    public void onClickLnM() {
+        if(sanswer.equals("")&& result.getValor()==0.0&&!funcion_present){
+            scalculation="ln(";
+            funcion_present=true;
+            invert_allow=false;
+            iPresentador.mostrarPantallaP(scalculation,sanswer);
+        }else if (getLastChar(scalculation,1)==' '&&current_operator!="" && !funcion_present){
+            scalculation+="ln(";
+            funcion_present=true;
+            invert_allow=false;
+            iPresentador.mostrarPantallaP(scalculation,sanswer);
+        }
     }
 
 
