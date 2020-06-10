@@ -118,7 +118,7 @@ public class CalculadoraTest {
      */
     @Test
     public void testExponencial(){
-        numero.setValor(27.0);numero1.setValor(3.0);numero2.setValor(3.0);
+        numero.setValor(0.1111111111111111);numero1.setValor(3.0);numero2.setValor(-2.0);
         assertEquals(numero.getValor(),operacion.exponencial(numero1,numero2).getValor());
         numero.setValor(9.0);numero1.setValor(-3.0);numero2.setValor(2.0);
         assertEquals(numero.getValor(),operacion.exponencial(numero1,numero2).getValor());

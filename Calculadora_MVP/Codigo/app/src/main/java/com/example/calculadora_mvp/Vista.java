@@ -36,7 +36,7 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
     private Button btn0,btn1,btn2,btn3,btn4,btn5,
             btn6,btn7,btn8,btn9,btnpunto,
             btnsuma,btnresta,btnmult,btndiv,
-            btnmplus,btnmrest,btnigual,btnpow,btnfact, btnmr;
+            btnmplus,btnmrest,btnigual,btnpow,btnfact, btnmr, btnroot;
     private Button btnclear, btnmod,btnmm;
 
     /**
@@ -74,6 +74,8 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
         btnmr = (Button)findViewById(R.id.mr);
         btnmod = (Button)findViewById(R.id.mod);
         btnmm = (Button)findViewById(R.id.mm);
+        btnroot = (Button)findViewById(R.id.root);
+
 
 
         /**
@@ -263,6 +265,8 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+
+
         /**
          * Setea el método onClick para indicar que se está realizando la operación de
          * exponente.
@@ -332,6 +336,15 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
                 iPresentador.onClickMMP();
             }
         });
+
+        btnroot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iPresentador.onClickRootP();
+            }
+        });
+
+
 
     }
 

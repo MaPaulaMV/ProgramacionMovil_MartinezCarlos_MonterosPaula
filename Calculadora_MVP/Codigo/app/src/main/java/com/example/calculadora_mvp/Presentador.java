@@ -265,7 +265,7 @@ public class Presentador implements iCalculadora.iPresentador {
                 iModelo.onClickModM();
             }
         }catch (Exception e){
-            Log.e("ERROR MR", e.getMessage());
+            Log.e("ERROR MOD", e.getMessage());
         }
     }
 
@@ -276,7 +276,19 @@ public class Presentador implements iCalculadora.iPresentador {
                 iModelo.onClickMM();
             }
         }catch (Exception e){
-            Log.e("ERROR MR", e.getMessage());
+            Log.e("ERROR MP", e.getMessage());
         }
     }
+
+    @Override
+    public void onClickRootP() {
+        try{
+            if(iVista!=null){
+                iModelo.onClickRootM();
+            }
+        }catch (Exception e){
+            Log.e("ERROR ROOT", e.getMessage());
+        }
+    }
+
 }
