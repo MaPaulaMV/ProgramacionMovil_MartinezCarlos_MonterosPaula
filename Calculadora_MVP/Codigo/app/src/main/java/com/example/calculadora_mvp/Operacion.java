@@ -143,6 +143,28 @@ public class Operacion {
         return new Numero(Math.log10(num1.getValor()));
     }
 
+    public Numero raiz(Numero numero){
+
+        double n = 0, nn = 0, r, x = numero.getValor();
+        double min = Double.MAX_VALUE;
+        double aux;
+
+
+        for (int i = 1; i < Integer.MAX_VALUE; i++) {
+            r = i * i;
+            aux = Math.abs(r - x);
+            if (aux < min) {//para ver si se pasa del nummero desdeado
+                n = i;
+                nn = r;
+                min = aux;
+            } else {
+                break;
+            }
+        }
+
+        double m_babilonico = (x + nn) / (2 * n);
+        return new Numero(m_babilonico);
+    }
 
 
 

@@ -142,6 +142,22 @@ public class CalculadoraTest {
         numero.setValor(1.0);numero1.setValor(1.0);
         assertEquals(numero.getValor(),operacion.factorial(numero1).getValor());
     }
+    @Test
+    public void testLog(){
+        numero.setValor(6.0);numero1.setValor(0.0);
+        assertEquals(numero.getValor(),operacion.logNatural(numero1).getValor());
+
+    }
+
+    @Test
+    public void testPol(){
+        pref_inf p = new pref_inf();
+        ev_result e = new ev_result();
+        assertEquals("235+-",p.Infijo2PosfijoTxt("2 + 3 - √ 2 * 3"));
+        //assertEquals("101.0",e.Postfijo2resulTxt("2 3 2 3 √ * - +"));
+
+    }
+
 
 
 }

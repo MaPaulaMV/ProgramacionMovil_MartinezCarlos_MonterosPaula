@@ -36,6 +36,8 @@ public class Modelo implements iCalculadora.iModelo{
     private DecimalFormatSymbols simb = new DecimalFormatSymbols();
     private String scalculation, sanswer, numero_uno, current_operator, numero_dos;
     private Operacion operacion;
+    private pref_inf p = new pref_inf();
+    private  ev_result e = new ev_result();
 
     /**
      * Constructor vacío de la clase Modelo.
@@ -101,7 +103,7 @@ public class Modelo implements iCalculadora.iModelo{
                 numberone.setValor(operacion.logNatural(new Numero(Double.parseDouble(numero_uno))).getValor());
 
             }else if(root_present){
-                numberone.setValor(Math.sqrt(Double.parseDouble(numero_uno)));
+                numberone.setValor(operacion.raiz(numberone).getValor());
             }
 
             switch (current_operator){
@@ -172,10 +174,16 @@ public class Modelo implements iCalculadora.iModelo{
             if(temp.getValor()==-0.0){
                 temp.setValor(0.0);
             }
-
-            op_allow=true;
-            sanswer = format.format(temp.getValor());
+            if(scalculation.length()>=4){
+                sanswer = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
+            }
+            else {
+                op_allow=true;
+                sanswer = format.format(temp.getValor());
+            }
             iPresentador.mostrarPantallaP(scalculation,sanswer);
+
+
         }
     }
 
@@ -286,7 +294,9 @@ public class Modelo implements iCalculadora.iModelo{
     @Override
     public void onClickEqualM() {
         if(scalculation!=""){
-            scalculation=sanswer;
+            Log.e("POL R",e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation)) );
+            scalculation = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
+            //scalculation=sanswer;
             sanswer=" ";
             result.setValor(0.0);
             numero_uno=scalculation;
@@ -299,6 +309,7 @@ public class Modelo implements iCalculadora.iModelo{
             op_allow=true;
             current_operator="";
             factorial_present=false;
+
             iPresentador.mostrarPantallaP(scalculation,sanswer);
         }
     }

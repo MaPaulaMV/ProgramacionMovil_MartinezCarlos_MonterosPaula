@@ -102,7 +102,16 @@
                 android:textAllCaps="false"
                 android:textColor="@color/botonTxt"
                 android:textSize="40dp" />
-
+            <Button
+                android:id="@+id/ln"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Ln"
+                android:textAllCaps="false"
+                android:textColor="@color/botonTxt"
+                android:textSize="40dp" />
             <Button
                 android:id="@+id/log"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
@@ -114,16 +123,7 @@
                 android:textColor="@color/botonTxt"
                 android:textSize="40dp" />
 
-            <Button
-                android:id="@+id/ln"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Ln"
-                android:textAllCaps="false"
-                android:textColor="@color/botonTxt"
-                android:textSize="40dp" />
+
 
 
         </LinearLayout>
