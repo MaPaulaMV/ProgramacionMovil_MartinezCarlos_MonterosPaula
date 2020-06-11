@@ -292,24 +292,13 @@ public class Presentador implements iCalculadora.iPresentador {
     }
 
     @Override
-    public void onClickLogP() {
+    public void onClickFuncionP(String funcion) {
         try{
             if(iVista!=null){
-                iModelo.onClickLogM();
+                iModelo.onClickFuncionM(funcion);
             }
         }catch (Exception e){
-            Log.e("ERROR Logaritmo", e.getMessage());
-        }
-    }
-
-    @Override
-    public void onClickLnP() {
-        try{
-            if(iVista!=null){
-                iModelo.onClickLnM();
-            }
-        }catch (Exception e){
-            Log.e("ERROR Ln", e.getMessage());
+            Log.e("ERROR "+funcion, e.getMessage());
         }
     }
 
