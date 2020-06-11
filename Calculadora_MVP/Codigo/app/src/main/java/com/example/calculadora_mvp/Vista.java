@@ -349,14 +349,14 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
         btnlog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iPresentador.onClickLogP();
+                iPresentador.onClickFuncionP(btnlog.getText().toString());
             }
         });
 
         btnln.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iPresentador.onClickLnP();
+                iPresentador.onClickFuncionP(btnln.getText().toString());
             }
         });
 

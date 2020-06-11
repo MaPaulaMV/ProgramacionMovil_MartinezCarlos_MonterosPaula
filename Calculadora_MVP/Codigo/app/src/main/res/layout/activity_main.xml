@@ -108,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Ln"
+                android:text="log"
                 android:textAllCaps="false"
                 android:textColor="@color/botonTxt"
                 android:textSize="40dp" />
@@ -118,7 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Log"
+                android:text="ln"
                 android:textAllCaps="false"
                 android:textColor="@color/botonTxt"
                 android:textSize="40dp" />

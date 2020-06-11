@@ -124,9 +124,9 @@ public class Operacion {
 
     public Numero logNatural(Numero num1){
         double comp = 0.0;
+        double denominador = 1.0;
         double x1 = (num1.getValor() - 1) / (num1.getValor() + 1);
         double x2 = x1 * x1;
-        double denominador = 1.0;
         double fraccion = x1;
         double sum = fraccion;
 
@@ -139,8 +139,19 @@ public class Operacion {
         return new Numero(2.0*sum);
     }
 
-    public Numero logBase10(Numero num1){ //:vvvvvv
-        return new Numero(Math.log10(num1.getValor()));
+    public Numero logBase10(Numero num1){
+        double valor=0;
+        int precision=10, cont=0,i;
+        while (num1.getValor() !=1.0 && precision>=0){
+            for(i=0;num1.getValor()>=10.0;i++){
+                num1.setValor(num1.getValor()/10);
+            }
+            num1.setValor(Math.pow(num1.getValor(),10));
+            valor=10*(valor+i);
+            precision--;
+            cont++;
+        }
+        return new Numero(valor/Math.pow(10,cont));
     }
 
     public Numero raiz(Numero numero){

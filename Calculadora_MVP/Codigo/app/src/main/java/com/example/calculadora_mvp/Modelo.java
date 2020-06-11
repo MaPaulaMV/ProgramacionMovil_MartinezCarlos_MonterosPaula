@@ -34,7 +34,7 @@ public class Modelo implements iCalculadora.iModelo{
             op_allow=true, root_present=false, funcion_present=false;
     private NumberFormat format;
     private DecimalFormatSymbols simb = new DecimalFormatSymbols();
-    private String scalculation, sanswer, numero_uno, current_operator, numero_dos;
+    private String scalculation, sanswer, numero_uno, current_operator, numero_dos, funcion;
     private Operacion operacion;
     private pref_inf p = new pref_inf();
     private  ev_result e = new ev_result();
@@ -100,8 +100,7 @@ public class Modelo implements iCalculadora.iModelo{
             numberone.setValor(Double.parseDouble(numero_uno));
 
             if(funcion_present){
-                numberone.setValor(operacion.logNatural(new Numero(Double.parseDouble(numero_uno))).getValor());
-
+                calcularFuncionM();
             }else if(root_present){
                 numberone.setValor(operacion.raiz(numberone).getValor());
             }
@@ -125,9 +124,9 @@ public class Modelo implements iCalculadora.iModelo{
                 case "+":
                     if(pow_present){
                         temp=operacion.sumar(result,operacion.exponencial(numbertwo,numberone));
-            }else  if (mod_present){
-                temp=operacion.modulo(numbertwo,numberone);
-            }
+                    }else  if (mod_present){
+                        temp=operacion.modulo(numbertwo,numberone);
+                    }
                     else {
                         temp=operacion.sumar(result,numberone);
                     }
@@ -321,7 +320,7 @@ public class Modelo implements iCalculadora.iModelo{
     @Override
     public void onClickPowM() {
 
-        if(scalculation!="" && !pow_present ){
+        if(scalculation!="" && !pow_present && !funcion_present){
 
             if(getLastChar(scalculation,1)!=' '){
                 scalculation+="^";
@@ -342,7 +341,7 @@ public class Modelo implements iCalculadora.iModelo{
      */
     @Override
     public void onClickFactorialM() {
-        if (!scalculation.equals("") && !factorial_present && !pow_present && !dot) {
+        if (!scalculation.equals("") && !factorial_present && !pow_present && !dot && !funcion_present) {
 
             if (getLastChar(scalculation, 1) != ' ') {
 
@@ -434,7 +433,7 @@ public class Modelo implements iCalculadora.iModelo{
 
     @Override
     public void onClickModM() {
-        if(scalculation!="" && !mod_present ){
+        if(scalculation!="" && !mod_present && !funcion_present){
 
             if(getLastChar(scalculation,1)!=' '){
                 scalculation=scalculation + " "+ "MOD" + " ";
@@ -589,12 +588,12 @@ public class Modelo implements iCalculadora.iModelo{
 
     @Override
     public void onClickRootM() {
-        if(sanswer.equals("")&& result.getValor()==0.0&&!root_present){//Cuando no hay nada escrito
+        if(sanswer.equals("")&& result.getValor()==0.0&&!root_present && !funcion_present){//Cuando no hay nada escrito
             scalculation="√";
             root_present=true;
             invert_allow=false;
             iPresentador.mostrarPantallaP(scalculation,sanswer);
-        }else if (getLastChar(scalculation,1)==' '&&current_operator!="" && !root_present){
+        }else if (getLastChar(scalculation,1)==' '&&current_operator!="" && !root_present && !funcion_present){
             scalculation+="√";
             root_present=true;
             invert_allow=false;
@@ -605,22 +604,31 @@ public class Modelo implements iCalculadora.iModelo{
     }
 
     @Override
-    public void onClickLogM() {
-
+    public void onClickFuncionM(String funcion) {
+        if(sanswer.equals("")&& result.getValor()==0.0&&!funcion_present){
+            scalculation=funcion+"(";
+            funcion_present=true;
+            invert_allow=false;
+            this.funcion=funcion;
+            iPresentador.mostrarPantallaP(scalculation,sanswer);
+        }else if (getLastChar(scalculation,1)==' '&&current_operator!="" && !funcion_present){
+            scalculation+=funcion+"(";
+            funcion_present=true;
+            invert_allow=false;
+            this.funcion=funcion;
+            iPresentador.mostrarPantallaP(scalculation,sanswer);
+        }
     }
 
     @Override
-    public void onClickLnM() {
-        if(sanswer.equals("")&& result.getValor()==0.0&&!funcion_present){
-            scalculation="ln(";
-            funcion_present=true;
-            invert_allow=false;
-            iPresentador.mostrarPantallaP(scalculation,sanswer);
-        }else if (getLastChar(scalculation,1)==' '&&current_operator!="" && !funcion_present){
-            scalculation+="ln(";
-            funcion_present=true;
-            invert_allow=false;
-            iPresentador.mostrarPantallaP(scalculation,sanswer);
+    public void calcularFuncionM() {
+        switch (this.funcion){
+            case "log":
+                numberone.setValor(operacion.logBase10(new Numero(Double.parseDouble(numero_uno))).getValor());
+                break;
+            case "ln":
+                numberone.setValor(operacion.logNatural(new Numero(Double.parseDouble(numero_uno))).getValor());
+                break;
         }
     }
 
