@@ -143,18 +143,17 @@ public class CalculadoraTest {
         assertEquals(numero.getValor(),operacion.factorial(numero1).getValor());
     }
     @Test
-    public void testLog(){
-        numero.setValor(6.0);numero1.setValor(0.0);
-        assertEquals(numero.getValor(),operacion.logNatural(numero1).getValor());
-
+    public void testRaiz(){
+        numero.setValor(1.5892857142857142);numero1.setValor(2.5);
+        assertEquals(numero.getValor(),operacion.raiz(numero1).getValor());
     }
 
     @Test
     public void testPol(){
         pref_inf p = new pref_inf();
         ev_result e = new ev_result();
-        assertEquals("235+-",p.Infijo2PosfijoTxt("2 + 3 - √ 2 * 3"));
-        //assertEquals("101.0",e.Postfijo2resulTxt("2 3 2 3 √ * - +"));
+        //assertEquals("",p.Infijo2PosfijoTxt("2 + 3 - √ 2 * 3"));
+        assertEquals("0.77",e.Postfijo2resulTxt("2 3 + 2 √ 3 * -"));
 
     }
 

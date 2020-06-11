@@ -156,7 +156,7 @@ public class Operacion {
 
     public Numero raiz(Numero numero){
 
-        double n = 0, nn = 0, r, x = numero.getValor();
+        double n = 0, r, x = numero.getValor();
         double min = Double.MAX_VALUE;
         double aux;
 
@@ -164,17 +164,19 @@ public class Operacion {
         for (int i = 1; i < Integer.MAX_VALUE; i++) {
             r = i * i;
             aux = Math.abs(r - x);
-            if (aux < min) {//para ver si se pasa del nummero desdeado
+            if (aux < min) {
                 n = i;
-                nn = r;
                 min = aux;
             } else {
                 break;
             }
         }
 
-        double m_babilonico = (x + nn) / (2 * n);
-        return new Numero(m_babilonico);
+
+        double numerador = Math.pow(n, 4) + 6 * Math.pow(n, 2) * x + Math.pow(x, 2);
+        double denominador = 4 * Math.pow(n, 3) + (4 * n * x);
+        double m_bakhsali = numerador / denominador;
+        return new Numero(m_bakhsali);
     }
 
 

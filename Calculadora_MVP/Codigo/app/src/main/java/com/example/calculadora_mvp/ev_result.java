@@ -21,7 +21,13 @@ public class ev_result {
         String operadores = "+-*/^√";
         while (!E.isEmpty()) {
             if (operadores.contains("" + E.peek())) {
-                P.push(evaluar(E.pop(), P.pop(), P.pop()) + "");
+                if("√".contains(E.peek())){
+                    P.push(evaluar(E.pop(), P.pop(), "0") + "");
+                }
+                else {
+                    P.push(evaluar(E.pop(), P.pop(), P.pop()) + "");
+                }
+
             }else {
                 P.push(E.pop());
             }
@@ -54,7 +60,7 @@ public class ev_result {
         }
         if (op.equals("√")){
             float pot;
-            pot = (float) Math.sqrt(num1);/*****/
+            pot = (float) Math.sqrt(num2);
             return (pot);
         }
         return 0;

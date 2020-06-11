@@ -108,8 +108,7 @@ public class Modelo implements iCalculadora.iModelo{
             switch (current_operator){
                 case "":
                     if(pow_present){
-                        Log.e("POW", numberone.toString());
-                        Log.e("POW", numbertwo.toString());
+
                         temp=operacion.sumar(result,operacion.exponencial(numbertwo,numberone));
 
                     }
@@ -119,6 +118,7 @@ public class Modelo implements iCalculadora.iModelo{
                     }
                     else {
                         temp=operacion.sumar(result,numberone);
+                        Log.e("LOG", temp.getValor().toString());
                     }
                     break;
                 case "+":
@@ -173,16 +173,14 @@ public class Modelo implements iCalculadora.iModelo{
             if(temp.getValor()==-0.0){
                 temp.setValor(0.0);
             }
-            if(scalculation.length()>=4){
-                sanswer = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
-            }
-            else {
+//            if(scalculation.length()>=8){
+//                sanswer = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
+//            }
+            //else {
                 op_allow=true;
                 sanswer = format.format(temp.getValor());
-            }
+            //}
             iPresentador.mostrarPantallaP(scalculation,sanswer);
-
-
         }
     }
 
@@ -625,6 +623,7 @@ public class Modelo implements iCalculadora.iModelo{
         switch (this.funcion){
             case "log":
                 numberone.setValor(operacion.logBase10(new Numero(Double.parseDouble(numero_uno))).getValor());
+
                 break;
             case "ln":
                 numberone.setValor(operacion.logNatural(new Numero(Double.parseDouble(numero_uno))).getValor());
