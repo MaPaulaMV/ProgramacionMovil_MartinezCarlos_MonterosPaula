@@ -36,7 +36,7 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
     private Button btn0,btn1,btn2,btn3,btn4,btn5,
             btn6,btn7,btn8,btn9,btnpunto,
             btnsuma,btnresta,btnmult,btndiv,
-            btnmplus,btnmrest,btnigual,btnpow,btnfact, btnmr, btnroot,btnlog,btnln;
+            btnmplus,btnmrest,btnigual,btnpow,btnfact, btnmr, btnroot,btnlog,btnln,btnsin,btncos,btnpi;
     private Button btnclear, btnmod,btnmm;
 
     /**
@@ -77,8 +77,8 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
         btnroot = (Button)findViewById(R.id.root);
         btnlog=(Button)findViewById(R.id.log);
         btnln=(Button)findViewById(R.id.ln);
-
-
+        btnsin=(Button)findViewById(R.id.sin);
+        btncos=(Button)findViewById(R.id.cos);
 
         /**
          * Setea el método onClick para que se envíen los parámetros y datos al presentador para poder
@@ -360,6 +360,26 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        btnsin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                iPresentador.onClickFuncionP(btnsin.getText().toString());
+            }
+        });
+
+        btncos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                iPresentador.onClickFuncionP(btncos.getText().toString());
+            }
+        });
+
+        btnpi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                iPresentador.onClickFuncionP(String.valueOf(Math.PI));
+            }
+        });
 
     }
 

@@ -102,7 +102,9 @@ public class Modelo implements iCalculadora.iModelo{
             if(funcion_present){
                 calcularFuncionM();
             }else if(root_present){
-                numberone.setValor(operacion.raiz(numberone).getValor());
+                if(numberone.getValor()!=0){
+                    numberone.setValor(operacion.raiz(numberone).getValor());
+                }
             }
 
             switch (current_operator){
@@ -468,8 +470,13 @@ public class Modelo implements iCalculadora.iModelo{
 
         if (invert_allow) {
             if (sanswer != "" && getLastChar(scalculation, 1) != ' ') {
-                numberone.setValor(numberone.getValor()*-1);
-                numero_uno = format.format(numberone.getValor()).toString();
+                if(funcion_present){
+                    numero_uno = String.valueOf(Double.valueOf(numero_uno)*-1);
+                    calcularFuncionM();
+                }else {
+                    numberone.setValor(numberone.getValor()*-1);
+                    numero_uno = format.format(numberone.getValor()).toString();
+                }
 
                 switch (current_operator) {
                     case "":
@@ -481,8 +488,11 @@ public class Modelo implements iCalculadora.iModelo{
                             temp=operacion.exponencial(numbertwo,numberone);
                             removeuntilchar(scalculation, '^');
                             scalculation += numero_uno;
-                        }
-                        else {
+                        }if(funcion_present){
+                            temp.setValor(numberone.getValor());
+                            removeuntilchar(scalculation, '(');
+                            scalculation+=numero_uno;
+                        }else {
                             temp.setValor(numberone.getValor());
                             //removeuntilchar(scalculation, ' ');
                             scalculation=temp.getValor().toString();
@@ -603,16 +613,21 @@ public class Modelo implements iCalculadora.iModelo{
 
     @Override
     public void onClickFuncionM(String funcion) {
+        if(funcion.equals("sin")|| funcion.equals("cos")){
+            invert_allow=true;
+        }
+        else {
+            invert_allow=false;
+        }
+
         if(sanswer.equals("")&& result.getValor()==0.0&&!funcion_present){
             scalculation=funcion+"(";
             funcion_present=true;
-            invert_allow=false;
             this.funcion=funcion;
             iPresentador.mostrarPantallaP(scalculation,sanswer);
         }else if (getLastChar(scalculation,1)==' '&&current_operator!="" && !funcion_present){
             scalculation+=funcion+"(";
             funcion_present=true;
-            invert_allow=false;
             this.funcion=funcion;
             iPresentador.mostrarPantallaP(scalculation,sanswer);
         }
@@ -623,10 +638,15 @@ public class Modelo implements iCalculadora.iModelo{
         switch (this.funcion){
             case "log":
                 numberone.setValor(operacion.logBase10(new Numero(Double.parseDouble(numero_uno))).getValor());
-
                 break;
             case "ln":
                 numberone.setValor(operacion.logNatural(new Numero(Double.parseDouble(numero_uno))).getValor());
+                break;
+            case "sin":
+                numberone.setValor(operacion.seno(new Numero(Double.parseDouble(numero_uno))).getValor());
+                break;
+            case "cos":
+                numberone.setValor(operacion.serieTaylor(new Numero(Double.parseDouble(numero_uno))).getValor());
                 break;
         }
     }

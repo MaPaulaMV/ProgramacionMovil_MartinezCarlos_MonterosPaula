@@ -122,9 +122,36 @@
                 android:textAllCaps="false"
                 android:textColor="@color/botonTxt"
                 android:textSize="40dp" />
-
-
-
+            <Button
+                android:id="@+id/sin"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="sin"
+                android:textAllCaps="false"
+                android:textColor="@color/botonTxt"
+                android:textSize="40dp" />
+            <Button
+                android:id="@+id/cos"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="cos"
+                android:textAllCaps="false"
+                android:textColor="@color/botonTxt"
+                android:textSize="40dp" />
+            <Button
+                android:id="@+id/pi"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="π"
+                android:textAllCaps="false"
+                android:textColor="@color/botonTxt"
+                android:textSize="40dp" />
 
         </LinearLayout>
     </HorizontalScrollView>
