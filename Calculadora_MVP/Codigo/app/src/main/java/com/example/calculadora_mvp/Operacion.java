@@ -75,7 +75,22 @@ public class Operacion {
      * @return Resultado del exponente.
      */
     public Numero exponencial(Numero num1,Numero num2){
-        return new Numero(Math.pow(num1.getValor(),num2.getValor()));
+        double valorExp=num2.getValor(), res=1;
+        int x=(int)valorExp,i=0;
+
+        if((valorExp-x)==0){
+            if(valorExp<0){
+                num1.setValor(1/num1.getValor());
+                valorExp*=-1;
+            }
+            while (i!=valorExp){
+                res=res*num1.getValor();
+                i++;
+            }
+            return new Numero(res);
+        }else{
+            return new Numero(Math.pow(num1.getValor(),num2.getValor()));
+        }
     }
 
     /**
@@ -146,12 +161,13 @@ public class Operacion {
             for(i=0;num1.getValor()>=10.0;i++){
                 num1.setValor(num1.getValor()/10);
             }
-            num1.setValor(Math.pow(num1.getValor(),10));
+            num1=this.exponencial(num1,new Numero(10.0));
             valor=10*(valor+i);
             precision--;
             cont++;
         }
-        return new Numero(valor/Math.pow(10,cont));
+        double contador=cont;
+        return new Numero(valor/this.exponencial(new Numero(10.0),new Numero(contador)).getValor());
     }
 
     public Numero raiz(Numero numero){
@@ -159,7 +175,6 @@ public class Operacion {
         double n = 0, r, x = numero.getValor();
         double min = Double.MAX_VALUE;
         double aux;
-
 
         for (int i = 1; i < Integer.MAX_VALUE; i++) {
             r = i * i;
@@ -171,8 +186,6 @@ public class Operacion {
                 break;
             }
         }
-
-
         double numerador = Math.pow(n, 4) + 6 * Math.pow(n, 2) * x + Math.pow(x, 2);
         double denominador = 4 * Math.pow(n, 3) + (4 * n * x);
         double m_bakhsali = numerador / denominador;

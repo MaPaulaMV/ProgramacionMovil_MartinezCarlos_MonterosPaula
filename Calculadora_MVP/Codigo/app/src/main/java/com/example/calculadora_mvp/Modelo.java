@@ -566,7 +566,6 @@ public class Modelo implements iCalculadora.iModelo{
         }
     }
 
-
     public void removeuntilchar(String str, char chr) {
         char c = getLastChar(str, 1);
 
