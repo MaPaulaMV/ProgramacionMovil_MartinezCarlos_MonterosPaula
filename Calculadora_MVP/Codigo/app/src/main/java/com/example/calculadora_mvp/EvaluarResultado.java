@@ -23,10 +23,10 @@ public class EvaluarResultado {
         while (!E.isEmpty()) {
             if (operadores.contains("" + E.peek())) {
                 if("√".contains(E.peek()) || "!".contains(E.peek())||"l".contains(E.peek())||"n".contains(E.peek())||"s".contains(E.peek())||"c".contains(E.peek())){
-                    P.push(evaluar(E.pop(), P.pop(), "0") + "");
+                    P.push(evaluar(E.pop(), P.pop(), "0").getValor() + "");
                 }
                 else {
-                    P.push(evaluar(E.pop(), P.pop(), P.pop()) + "");
+                    P.push(evaluar(E.pop(), P.pop(), P.pop()).getValor() + "");
                 }
 
             }else {
@@ -38,81 +38,53 @@ public class EvaluarResultado {
         return resultado;
     }
 
-    private static float evaluar(String op, String n2, String n1) {
-        float num1 = Float.parseFloat(n1);
-        float num2 = Float.parseFloat(n2);
+    private static Numero evaluar(String op, String n2, String n1) {
+        Numero num1 = new Numero(Double.parseDouble(n1));
+        Numero num2 = new Numero(Double.parseDouble(n2));
+        Numero r = new Numero(0.0);
+        Operacion operacion = new Operacion();
+        String res;
 
-        if (op.equals("+")){
-            return (num1 + num2);
+        switch (op){
+            case "+":
+                return operacion.sumar(num1,num2);
+
+            case "-":
+                return operacion.restar(num1,num2);
+
+            case "*":
+                return operacion.multiplicacion(num1,num2);
+
+            case "/":
+                return operacion.division(num1,num2);
+            case "^":
+                return operacion.exponencial(num1,num2);
+
+            case "√":
+                return operacion.raiz(num2);
+
+            case "!":
+                return operacion.factorial(num2);
+
+            case "%":
+                return operacion.modulo(num1,num2);
+
+            case "l":
+                return operacion.logBase10(num2);
+
+            case "n":
+                return operacion.logNatural(num2);
+
+            case "s":
+                return operacion.seno(num2);
+
+            case "c":
+                return operacion.serieTaylor(num2);
+
+            default:
+                return new Numero(0.0);
+
         }
-        if (op.equals("-")){
-            return (num1 - num2);
-        }
-        if (op.equals("*")){
-            return (num1 * num2);
-        }
-        if (op.equals("/")){
-            return (num1 / num2);
-        }
-        if (op.equals("^")){
-            float pot;
-            pot = (float) Math.pow(num1,num2);
-            return (pot);
-        }
-        if (op.equals("√")){
-            float pot;
-            pot = (float) Math.sqrt(num2);
-            return (pot);
-        }
-        if (op.equals("!")){
-            Operacion operacion = new Operacion();
-            Numero r = new Numero(0.0);
-            String res;
-            r.setValor(operacion.factorial(new Numero(Double.parseDouble(n2))).getValor());
-            res=r.getValor().toString();
-            return ( Float.parseFloat(res));
-        }
-        if (op.equals("%")){
-            Operacion operacion = new Operacion();
-            Numero r = new Numero(0.0);
-            String res;
-            r.setValor(operacion.modulo(new Numero(Double.parseDouble(n1)),new Numero(Double.parseDouble(n2)) ).getValor());
-            res=r.getValor().toString();
-            return ( Float.parseFloat(res));
-        }
-        if (op.equals("l")){
-            Operacion operacion = new Operacion();
-            Numero r = new Numero(0.0);
-            String res;
-            r.setValor(operacion.logBase10(new Numero(Double.parseDouble(n2))).getValor());
-            res=r.getValor().toString();
-            return ( Float.parseFloat(res));
-        }
-        if (op.equals("n")){
-            Operacion operacion = new Operacion();
-            Numero r = new Numero(0.0);
-            String res;
-            r.setValor(operacion.logNatural(new Numero(Double.parseDouble(n2))).getValor());
-            res=r.getValor().toString();
-            return ( Float.parseFloat(res));
-        }
-        if (op.equals("c")){
-            Operacion operacion = new Operacion();
-            Numero r = new Numero(0.0);
-            String res;
-            r.setValor(operacion.serieTaylor(new Numero(Double.parseDouble(n2))).getValor());
-            res=r.getValor().toString();
-            return ( Float.parseFloat(res));
-        }
-        if (op.equals("s")){
-            Operacion operacion = new Operacion();
-            Numero r = new Numero(0.0);
-            String res;
-            r.setValor(operacion.seno(new Numero(Double.parseDouble(n2))).getValor());
-            res=r.getValor().toString();
-            return ( Float.parseFloat(res));
-        }
-        return 0;
     }
 
 }

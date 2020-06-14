@@ -36,7 +36,9 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
     private Button btn0,btn1,btn2,btn3,btn4,btn5,
             btn6,btn7,btn8,btn9,btnpunto,
             btnsuma,btnresta,btnmult,btndiv,
-            btnmplus,btnmrest,btnigual,btnpow,btnfact, btnmr, btnroot,btnlog,btnln,btnsin,btncos,btnpi;
+            btnmplus,btnmrest,btnigual,btnpow,
+            btnfact, btnmr, btnroot,btnlog,btnln,
+            btnsin,btncos,btnpi,btnbin,btnoct,btnhex,btndec;
     private Button btnclear, btnmod,btnmm;
     private  ImageButton btndel;
 
@@ -82,6 +84,10 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
         btncos=(Button)findViewById(R.id.cos);
         btnpi=(Button)findViewById(R.id.pi);
         btndel=(ImageButton)findViewById(R.id.del);
+        btnbin=(Button)findViewById(R.id.bin);
+        btnoct=(Button)findViewById(R.id.oct);
+        btnhex=(Button)findViewById(R.id.hex);
+        btndec=(Button)findViewById(R.id.dec);
 
         /**
          * Setea el método onClick para que se envíen los parámetros y datos al presentador para poder
@@ -388,6 +394,34 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             @Override
             public void onClick(View v) {
                 iPresentador.onClickDelP();
+            }
+        });
+
+        btnbin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iPresentador.onClickConvertP(btnbin.getText().toString());
+            }
+        });
+
+        btnoct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iPresentador.onClickConvertP(btnoct.getText().toString());
+            }
+        });
+
+        btnhex.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iPresentador.onClickConvertP(btnhex.getText().toString());
+            }
+        });
+
+        btndec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iPresentador.onClickConvertP(btndec.getText().toString());
             }
         });
 

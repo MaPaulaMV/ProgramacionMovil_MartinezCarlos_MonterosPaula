@@ -161,6 +161,46 @@
                 android:textAllCaps="false"
                 android:textColor="@color/botonTxt"
                 android:textSize="40dp" />
+            <Button
+                android:id="@+id/bin"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="BIN"
+                android:textAllCaps="false"
+                android:textColor="@color/botonTxt"
+                android:textSize="35dp" />
+            <Button
+                android:id="@+id/oct"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="OCT"
+                android:textAllCaps="false"
+                android:textColor="@color/botonTxt"
+                android:textSize="35dp" />
+            <Button
+                android:id="@+id/hex"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="HEX"
+                android:textAllCaps="false"
+                android:textColor="@color/botonTxt"
+                android:textSize="35dp" />
+            <Button
+                android:id="@+id/dec"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="DEC"
+                android:textAllCaps="false"
+                android:textColor="@color/botonTxt"
+                android:textSize="35dp" />
 
         </LinearLayout>
     </HorizontalScrollView>

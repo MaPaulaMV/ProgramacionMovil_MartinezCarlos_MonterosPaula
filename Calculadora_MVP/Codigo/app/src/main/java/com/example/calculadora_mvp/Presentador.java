@@ -313,4 +313,15 @@ public class Presentador implements iCalculadora.iPresentador {
         }
     }
 
+    @Override
+    public void onClickConvertP(String tipo) {
+        try{
+            if(iVista!=null){
+                iModelo.onClickConvertM(tipo);
+            }
+        }catch (Exception e){
+            Log.e("ERROR "+tipo, e.getMessage());
+        }
+    }
+
 }

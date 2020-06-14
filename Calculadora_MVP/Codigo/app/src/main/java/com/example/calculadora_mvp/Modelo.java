@@ -298,7 +298,7 @@ public class Modelo implements iCalculadora.iModelo{
      */
     @Override
     public void onClickEqualM() {
-        if(scalculation!=""){
+        if(scalculation!="" && getLastChar(scalculation, 1) != ' '){
             scalculation = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
             sanswer=" ";
             numero_uno=scalculation;
@@ -509,6 +509,29 @@ public class Modelo implements iCalculadora.iModelo{
             iPresentador.mostrarPantallaP(scalculation,sanswer);
         }
 
+    }
+
+    @Override
+    public void onClickConvertM(String tipo) {
+        if(scalculation!="" && getLastChar(scalculation, 1) != ' '){
+            scalculation = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
+            sanswer=" ";
+            switch (tipo){
+                case "BIN":
+                    sanswer=operacion.decimalABinario(new Numero(Double.valueOf(scalculation)));
+                    break;
+                case "OCT":
+                    sanswer=operacion.decimalAOctal(new Numero(Double.valueOf(scalculation)));
+                    break;
+                case "HEX":
+                    sanswer=operacion.decimalAHexadecimal(new Numero(Double.valueOf(scalculation)));
+                    break;
+                case "DEC":
+                    sanswer=scalculation;
+                    break;
+            }
+            iPresentador.mostrarPantallaP(scalculation,sanswer);
+        }
     }
 
     /**
@@ -741,24 +764,4 @@ public class Modelo implements iCalculadora.iModelo{
             iPresentador.mostrarPantallaP(scalculation,sanswer);
         }*/
     }
-
-    @Override
-    public void calcularFuncionM() {
-        switch (this.funcion){
-            case "log":
-                numberone.setValor(operacion.logBase10(new Numero(Double.parseDouble(numero_uno))).getValor());
-                break;
-            case "ln":
-                numberone.setValor(operacion.logNatural(new Numero(Double.parseDouble(numero_uno))).getValor());
-                break;
-            case "sin":
-                numberone.setValor(operacion.seno(new Numero(Double.parseDouble(numero_uno))).getValor());
-                break;
-            case "cos":
-                numberone.setValor(operacion.serieTaylor(new Numero(Double.parseDouble(numero_uno))).getValor());
-                break;
-        }
-    }
-
-
 }
