@@ -38,6 +38,7 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             btnsuma,btnresta,btnmult,btndiv,
             btnmplus,btnmrest,btnigual,btnpow,btnfact, btnmr, btnroot,btnlog,btnln,btnsin,btncos,btnpi;
     private Button btnclear, btnmod,btnmm;
+    private  ImageButton btndel;
 
     /**
      * Método que se encarga de inicializar los elemnetos de la vista.
@@ -80,7 +81,7 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
         btnsin=(Button)findViewById(R.id.sin);
         btncos=(Button)findViewById(R.id.cos);
         btnpi=(Button)findViewById(R.id.pi);
-        btnpi=(Button)findViewById(R.id.pi);
+        btndel=(ImageButton)findViewById(R.id.del);
 
         /**
          * Setea el método onClick para que se envíen los parámetros y datos al presentador para poder
@@ -380,6 +381,13 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             @Override
             public void onClick(View view) {
                 iPresentador.onClickNumberP(String.valueOf(Math.PI));
+            }
+        });
+
+        btndel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iPresentador.onClickDelP();
             }
         });
 

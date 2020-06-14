@@ -152,8 +152,34 @@ public class CalculadoraTest {
     public void testPol(){
         pref_inf p = new pref_inf();
         ev_result e = new ev_result();
-        //assertEquals("",p.Infijo2PosfijoTxt("2 + 3 - √ 2 * 3"));
-        assertEquals("0.77",e.Postfijo2resulTxt("2 3 + 2 √ 3 * -"));
+
+        //assertEquals("",p.Infijo2PosfijoTxt("2 + 3 - √ 2 * -3"));
+        //assertEquals("0.7573595",e.Postfijo2resulTxt("2 3 + 2 √ -3 * -"));
+
+        //assertEquals("",p.Infijo2PosfijoTxt("5*-8+4^-2"));
+        //assertEquals("-37.9375",p.Infijo2PosfijoTxt("5*-8+4^-2+√4.1"));
+
+        //assertEquals("2 +",p.Infijo2PosfijoTxt("2 * 4!"));
+        //assertEquals("-39.9375",e.Postfijo2resulTxt("2 4 ! *"));
+
+        //assertEquals("5 -8 * 4 -2 ^ 3 ! * +",p.Infijo2PosfijoTxt("5*-8+4^-2*3!"));
+        //assertEquals("-39.625",e.Postfijo2resulTxt("5 -8 * 4 -2 ^ 3 ! * +"));
+
+        //assertEquals("5 4 ! √ *",p.Infijo2PosfijoTxt("5*√4!"));
+        //assertEquals("24.494898",e.Postfijo2resulTxt("5 4 ! √ *"));
+
+        //assertEquals("",p.Infijo2PosfijoTxt("8 % -3 *2"));
+        //assertEquals("-2.0",e.Postfijo2resulTxt("8 -3 % 2 *"));
+
+        //assertEquals("3 8 10 l √ * -",p.Infijo2PosfijoTxt("3-8*√log10"));
+        //assertEquals("-5.0",e.Postfijo2resulTxt("3 8 10 l √ * -"));
+
+        //assertEquals("3 4 % -1 / 6 ! +",p.Infijo2PosfijoTxt("3%4/(-1+6!)"));
+       // assertEquals("-5.0",e.Postfijo2resulTxt("3 4 % -1 / 6 ! +"));
+
+        //assertEquals("60 23.6 9 * + 0.98 3 / - 96.3 l 0.666 l * +",p.Infijo2PosfijoTxt("60+23.6*9-0.98/3+log96.3*log0.666"));
+       // assertEquals("-5.0",e.Postfijo2resulTxt("60 23.6 9 * + 0.98 3 / - 96.3 l 0.666 l * +"));
+
 
     }
 

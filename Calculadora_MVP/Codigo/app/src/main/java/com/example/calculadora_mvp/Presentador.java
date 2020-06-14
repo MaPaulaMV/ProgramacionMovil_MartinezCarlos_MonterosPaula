@@ -302,4 +302,15 @@ public class Presentador implements iCalculadora.iPresentador {
         }
     }
 
+    @Override
+    public void onClickDelP() {
+        try{
+            if(iVista!=null){
+                iModelo.onClickDelM();
+            }
+        }catch (Exception e){
+            Log.e("ERROR ", e.getMessage());
+        }
+    }
+
 }

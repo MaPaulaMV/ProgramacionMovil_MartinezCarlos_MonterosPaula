@@ -102,8 +102,13 @@ public class Operacion {
     public  Numero factorial(Numero num1) {
         double resultado =num1.getValor();
 
-        for (int i = 1; i < num1.getValor(); i++) {
-            resultado*=i;
+        if(resultado==0){
+            resultado=1;
+        }
+        else {
+            for (int i = 1; i < num1.getValor(); i++) {
+                resultado*=i;
+            }
         }
 
         return new Numero(resultado);
@@ -168,6 +173,7 @@ public class Operacion {
         }
         double contador=cont;
         return new Numero(valor/this.exponencial(new Numero(10.0),new Numero(contador)).getValor());
+        //return new Numero( Math.log10(num1.getValor()));
     }
 
     public Numero raiz(Numero numero){

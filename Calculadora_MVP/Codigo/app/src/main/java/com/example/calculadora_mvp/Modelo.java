@@ -18,6 +18,7 @@ import android.util.Log;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
+import java.util.Stack;
 
 /**
  * Clase que contiene toda la lógica del programa, la misma realiza todas las operaciones
@@ -31,7 +32,7 @@ public class Modelo implements iCalculadora.iModelo{
     private Numero result, numberone,temp, numbertwo, temp2;
     private Boolean dot= false, num_allow = true, pow_present = false,
             factorial_present=false, mod_present=false, invert_allow=true,
-            op_allow=true, root_present=false, funcion_present=false;
+            op_allow=true, root_present=false, funcion_present=false, mm_present=false;
     private NumberFormat format;
     private DecimalFormatSymbols simb = new DecimalFormatSymbols();
     private String scalculation, sanswer, numero_uno, current_operator, numero_dos, funcion;
@@ -95,18 +96,29 @@ public class Modelo implements iCalculadora.iModelo{
     @Override
     public void onClickNumberM(String valor) {
         if(num_allow){
-            scalculation += valor;
+
+            if (scalculation!="") {
+                if (scalculation.charAt(scalculation.length() - 1) != ' '){
+                    scalculation+=' ' + valor;
+                }
+                else {
+                    scalculation += valor;
+                }
+            }
+            else {
+                scalculation += valor;
+            }
             numero_uno+=valor;
             numberone.setValor(Double.parseDouble(numero_uno));
 
-            if(funcion_present){
+            /*if(funcion_present){
                 calcularFuncionM();
             }else if(root_present){
                 if(numberone.getValor()!=0){
                     numberone.setValor(operacion.raiz(numberone).getValor());
                 }
-            }
-
+            }*/
+/*
             switch (current_operator){
                 case "":
                     if(pow_present){
@@ -116,11 +128,9 @@ public class Modelo implements iCalculadora.iModelo{
                     }
                     else  if (mod_present){
                         temp=operacion.modulo(numbertwo,numberone);
-                        Log.e("MOD", temp.getValor().toString());
                     }
                     else {
                         temp=operacion.sumar(result,numberone);
-                        Log.e("LOG", temp.getValor().toString());
                     }
                     break;
                 case "+":
@@ -174,14 +184,11 @@ public class Modelo implements iCalculadora.iModelo{
             }
             if(temp.getValor()==-0.0){
                 temp.setValor(0.0);
-            }
-//            if(scalculation.length()>=8){
-//                sanswer = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
-//            }
-            //else {
-                op_allow=true;
-                sanswer = format.format(temp.getValor());
-            //}
+            }*/
+            //sanswer = format.format(temp.getValor());
+
+            op_allow=true;
+            sanswer = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
             iPresentador.mostrarPantallaP(scalculation,sanswer);
         }
     }
@@ -196,8 +203,8 @@ public class Modelo implements iCalculadora.iModelo{
         num_allow=true;
         if (op_allow){
             if (sanswer!="" || operator.equals("-")){
-                //if(current_operator!="" && !mod_present){
-                if(current_operator!="") {//ver como condicionar en el +/- para que no desaparezca
+
+                if(current_operator!="" && !mm_present) {
 
                     char c = getLastChar(scalculation, 2);
 
@@ -206,23 +213,22 @@ public class Modelo implements iCalculadora.iModelo{
                     }
                 }
                 if(funcion_present){
-                    scalculation+=")";
+                    scalculation+=" ";//para indicar que se cierra alguna de las funciones
                 }
                 scalculation = scalculation + " " + operator + " ";
                 numero_uno = "";
-                result.setValor(temp.getValor());
+                //result.setValor(temp.getValor());
                 current_operator = operator;
-                numbertwo.setValor(0.0);
-                numero_dos = "";
+                //numbertwo.setValor(0.0);
+                //numero_dos = "";
                 pow_present = false;
                 factorial_present = false; //la validacion se hace en la funcion de factorial mismo
                 root_present=false;
                 funcion_present=false;
                 iPresentador.mostrarPantallaP(scalculation, sanswer);
                 dot = false;
+                mm_present=false;
                 invert_allow=true;
-
-
             }
         }
 
@@ -239,11 +245,11 @@ public class Modelo implements iCalculadora.iModelo{
         sanswer="";
         current_operator="";
         numero_uno="";
-        numero_dos="";
+        //numero_dos="";
         result.setValor(0.0);
         numberone.setValor(0.0);
-        numbertwo.setValor(0.0);
-        temp.setValor(0.0);
+        //numbertwo.setValor(0.0);
+        //temp.setValor(0.0);
         pow_present=false;
         mod_present=false;
         factorial_present=false;
@@ -251,9 +257,8 @@ public class Modelo implements iCalculadora.iModelo{
         root_present=false;
         funcion_present=false;
         invert_allow=true;
-        Log.e("ENTRA",current_operator + "...");
-        iPresentador.mostrarPantallaP(scalculation,sanswer);
         dot=false;
+        iPresentador.mostrarPantallaP(scalculation,sanswer);
     }
 
     /**
@@ -293,22 +298,20 @@ public class Modelo implements iCalculadora.iModelo{
     @Override
     public void onClickEqualM() {
         if(scalculation!=""){
-            Log.e("POL R",e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation)) );
             scalculation = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
-            //scalculation=sanswer;
             sanswer=" ";
-            result.setValor(0.0);
+            //result.setValor(0.0);
             numero_uno=scalculation;
             numberone.setValor(Double.valueOf(numero_uno));
-            numero_dos="";
-            numbertwo.setValor(0.0);
+            //numero_dos="";
+            //numbertwo.setValor(0.0);
             num_allow=false;
             pow_present=false;
             dot=true;
             op_allow=true;
             current_operator="";
             factorial_present=false;
-
+            funcion_present=true;
             iPresentador.mostrarPantallaP(scalculation,sanswer);
         }
     }
@@ -324,13 +327,13 @@ public class Modelo implements iCalculadora.iModelo{
 
             if(getLastChar(scalculation,1)!=' '){
                 scalculation+="^";
-                numero_dos=numero_uno;
-                numbertwo.setValor(Double.valueOf(numero_dos));
+                //numero_dos=numero_uno;
+                //numbertwo.setValor(Double.valueOf(numero_dos));
                 numero_uno="";
                 pow_present=true;
                 num_allow=true;
                 iPresentador.mostrarPantallaP(scalculation,sanswer);
-                Log.e("PW", numero_dos);
+
             }
         }
     }
@@ -345,15 +348,14 @@ public class Modelo implements iCalculadora.iModelo{
 
             if (getLastChar(scalculation, 1) != ' ') {
 
-                if (numberone.getValor().equals(0.0)) {
+                /*if (numberone.getValor().equals(0.0)) {
                     numberone.setValor(1.0);
                 }
                 else{
                     numberone.setValor(operacion.factorial(numberone).getValor());
                 }
-
-                numero_uno = format.format(numberone.getValor());
-                switch (current_operator) {
+                numero_uno = format.format(numberone.getValor());*/
+                /*switch (current_operator) {
                     case "":
                         result = numberone;
                         break;
@@ -374,19 +376,22 @@ public class Modelo implements iCalculadora.iModelo{
                         }
 
                         break;
-                }
+                }*/
                 dot=true;
 
-                if(temp.getValor()==-0.0){
+               /* if(temp.getValor()==-0.0){
                     temp.setValor(0.0);
-                }
+                }*/
 
-                sanswer = format.format(temp.getValor());
-                sanswer = result.getValor().toString();
-                temp = result;
+                //sanswer = format.format(temp.getValor());
+                //sanswer = result.getValor().toString();
+                //temp = result;
                 scalculation += "! ";
                 factorial_present = true;
                 num_allow = false;
+                sanswer = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
+                numero_uno=sanswer;
+                numberone.setValor(Double.valueOf(numero_uno));
                 iPresentador.mostrarPantallaP(scalculation,sanswer);
             }
         }
@@ -433,12 +438,12 @@ public class Modelo implements iCalculadora.iModelo{
 
     @Override
     public void onClickModM() {
-        if(scalculation!="" && !mod_present && !funcion_present){
+        if(scalculation!=""  && !funcion_present&& !pow_present&&!root_present){//&& !mod_present
 
             if(getLastChar(scalculation,1)!=' '){
-                scalculation=scalculation + " "+ "MOD" + " ";
-                numero_dos=temp.toString();
-                numbertwo.setValor(Double.valueOf(numero_dos));
+                scalculation=scalculation + " "+ "%" + " ";
+                //numero_dos=temp.toString();
+                //numbertwo.setValor(Double.valueOf(numero_dos));
                 numero_uno="";
                 pow_present=false;
                 num_allow=true;
@@ -463,6 +468,66 @@ public class Modelo implements iCalculadora.iModelo{
         return  c;
     }
 
+    @Override
+    public void onClickDelM() {
+        String[] arrayInfix = scalculation.split(" ");
+
+
+        Stack<String> E = new Stack<String>();
+        String simbols = "+-*/^()√!%lsc";
+
+        for (int i = 0; i < arrayInfix.length; i++) {
+            E.push(arrayInfix[i]);
+        }
+        if(E.size()>1){
+            E.pop();
+
+            if (simbols.contains(E.peek())){
+                current_operator = E.peek();
+                scalculation = E.toString().replaceAll("[\\]\\[,]", "");
+                mm_present=false;
+                scalculation+=" ";
+                iPresentador.mostrarPantallaP(scalculation,sanswer);
+            }else {
+                scalculation = E.toString().replaceAll("[\\]\\[,]", "");
+                sanswer = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
+                current_operator="";
+                iPresentador.mostrarPantallaP(scalculation,sanswer);
+            }
+
+
+            /*if(numeros.contains(""+arrayInfix[arrayInfix.length-1])&&arrayInfix.length!=1){
+//                scalculation=scalculation.substring(0, scalculation.length() - 2);
+//                current_operator=String.valueOf(scalculation.charAt(scalculation.length()-1));
+//                iPresentador.mostrarPantallaP(scalculation,sanswer);
+                scalculation=scalculation.substring(0, scalculation.length() - 1);
+                current_operator=String.valueOf(scalculation.charAt(scalculation.length()-2));
+                iPresentador.mostrarPantallaP(scalculation,sanswer);
+
+            }
+            else if(scalculation.length()==1){
+                scalculation="";
+                sanswer="";
+                iPresentador.mostrarPantallaP(scalculation,sanswer);
+                current_operator="";
+            }
+            else {
+                scalculation=scalculation.substring(0, scalculation.length() - 3);
+                sanswer = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
+                current_operator="";
+                iPresentador.mostrarPantallaP(scalculation,sanswer);
+            }*/
+
+        }
+        else {
+            scalculation="";
+            sanswer="";
+            current_operator="";
+            iPresentador.mostrarPantallaP(scalculation,sanswer);
+        }
+
+    }
+
     /**
      *
      */
@@ -470,27 +535,47 @@ public class Modelo implements iCalculadora.iModelo{
 
         if (invert_allow) {
             if (sanswer != "" && getLastChar(scalculation, 1) != ' ') {
-                if(funcion_present){
+                /*if(funcion_present){
                     numero_uno = String.valueOf(Double.valueOf(numero_uno)*-1);
                     calcularFuncionM();
                 }else {
                     numberone.setValor(numberone.getValor()*-1);
                     numero_uno = format.format(numberone.getValor()).toString();
-                }
+                }*/
 
-                switch (current_operator) {
+                numero_uno = String.valueOf(Double.valueOf(numero_uno)*-1);
+                numberone.setValor(Double.valueOf(numero_uno));
+
+                if (mod_present){
+                   // temp.setValor(operacion.modulo(numbertwo,numberone).getValor());
+                    removeuntilchar(scalculation, ' ');
+                    scalculation += numero_uno;
+                }else if (pow_present){
+                    //temp=operacion.exponencial(numbertwo,numberone);
+                    removeuntilchar(scalculation, '^');
+                    scalculation += numero_uno;
+                }else if(funcion_present){
+                    //temp.setValor(numberone.getValor());
+                    removeuntilchar(scalculation, ' ');
+                    scalculation+=numero_uno;
+                }else {
+                    //temp.setValor(numberone.getValor());
+                    removeuntilchar(scalculation, ' ');
+                    scalculation+=numberone.getValor().toString();
+                }
+               /* switch (current_operator) {
                     case "":
                         if (mod_present){
-                            temp=operacion.modulo(numbertwo,numberone);
+                            temp.setValor(operacion.modulo(numbertwo,numberone).getValor());
                             removeuntilchar(scalculation, ' ');
                             scalculation += numero_uno;
                         }else if (pow_present){
                             temp=operacion.exponencial(numbertwo,numberone);
                             removeuntilchar(scalculation, '^');
                             scalculation += numero_uno;
-                        }if(funcion_present){
+                        }else if(funcion_present){
                             temp.setValor(numberone.getValor());
-                            removeuntilchar(scalculation, '(');
+                            removeuntilchar(scalculation, ' ');
                             scalculation+=numero_uno;
                         }else {
                             temp.setValor(numberone.getValor());
@@ -507,8 +592,12 @@ public class Modelo implements iCalculadora.iModelo{
                         }
                         else if (pow_present){
                             temp=operacion.exponencial(numbertwo,numberone);
-                            removeuntilchar(scalculation, ' ');
+                            removeuntilchar(scalculation, '^');
                             scalculation += numero_uno;
+                        }else if(funcion_present){
+                            temp.setValor(numberone.getValor());
+                            removeuntilchar(scalculation, ' ');
+                            scalculation+=numero_uno;
                         }
                         else {
                             temp=operacion.sumar(result,numberone);
@@ -522,6 +611,15 @@ public class Modelo implements iCalculadora.iModelo{
                             removeuntilchar(scalculation, ' ');
                             scalculation += numero_uno;
                         }
+                        else if (pow_present){
+                            temp=operacion.exponencial(numbertwo,numberone);
+                            removeuntilchar(scalculation, '^');
+                            scalculation += numero_uno;
+                        }else if(funcion_present){
+                            temp.setValor(numberone.getValor());
+                            removeuntilchar(scalculation, ' ');
+                            scalculation+=numero_uno;
+                        }
                         else {
                             temp=operacion.restar(result,numberone);
                             removeuntilchar(scalculation, ' ');
@@ -533,6 +631,15 @@ public class Modelo implements iCalculadora.iModelo{
                             temp=operacion.modulo(numbertwo,numberone);
                             removeuntilchar(scalculation, ' ');
                             scalculation += numero_uno;
+                        }
+                        else if (pow_present){
+                            temp=operacion.exponencial(numbertwo,numberone);
+                            removeuntilchar(scalculation, '^');
+                            scalculation += numero_uno;
+                        }else if(funcion_present){
+                            temp.setValor(numberone.getValor());
+                            removeuntilchar(scalculation, ' ');
+                            scalculation+=numero_uno;
                         }
                         else {
                             temp=operacion.multiplicacion(result,numberone);
@@ -546,21 +653,30 @@ public class Modelo implements iCalculadora.iModelo{
                             removeuntilchar(scalculation, ' ');
                             scalculation += numero_uno;
                         }
+                        else if (pow_present){
+                            temp=operacion.exponencial(numbertwo,numberone);
+                            removeuntilchar(scalculation, '^');
+                            scalculation += numero_uno;
+                        }else if(funcion_present){
+                            temp.setValor(numberone.getValor());
+                            removeuntilchar(scalculation, ' ');
+                            scalculation+=numero_uno;
+                        }
                         else {
                             temp=operacion.division(result,numberone);
                             removeuntilchar(scalculation, ' ');
                             scalculation += numero_uno;
                         }
                         break;
-                }
+                }*/
 
-                if(temp.getValor()==-0.0){
+                /*if(temp.getValor()==-0.0){
                     temp.setValor(0.0);
-                }
+                }*/
                 mod_present = false;
-                sanswer = format.format(temp.getValor());
                 op_allow=true;
-
+                mm_present=true;
+                sanswer = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
                 iPresentador.mostrarPantallaP(scalculation,sanswer);
             }
         }
@@ -596,15 +712,17 @@ public class Modelo implements iCalculadora.iModelo{
     @Override
     public void onClickRootM() {
         if(sanswer.equals("")&& result.getValor()==0.0&&!root_present && !funcion_present){//Cuando no hay nada escrito
-            scalculation="√";
+            scalculation="√ ";
             root_present=true;
             invert_allow=false;
+            op_allow=false;
             iPresentador.mostrarPantallaP(scalculation,sanswer);
-        }else if (getLastChar(scalculation,1)==' '&&current_operator!="" && !root_present && !funcion_present){
-            scalculation+="√";
-            root_present=true;
-            invert_allow=false;
-            iPresentador.mostrarPantallaP(scalculation,sanswer);
+        }else if (getLastChar(scalculation,1)==' '&&current_operator!="" && !root_present && !funcion_present) {
+            scalculation += "√ ";
+            root_present = true;
+            op_allow=false;
+            invert_allow = false;//para no meter negativos
+            iPresentador.mostrarPantallaP(scalculation, sanswer);
         }
 
 
@@ -620,16 +738,24 @@ public class Modelo implements iCalculadora.iModelo{
         }
 
         if(sanswer.equals("")&& result.getValor()==0.0&&!funcion_present){
-            scalculation=funcion+"(";
+            //scalculation=funcion+"(";
+            scalculation=funcion + " ";
             funcion_present=true;
             this.funcion=funcion;
             iPresentador.mostrarPantallaP(scalculation,sanswer);
         }else if (getLastChar(scalculation,1)==' '&&current_operator!="" && !funcion_present){
-            scalculation+=funcion+"(";
+            //scalculation+=funcion+"(";
+            scalculation+=funcion+" ";
             funcion_present=true;
             this.funcion=funcion;
             iPresentador.mostrarPantallaP(scalculation,sanswer);
         }
+        /*else {
+            scalculation+=funcion+" ";
+            funcion_present=true;
+            this.funcion=funcion;
+            iPresentador.mostrarPantallaP(scalculation,sanswer);
+        }*/
     }
 
     @Override

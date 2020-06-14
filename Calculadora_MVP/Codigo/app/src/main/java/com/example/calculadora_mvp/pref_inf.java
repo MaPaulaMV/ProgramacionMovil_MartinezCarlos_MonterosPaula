@@ -3,6 +3,7 @@ package com.example.calculadora_mvp;
 
 import android.util.Log;
 
+import java.security.spec.ECField;
 import java.util.Stack;
 
 public class pref_inf {
@@ -10,6 +11,7 @@ public class pref_inf {
     public static String Infijo2PosfijoTxt(String infijo) {
         String postfij = null;
         String expr = depurar(infijo);
+
         String[] arrayInfix = expr.split(" ");
 
 
@@ -60,6 +62,13 @@ public class pref_inf {
                         P.push(E.pop());
                         break;
 
+                    case 6:
+                        while (pref(P.peek()) >= pref(E.peek())) {
+                            S.push(P.pop());
+                        }
+                        P.push(E.pop());
+                        break;
+
                     default:
                         S.push(E.pop());
                 }
@@ -68,20 +77,40 @@ public class pref_inf {
             postfij = S.toString().replaceAll("[\\]\\[,]", "");
 
         } catch (Exception ex) {
-            Log.e("POLACA", "ERROR");
+            //Log.e("POLACA", "ERROR");
         }
         return postfij;
     }
 
     private static String depurar(String s) {
         s = s.replaceAll("\\s+", "");
+
+        s = s.replaceAll("log","l");
+
+        s = s.replaceAll("ln","n");
+
+        s = s.replaceAll("sin","s");
+
+        s = s.replaceAll("cos","c");
+
         s = "(" + s + ")";
-        String simbols = "+-*/^()√";
+        String simbols = "+-*/^()√!%lnsc";
         String str = "";
+
 
         for (int i = 0; i < s.length(); i++) {
             if (simbols.contains("" + s.charAt(i))) {
-                str += " " + s.charAt(i) + " ";
+                try {
+                    if (simbols.contains(""+s.charAt(i-1)) && s.charAt(i)!='√'&& s.charAt(i-1)!='!' && s.charAt(i)!='l'&& s.charAt(i)!='n'&& s.charAt(i)!='s'&& s.charAt(i)!='c'){
+                        str+=s.charAt(i);
+                    }
+                    else {
+                        str += " " + s.charAt(i) + " ";
+                    }
+                }catch (StringIndexOutOfBoundsException e){
+                    str += " " + s.charAt(i) + " ";
+                }
+
             } else str += s.charAt(i);
         }
         return str.replaceAll("\\s+", " ").trim();
@@ -90,11 +119,13 @@ public class pref_inf {
     private static int pref(String oper) {
         int prf = 0;
 
-
-        if (oper.equals("^") || oper.equals("√")) {
+        if (oper.equals("!") || oper.equals("l") || oper.equals("n")|| oper.equals("s")|| oper.equals("c")) {
+            prf = 6;
+        }
+        if (oper.equals("^") || oper.equals("√")|| oper.equals("%")) {
             prf = 5;
         }
-        if (oper.equals("*") || oper.equals("/")) {
+        if (oper.equals("*") || oper.equals("/") ) {
             prf = 4;
         }
         if (oper.equals("+") || oper.equals("-")) {

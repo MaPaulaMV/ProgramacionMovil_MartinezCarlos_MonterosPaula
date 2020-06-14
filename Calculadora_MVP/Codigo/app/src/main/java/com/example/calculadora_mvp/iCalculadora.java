@@ -51,6 +51,7 @@ public interface iCalculadora {
         void onClickMMP();
         void onClickRootP();
         void onClickFuncionP(String funcion);
+        void onClickDelP();
     }
 
     /**
@@ -74,5 +75,6 @@ public interface iCalculadora {
         void onClickFuncionM(String funcion);
         void calcularFuncionM();
         char getLastChar(String string, int iterator);
+        void onClickDelM();
     }
 }
