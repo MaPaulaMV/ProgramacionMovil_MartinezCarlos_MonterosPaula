@@ -245,5 +245,51 @@ public class Operacion {
         return new Numero(resultado);
     }
 
+    public static String decimalABinario(Numero num1) {
+        String binario ="";
+
+        if (num1.getValor() <= 0) {
+            binario = "0";
+        }else{
+            while (num1.getValor() > 0.01) {
+                int residuo = (int) (num1.getValor() % 2);
+                num1.setValor(num1.getValor()/2);
+                binario=residuo+binario;
+            }
+        }
+        return binario;
+    }
+
+    public static String decimalAOctal(Numero num1) {
+        String octal = "";
+        String caracteresOctales = "01234567";
+
+        if (num1.getValor() <= 0) {
+            octal = "0";
+        }else{
+            while (num1.getValor() > 0.01) {
+                int residuo = (int) (num1.getValor() % 8);
+                octal = (caracteresOctales.charAt(residuo) + octal);
+                num1.setValor(num1.getValor()/8);
+            }
+        }
+        return octal;
+    }
+
+    public static String decimalAHexadecimal(Numero num1) {
+        String hexadecimal = "";
+        String caracteresHexadecimales = "0123456789ABCDEF";
+
+        if (num1.getValor() <= 0) {
+            hexadecimal = "0";
+        }else{
+            while (num1.getValor() > 0.01) {
+                int residuo = (int) (num1.getValor() % 16);
+                hexadecimal = caracteresHexadecimales.charAt(residuo) + hexadecimal; // Agregar a la izquierda
+                num1.setValor(num1.getValor()/16);
+            }
+        }
+        return hexadecimal;
+    }
 
 }

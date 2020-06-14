@@ -52,6 +52,7 @@ public interface iCalculadora {
         void onClickRootP();
         void onClickFuncionP(String funcion);
         void onClickDelP();
+        void onClickConvertP(String tipo);
     }
 
     /**
@@ -73,8 +74,8 @@ public interface iCalculadora {
         void onClickMM();
         void onClickRootM();
         void onClickFuncionM(String funcion);
-        void calcularFuncionM();
         char getLastChar(String string, int iterator);
         void onClickDelM();
+        void onClickConvertM(String tipo);
     }
 }
