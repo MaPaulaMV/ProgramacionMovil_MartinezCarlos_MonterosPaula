@@ -37,8 +37,8 @@ public class Modelo implements iCalculadora.iModelo{
     private DecimalFormatSymbols simb = new DecimalFormatSymbols();
     private String scalculation, sanswer, numero_uno, current_operator, numero_dos, funcion;
     private Operacion operacion;
-    private pref_inf p = new pref_inf();
-    private  ev_result e = new ev_result();
+    private PrefijoInfijo p = new PrefijoInfijo();
+    private EvaluarResultado e = new EvaluarResultado();
 
     /**
      * Constructor vacío de la clase Modelo.

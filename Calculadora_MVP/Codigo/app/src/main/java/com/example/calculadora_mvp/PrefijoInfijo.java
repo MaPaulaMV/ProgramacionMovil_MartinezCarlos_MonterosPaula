@@ -6,7 +6,7 @@ import android.util.Log;
 import java.security.spec.ECField;
 import java.util.Stack;
 
-public class pref_inf {
+public class PrefijoInfijo {
 
     public static String Infijo2PosfijoTxt(String infijo) {
         String postfij = null;
