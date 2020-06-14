@@ -97,7 +97,7 @@ public class Modelo implements iCalculadora.iModelo{
     public void onClickNumberM(String valor) {
         if(num_allow){
 
-            if (scalculation!="") {
+            /*if (scalculation!="") {
                 if (scalculation.charAt(scalculation.length() - 1) != ' '){
                     scalculation+=' ' + valor;
                 }
@@ -107,7 +107,8 @@ public class Modelo implements iCalculadora.iModelo{
             }
             else {
                 scalculation += valor;
-            }
+            }*/
+            scalculation+=valor;
             numero_uno+=valor;
             numberone.setValor(Double.parseDouble(numero_uno));
 
@@ -186,7 +187,7 @@ public class Modelo implements iCalculadora.iModelo{
                 temp.setValor(0.0);
             }*/
             //sanswer = format.format(temp.getValor());
-
+            invert_allow = true;
             op_allow=true;
             sanswer = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
             iPresentador.mostrarPantallaP(scalculation,sanswer);
@@ -300,11 +301,8 @@ public class Modelo implements iCalculadora.iModelo{
         if(scalculation!=""){
             scalculation = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
             sanswer=" ";
-            //result.setValor(0.0);
             numero_uno=scalculation;
             numberone.setValor(Double.valueOf(numero_uno));
-            //numero_dos="";
-            //numbertwo.setValor(0.0);
             num_allow=false;
             pow_present=false;
             dot=true;
@@ -312,6 +310,7 @@ public class Modelo implements iCalculadora.iModelo{
             current_operator="";
             factorial_present=false;
             funcion_present=true;
+            invert_allow=false;
             iPresentador.mostrarPantallaP(scalculation,sanswer);
         }
     }
@@ -326,7 +325,7 @@ public class Modelo implements iCalculadora.iModelo{
         if(scalculation!="" && !pow_present && !funcion_present){
 
             if(getLastChar(scalculation,1)!=' '){
-                scalculation+="^";
+                scalculation+=" ^ ";
                 //numero_dos=numero_uno;
                 //numbertwo.setValor(Double.valueOf(numero_dos));
                 numero_uno="";
@@ -470,11 +469,10 @@ public class Modelo implements iCalculadora.iModelo{
 
     @Override
     public void onClickDelM() {
+        Stack<String> E = new Stack<String>();
+        String simbols = "+-*/^()√!%lscn";
         String[] arrayInfix = scalculation.split(" ");
 
-
-        Stack<String> E = new Stack<String>();
-        String simbols = "+-*/^()√!%lsc";
 
         for (int i = 0; i < arrayInfix.length; i++) {
             E.push(arrayInfix[i]);
@@ -482,47 +480,32 @@ public class Modelo implements iCalculadora.iModelo{
         if(E.size()>1){
             E.pop();
 
-            if (simbols.contains(E.peek())){
+            if (simbols.contains(E.peek()) || E.peek().equals("log") || E.peek().equals("ln")|| E.peek().equals("sin")|| E.peek().equals("cos")){
                 current_operator = E.peek();
                 scalculation = E.toString().replaceAll("[\\]\\[,]", "");
                 mm_present=false;
+                funcion_present=false;
                 scalculation+=" ";
+                numero_uno="";
+                numberone.setValor(0.0);
+                op_allow=false;
+                root_present=true;
                 iPresentador.mostrarPantallaP(scalculation,sanswer);
             }else {
+                numero_uno=E.peek();
                 scalculation = E.toString().replaceAll("[\\]\\[,]", "");
                 sanswer = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
                 current_operator="";
+                numberone.setValor(Double.valueOf(numero_uno));
                 iPresentador.mostrarPantallaP(scalculation,sanswer);
             }
-
-
-            /*if(numeros.contains(""+arrayInfix[arrayInfix.length-1])&&arrayInfix.length!=1){
-//                scalculation=scalculation.substring(0, scalculation.length() - 2);
-//                current_operator=String.valueOf(scalculation.charAt(scalculation.length()-1));
-//                iPresentador.mostrarPantallaP(scalculation,sanswer);
-                scalculation=scalculation.substring(0, scalculation.length() - 1);
-                current_operator=String.valueOf(scalculation.charAt(scalculation.length()-2));
-                iPresentador.mostrarPantallaP(scalculation,sanswer);
-
-            }
-            else if(scalculation.length()==1){
-                scalculation="";
-                sanswer="";
-                iPresentador.mostrarPantallaP(scalculation,sanswer);
-                current_operator="";
-            }
-            else {
-                scalculation=scalculation.substring(0, scalculation.length() - 3);
-                sanswer = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
-                current_operator="";
-                iPresentador.mostrarPantallaP(scalculation,sanswer);
-            }*/
 
         }
         else {
             scalculation="";
             sanswer="";
             current_operator="";
+            numero_uno="";
             iPresentador.mostrarPantallaP(scalculation,sanswer);
         }
 
@@ -543,6 +526,7 @@ public class Modelo implements iCalculadora.iModelo{
                     numero_uno = format.format(numberone.getValor()).toString();
                 }*/
 
+                Log.e("N", numero_uno);
                 numero_uno = String.valueOf(Double.valueOf(numero_uno)*-1);
                 numberone.setValor(Double.valueOf(numero_uno));
 
@@ -552,7 +536,7 @@ public class Modelo implements iCalculadora.iModelo{
                     scalculation += numero_uno;
                 }else if (pow_present){
                     //temp=operacion.exponencial(numbertwo,numberone);
-                    removeuntilchar(scalculation, '^');
+                    removeuntilchar(scalculation, ' ');
                     scalculation += numero_uno;
                 }else if(funcion_present){
                     //temp.setValor(numberone.getValor());
