@@ -190,6 +190,7 @@ public class Modelo implements iCalculadora.iModelo{
             invert_allow = true;
             op_allow=true;
             sanswer = e.Postfijo2resulTxt(p.Infijo2PosfijoTxt(scalculation));
+
             iPresentador.mostrarPantallaP(scalculation,sanswer);
         }
     }
@@ -565,7 +566,11 @@ public class Modelo implements iCalculadora.iModelo{
                     //temp.setValor(numberone.getValor());
                     removeuntilchar(scalculation, ' ');
                     scalculation+=numero_uno;
-                }else {
+                }
+                else if(current_operator==""){
+                    scalculation=numberone.getValor().toString();
+                }
+                else {
                     //temp.setValor(numberone.getValor());
                     removeuntilchar(scalculation, ' ');
                     scalculation+=numberone.getValor().toString();
