@@ -258,6 +258,10 @@ public class Presentador implements iCalculadora.iPresentador {
         }
     }
 
+    /**
+     * Método que indica al modelo que realice la operación MOD para
+     * obtener el residuo de una división.
+     */
     @Override
     public void onClickModP() {
         try{
@@ -269,6 +273,10 @@ public class Presentador implements iCalculadora.iPresentador {
         }
     }
 
+    /**
+     * Método que indica al modelo que transforme a negativo el valor de un
+     * número.
+     */
     @Override
     public void onClickMMP() {
         try{
@@ -279,7 +287,10 @@ public class Presentador implements iCalculadora.iPresentador {
             Log.e("ERROR MP", e.getMessage());
         }
     }
-
+    /**
+     * Método que indica al modelo que realice la operación para calcular la
+     * raiz de un número.
+     */
     @Override
     public void onClickRootP() {
         try{
@@ -291,6 +302,12 @@ public class Presentador implements iCalculadora.iPresentador {
         }
     }
 
+    /**
+     * Método que indica al modelo que realice la función que se
+     * pasa como parámetro.
+     *
+     * @param funcion Nombre de la función
+     */
     @Override
     public void onClickFuncionP(String funcion) {
         try{
@@ -302,6 +319,10 @@ public class Presentador implements iCalculadora.iPresentador {
         }
     }
 
+    /**
+     * Método que indica al modelo que borre un número o caracter de
+     * la cadena de operación.
+     */
     @Override
     public void onClickDelP() {
         try{
@@ -313,6 +334,12 @@ public class Presentador implements iCalculadora.iPresentador {
         }
     }
 
+    /**
+     * Método que indica al modelo que realice una transformación de decimal a
+     * lo especificado por el tipo como parámetro.
+     *
+     * @param tipo Tipo de número
+     */
     @Override
     public void onClickConvertP(String tipo) {
         try{

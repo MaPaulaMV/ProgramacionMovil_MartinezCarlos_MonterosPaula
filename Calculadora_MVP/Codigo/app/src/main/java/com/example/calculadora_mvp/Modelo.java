@@ -436,6 +436,9 @@ public class Modelo implements iCalculadora.iModelo{
         iPresentador.mostrarMrP(temp2.getValor().toString());
     }
 
+    /**
+     * Método que se encarga de colocar el simbolo de porcentaje en la cadena de operaciones.
+     */
     @Override
     public void onClickModM() {
         if(scalculation!=""  && !funcion_present&& !pow_present&&!root_present){//&& !mod_present
@@ -468,6 +471,9 @@ public class Modelo implements iCalculadora.iModelo{
         return  c;
     }
 
+    /**
+     * Método que se encarga de borrar el último caracter de la cadena de operaciones.
+     */
     @Override
     public void onClickDelM() {
         Stack<String> E = new Stack<String>();
@@ -512,6 +518,11 @@ public class Modelo implements iCalculadora.iModelo{
 
     }
 
+    /**
+     * Método que se encarga de realizar las transformaciones de los números decimales.
+     *
+     * @param tipo Tipo de número al que se va a transformar
+     */
     @Override
     public void onClickConvertM(String tipo) {
         if(scalculation!="" && getLastChar(scalculation, 1) != ' '){
@@ -536,7 +547,8 @@ public class Modelo implements iCalculadora.iModelo{
     }
 
     /**
-     *
+     * Método que se encarga de volver negativo o positivo
+     * a un número ingresado.
      */
     public void onClickMM() {
 
@@ -694,6 +706,13 @@ public class Modelo implements iCalculadora.iModelo{
         }
     }
 
+    /**
+     * Método que se encarga de sacar  caracteres de una cadena hasta encontrar
+     * un simbolo o caracter específico.
+     *
+     * @param str Cadena de caracteres
+     * @param chr Caracter a comparar para detener la función recursiva.
+     */
     public void removeuntilchar(String str, char chr) {
         char c = getLastChar(str, 1);
 
@@ -705,6 +724,13 @@ public class Modelo implements iCalculadora.iModelo{
         }
     }
 
+    /**
+     * Método que se encarga de remover un caracter en una posición específica.
+     *
+     * @param str Cadena de caracteres
+     * @param i Posicion
+     * @return Cadena nueva
+     */
     public String removechar(String str, int i) {
         char c = str.charAt(str.length() - i);
         if (c == '.' && !dot) {
@@ -720,7 +746,9 @@ public class Modelo implements iCalculadora.iModelo{
         return str.substring(0, str.length() - i);
     }
 
-
+    /**
+     * Método que se encarga de colocar el símbolo de raíz en la cadena de operaciones.
+     */
     @Override
     public void onClickRootM() {
         if(sanswer.equals("")&& result.getValor()==0.0&&!root_present && !funcion_present){//Cuando no hay nada escrito
@@ -740,6 +768,12 @@ public class Modelo implements iCalculadora.iModelo{
 
     }
 
+    /**
+     * Método que se encarga de realizar una función específica de acuerdo
+     * al nombre que se pase como parámetro, y colocar el mismo en la cadena de operaciones.
+     *
+     * @param funcion Nombre de la función
+     */
     @Override
     public void onClickFuncionM(String funcion) {
         if(funcion.equals("sin")|| funcion.equals("cos")){

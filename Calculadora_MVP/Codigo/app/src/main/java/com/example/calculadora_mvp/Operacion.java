@@ -142,6 +142,13 @@ public class Operacion {
         }
     }
 
+    /**
+     * Método que realiza la función de logaritmo natural de un
+     * número.
+     *
+     * @param num1 Número
+     * @return Resultado de logaritmo natural
+     */
     public Numero logNatural(Numero num1){
         double comp = 0.0;
         double denominador = 1.0;
@@ -159,6 +166,13 @@ public class Operacion {
         return new Numero(2.0*sum);
     }
 
+    /**
+     * Método que realiza la función de logaritmo en base 10 de
+     * un número.
+     *
+     * @param num1 Número
+     * @return Resultado de logaritmo en base 10
+     */
     public Numero logBase10(Numero num1){
         double valor=0;
         int precision=10, cont=0,i;
@@ -176,6 +190,12 @@ public class Operacion {
         //return new Numero( Math.log10(num1.getValor()));
     }
 
+    /**
+     * Método que saca el valor de la raíz cuadrada de un número.
+     *
+     * @param numero Número
+     * @return Valor de la raíz cuadrada.
+     */
     public Numero raiz(Numero numero){
 
         double n = 0, r, x = numero.getValor();
@@ -198,6 +218,13 @@ public class Operacion {
         return new Numero(m_bakhsali);
     }
 
+    /**
+     * Método que realiza el cálculo de la serie de Taylor para obtener el valor
+     * del coseno de un número.
+     *
+     * @param x ángulo en grados
+     * @return Coseno del ángulo
+     */
     static Numero serieTaylor(Numero x) {
         double sumando, sumatoria = 0, precision = 0.0001d;
         double rad = x.getValor() * Math.PI/180;
@@ -213,6 +240,13 @@ public class Operacion {
         return new Numero(sumatoria);
     }
 
+    /**
+     * Método factorial con una precisión determinada para ser usado en
+     * la fucnión seno.
+     *
+     * @param numero Número
+     * @return Valor del factorial de un número
+     */
     static double factorial(int numero) {
         double factorial = 1.0d;
 
@@ -223,6 +257,13 @@ public class Operacion {
         return factorial;
     }
 
+    /**
+     * Método que calcula el seno de un ángulo ingresado en
+     * grados.
+     *
+     * @param valor ángulo en Grados
+     * @return Seno de un ángulo
+     */
     static Numero seno (Numero valor)
     {
         double rad = valor.getValor() * Math.PI/180;
@@ -245,6 +286,12 @@ public class Operacion {
         return new Numero(resultado);
     }
 
+    /**
+     * Método que realiza la transformación de decimal a Binario.
+     *
+     * @param num1 Número
+     * @return Número Binario
+     */
     public static String decimalABinario(Numero num1) {
         String binario ="";
 
@@ -260,6 +307,12 @@ public class Operacion {
         return binario;
     }
 
+    /**
+     * Método que realiza la transformación de decimal a Octal.
+     *
+     * @param num1 Número
+     * @return Número Octal
+     */
     public static String decimalAOctal(Numero num1) {
         String octal = "";
         String caracteresOctales = "01234567";
@@ -276,6 +329,12 @@ public class Operacion {
         return octal;
     }
 
+    /**
+     * Método que realiza la transformación de decimal a hexadecimal.
+     *
+     * @param num1 Número
+     * @return Número Hexadecimal
+     */
     public static String decimalAHexadecimal(Numero num1) {
         String hexadecimal = "";
         String caracteresHexadecimales = "0123456789ABCDEF";
