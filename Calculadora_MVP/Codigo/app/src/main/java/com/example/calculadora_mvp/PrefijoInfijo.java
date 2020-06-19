@@ -1,3 +1,15 @@
+/*
+ * ESPE - DCC - PROGRAMACIÓN MÓVIL
+ * NRC: 6112
+ *
+ * Sistema: Calculadora_MVP
+ * Creado 07/06/2020
+ *
+ * Los contenidos de este archivo son propiedad privada y estan protegidos por
+ * la licencia BSD
+ *
+ * Se puede utilizar, reproducir o copiar el contenido de este archivo.
+ */
 package com.example.calculadora_mvp;
 
 
@@ -6,8 +18,22 @@ import android.util.Log;
 import java.security.spec.ECField;
 import java.util.Stack;
 
+/**
+ * Clase que se encarga de pasar la cadena de operaciones a una expresión
+ * postfija.
+ *
+ * @author Carlos Martínez
+ * @author Paula Monteros
+ */
 public class PrefijoInfijo {
 
+    /**
+     * Método que se encarga de transformar la cadena de operaciones a una
+     * expresión postfija para que pueda calcularse el resultado.
+     *
+     * @param infijo Cadena de operaciones
+     * @return
+     */
     public static String Infijo2PosfijoTxt(String infijo) {
         String postfij = null;
         String expr = depurar(infijo);
@@ -82,6 +108,13 @@ public class PrefijoInfijo {
         return postfij;
     }
 
+    /**
+     * Método que se encarga de limpiar o depurar la cadena de
+     * operaciones, separa cada valor o caracter por medio de espacios.
+     *
+     * @param s Cadena de operaciones
+     * @return Cadena depurada
+     */
     private static String depurar(String s) {
         s = s.replaceAll("\\s+", "");
 
@@ -101,7 +134,7 @@ public class PrefijoInfijo {
         for (int i = 0; i < s.length(); i++) {
             if (simbols.contains("" + s.charAt(i))) {
                 try {
-                    if (simbols.contains(""+s.charAt(i-1)) && s.charAt(i)!='√'&& s.charAt(i-1)!='!' && s.charAt(i)!='l'&& s.charAt(i)!='n'&& s.charAt(i)!='s'&& s.charAt(i)!='c'){
+                    if (simbols.contains(""+s.charAt(i-1)) && (s.charAt(i)+"")!="√" && s.charAt(i-1)!='!' && s.charAt(i)!='l' && s.charAt(i)!='n' && s.charAt(i)!='s' && s.charAt(i)!='c'){
                         str+=s.charAt(i);
                     }
                     else {
@@ -111,11 +144,20 @@ public class PrefijoInfijo {
                     str += " " + s.charAt(i) + " ";
                 }
 
-            } else str += s.charAt(i);
+            } else {
+                str += s.charAt(i);
+            }
         }
         return str.replaceAll("\\s+", " ").trim();
     }
 
+    /**
+     * Método que asigna un valor de acuerdo a la preferencia de signo de la
+     * operación.
+     *
+     * @param oper Signo de la operación
+     * @return Valor de la preferencia de signo
+     */
     private static int pref(String oper) {
         int prf = 0;
 

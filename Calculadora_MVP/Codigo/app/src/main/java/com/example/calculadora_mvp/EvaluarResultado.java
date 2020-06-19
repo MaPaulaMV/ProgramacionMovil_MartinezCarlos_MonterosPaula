@@ -1,9 +1,35 @@
+/*
+ * ESPE - DCC - PROGRAMACIÓN MÓVIL
+ * NRC: 6112
+ *
+ * Sistema: Calculadora_MVP
+ * Creado 07/06/2020
+ *
+ * Los contenidos de este archivo son propiedad privada y estan protegidos por
+ * la licencia BSD
+ *
+ * Se puede utilizar, reproducir o copiar el contenido de este archivo.
+ */
 package com.example.calculadora_mvp;
 
 
 import java.util.Stack;
 
+/**
+ * Clase que se encarga de evaluar y calcular toda la expresión
+ * postfija armada.
+ *
+ * @author Carlos Martínez
+ * @author Paula Monteros
+ */
 public class EvaluarResultado {
+
+    /**
+     * Método que se encarga de calcular el resultado de toda la expresión postfija.
+     *
+     * @param postfijo Expresión postfija
+     * @return Resultado de toda la operación
+     */
     public static String Postfijo2resulTxt(String postfijo){
         String expr = postfijo;
         String[] post = expr.split(" ");
@@ -38,6 +64,15 @@ public class EvaluarResultado {
         return resultado;
     }
 
+    /**
+     * Método que se encarga de realizar la operación correspondiente al signo entre los
+     * dos números ingresados como parámetreros.
+     *
+     * @param op Signo de la operación
+     * @param n2 Segundo número
+     * @param n1 Primer número
+     * @return Resultado de la operación
+     */
     private static Numero evaluar(String op, String n2, String n1) {
         Numero num1 = new Numero(Double.parseDouble(n1));
         Numero num2 = new Numero(Double.parseDouble(n2));

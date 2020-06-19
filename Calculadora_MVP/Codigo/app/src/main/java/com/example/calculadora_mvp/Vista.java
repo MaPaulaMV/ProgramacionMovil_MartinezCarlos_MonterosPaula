@@ -276,8 +276,6 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
-
-
         /**
          * Setea el método onClick para indicar que se está realizando la operación de
          * exponente.
@@ -334,6 +332,9 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para indicar que se realizará la operación MOD.
+         */
         btnmod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -341,6 +342,9 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para indicar que se quiere volver negativo un número.
+         */
         btnmm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -348,6 +352,10 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para indicar que se está realizando la operación de
+         * exponentes.
+         */
         btnroot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -355,6 +363,10 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para indicar que se está realizando la función
+         * logaritomo en base 10.
+         */
         btnlog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -362,6 +374,10 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para indicar que se está realizando la función
+         * logaritomo natural.
+         */
         btnln.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -369,6 +385,10 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para indicar que se está realizando la función
+         * seno.
+         */
         btnsin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -376,6 +396,10 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para indicar que se está realizando la función
+         * coseno.
+         */
         btncos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -383,6 +407,10 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para que se envíe el valor de PI al presentador y
+         * realizar las operaciones.
+         */
         btnpi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -390,6 +418,9 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para indicar que se quiere borrar un caracter.
+         */
         btndel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -397,6 +428,10 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para indicar que se realizará una transformación de decimal a
+         * binario.
+         */
         btnbin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -404,6 +439,10 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para indicar que se realizará una transformación de decimal a
+         * octal.
+         */
         btnoct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -411,6 +450,10 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para indicar que se realizará una transformación de decimal a
+         * hexadecimal.
+         */
         btnhex.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -418,6 +461,10 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Setea el método onClick para indicar que se realizará una transformación a
+         * decimal.
+         */
         btndec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

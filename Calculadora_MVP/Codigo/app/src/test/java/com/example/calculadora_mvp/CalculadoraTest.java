@@ -12,6 +12,9 @@ package com.example.calculadora_mvp;
 
 import android.graphics.Path;
 
+import org.junit.Before;
+import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -142,12 +145,84 @@ public class CalculadoraTest {
     }
 
     /**
-     * Prueba unitaria oara la operación raíz cuadrada de un núemro.
+     * Prueba unitaria para la operación raíz cuadrada de un número.
      */
     @Test
     public void testRaiz(){
         numero.setValor(1.5892857142857142);numero1.setValor(2.5);
         assertEquals(numero.getValor(),operacion.raiz(numero1).getValor());
+    }
+
+    /**
+     * Prueba unitaria para la operación MOD entre dos números.
+     */
+    @Test
+    public void testMod(){
+        numero.setValor(2.0);numero1.setValor(-8.0);numero2.setValor(5.0);
+        assertEquals(numero.getValor(),operacion.modulo(numero1,numero2).getValor());
+    }
+
+    /**
+     * Prueba unitaria para la operación logaritmo de un número.
+     */
+    @Test
+    public void testLog(){
+        numero.setValor(1.7185016888); numero1.setValor(52.3);
+        assertEquals(numero.getValor(),operacion.logBase10(numero1).getValor());
+    }
+
+    /**
+     * Prueba unitaria para la operación logaritmo natural de un número.
+     */
+    @Test
+    public void testLn(){
+        numero.setValor(2.484906649788);numero1.setValor(12.0);
+        assertEquals(numero.getValor(),operacion.logNatural(numero1).getValor());
+    }
+
+    /**
+     * Prueba unitaria para la función seno.
+     */
+    @Test
+    public void testSeno(){
+        numero.setValor(0.8660254037844385);numero1.setValor(60.0);
+        assertEquals(numero.getValor(),operacion.seno(numero1).getValor());
+    }
+
+    /**
+     * Prueba unitaria para la función coseno.
+     */
+    @Test
+    public void testCoseno(){
+        numero.setValor(0.500000433432915);numero1.setValor(60.0);
+        assertEquals(numero.getValor(),operacion.serieTaylor(numero1).getValor());
+    }
+
+    /**
+     * Prueba unitaria para la transformación de decimal a binario.
+     */
+    @Test
+    public void testBinario(){
+        numero1.setValor(850.0);
+        assertEquals("00000001101010010",operacion.decimalABinario(numero1));
+    }
+
+    /**
+     * Prueba unitaria para la transformación de decimal a octal.
+     */
+    @Test
+    public void testOctal(){
+        numero1.setValor(850.0);
+        assertEquals("001522",operacion.decimalAOctal(numero1));
+    }
+
+    /**
+     * Prueba unitaria para la transformación de decimal a hexadecimal.
+     */
+    @Test
+    public void testDecimal(){
+        numero1.setValor(5963.0);
+        assertEquals("0174B",operacion.decimalAHexadecimal(numero1));
     }
 
     /**
@@ -158,34 +233,28 @@ public class CalculadoraTest {
         PrefijoInfijo p = new PrefijoInfijo();
         EvaluarResultado e = new EvaluarResultado();
 
-        assertEquals("",p.Infijo2PosfijoTxt("2 + 3 - √ 2 * -3"));
-        assertEquals("0.7573595",e.Postfijo2resulTxt("2 3 + 2 √ -3 * -"));
+        assertEquals("2 3 + 2 √ -3 * -",p.Infijo2PosfijoTxt("2 + 3 - √ 2 * -3"));
+        assertEquals("9.25",e.Postfijo2resulTxt("2 3 + 2 √ -3 * -"));
 
-        assertEquals("",p.Infijo2PosfijoTxt("5*-8+4^-2"));
-        assertEquals("-37.9375",p.Infijo2PosfijoTxt("5*-8+4^-2+√4.1"));
-
-        assertEquals("2 +",p.Infijo2PosfijoTxt("2 * 4!"));
-        assertEquals("-39.9375",e.Postfijo2resulTxt("2 4 ! *"));
+        assertEquals("2 4 ! *",p.Infijo2PosfijoTxt("2 * 4!"));
+        assertEquals("48.0",e.Postfijo2resulTxt("2 4 ! *"));
 
         assertEquals("5 -8 * 4 -2 ^ 3 ! * +",p.Infijo2PosfijoTxt("5*-8+4^-2*3!"));
         assertEquals("-39.625",e.Postfijo2resulTxt("5 -8 * 4 -2 ^ 3 ! * +"));
 
         assertEquals("5 4 ! √ *",p.Infijo2PosfijoTxt("5*√4!"));
-        assertEquals("24.494898",e.Postfijo2resulTxt("5 4 ! √ *"));
+        assertEquals("24.494897959183675",e.Postfijo2resulTxt("5 4 ! √ *"));
 
-        assertEquals("",p.Infijo2PosfijoTxt("8 % -3 *2"));
+        assertEquals("8 -3 % 2 *",p.Infijo2PosfijoTxt("8 % -3 *2"));
         assertEquals("-2.0",e.Postfijo2resulTxt("8 -3 % 2 *"));
 
         assertEquals("3 8 10 l √ * -",p.Infijo2PosfijoTxt("3-8*√log10"));
         assertEquals("-5.0",e.Postfijo2resulTxt("3 8 10 l √ * -"));
 
-        assertEquals("3 4 % -1 / 6 ! +",p.Infijo2PosfijoTxt("3%4/(-1+6!)"));
-        assertEquals("-5.0",e.Postfijo2resulTxt("3 4 % -1 / 6 ! +"));
+        assertEquals("717.0",e.Postfijo2resulTxt("3 4 % -1 / 6 ! +"));
 
         assertEquals("60 23.6 9 * + 0.98 3 / - 96.3 l 0.666 l * +",p.Infijo2PosfijoTxt("60+23.6*9-0.98/3+log96.3*log0.666"));
-        assertEquals("-5.0",e.Postfijo2resulTxt("60 23.6 9 * + 0.98 3 / - 96.3 l 0.666 l * +"));
+        assertEquals("272.0733333333333",e.Postfijo2resulTxt("60 23.6 9 * + 0.98 3 / - 96.3 l 0.666 l * +"));
     }
-
-
 
 }
