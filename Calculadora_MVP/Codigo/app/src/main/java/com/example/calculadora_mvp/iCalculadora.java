@@ -12,6 +12,9 @@
  */
 package com.example.calculadora_mvp;
 
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 /**
  * Interfaz principal del programa, donde se declara todos los métodos
  * que se van a usar para que puedan ser implementados por las diferentes clases.
@@ -53,6 +56,8 @@ public interface iCalculadora {
         void onClickFuncionP(String funcion);
         void onClickDelP();
         void onClickConvertP(String tipo);
+        void onClickGraficarP(String funcion);
+        void enviarPuntosP(LineGraphSeries<DataPoint> puntos);
     }
 
     /**
@@ -77,5 +82,15 @@ public interface iCalculadora {
         char getLastChar(String string, int iterator);
         void onClickDelM();
         void onClickConvertM(String tipo);
+        void onClickGraficarM(String funcion);
+    }
+
+    /**
+     * Interfaz iVista que declara los métodos que van a ser utilizados por las clases
+     * que implementen esta interfaz.
+     */
+    interface iVistaGraficadora{
+        void graficar(LineGraphSeries<DataPoint> puntos);
+        void limpiar ();
     }
 }

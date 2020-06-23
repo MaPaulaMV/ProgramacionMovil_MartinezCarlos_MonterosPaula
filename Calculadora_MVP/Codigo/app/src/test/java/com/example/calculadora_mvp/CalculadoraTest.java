@@ -185,8 +185,8 @@ public class CalculadoraTest {
      */
     @Test
     public void testSeno(){
-        numero.setValor(0.8660254037844385);numero1.setValor(60.0);
-        assertEquals(numero.getValor(),operacion.seno(numero1).getValor());
+        numero.setValor(Math.sin(1.5));numero1.setValor(1.5);
+        assertEquals(numero.getValor(), operacion.seno(numero1).getValor());
     }
 
     /**

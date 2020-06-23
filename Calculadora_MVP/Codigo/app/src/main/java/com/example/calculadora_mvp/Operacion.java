@@ -227,7 +227,8 @@ public class Operacion {
      */
     static Numero serieTaylor(Numero x) {
         double sumando, sumatoria = 0, precision = 0.0001d;
-        double rad = x.getValor() * Math.PI/180;
+        //double rad = x.getValor() * Math.PI/180;
+        double rad = x.getValor();
 
         int n = 0;
 
@@ -266,7 +267,8 @@ public class Operacion {
      */
     static Numero seno (Numero valor)
     {
-        double rad = valor.getValor() * Math.PI/180;
+        //double rad = valor.getValor() * Math.PI/180;
+        double rad = valor.getValor();
         double resultado=0;
         int i=0, posicion=0, precision=0;
 
@@ -349,6 +351,76 @@ public class Operacion {
             }
         }
         return hexadecimal;
+    }
+
+    /**
+     * Método que realiza el cálculo de la serie de Taylor para obtener el valor
+     * del coseno de un número.
+     *
+     * @param x ángulo en grados
+     * @return Coseno del ángulo
+     */
+    static Numero serieTaylorC(Numero x) {
+        double sumando, sumatoria = 0, precision = 0.0001d;
+        //double rad = x.getValor() * Math.PI/180;
+        double rad = x.getValor();
+
+        int n = 0;
+
+        do {
+            sumando = Math.pow(-1, n) / factorial(2 * n) * Math.pow(rad, 2 * n);
+            sumatoria = sumatoria + sumando;
+            n = n + 1;
+        } while (Math.abs(sumando) > precision);
+
+        return new Numero(sumatoria);
+    }
+
+    /**
+     * Método factorial con una precisión determinada para ser usado en
+     * la fucnión seno.
+     *
+     * @param numero Número
+     * @return Valor del factorial de un número
+     */
+    static double factorialC(int numero) {
+        double factorial = 1.0d;
+
+        while (numero != 0) {
+            factorial *= numero--;
+        }
+
+        return factorial;
+    }
+
+    /**
+     * Método que calcula el seno de un ángulo ingresado en
+     * grados.
+     *
+     * @param valor ángulo en Grados
+     * @return Seno de un ángulo
+     */
+    static Numero senoC (Numero valor)
+    {
+        //double rad = valor.getValor() * Math.PI/180;
+        double rad = valor.getValor();
+        double resultado=0;
+        int i=0, posicion=0, precision=0;
+
+        resultado=rad;
+        precision=45;
+
+        for(i=1; i<=precision; i++) {
+            posicion = i * 2 + 1;
+
+            if (i % 2 == 0) {
+                resultado += Math.pow(rad, posicion) / factorial(posicion);
+            } else {
+                resultado -= Math.pow(rad, posicion) / factorial(posicion);
+            }
+
+        }
+        return new Numero(resultado);
     }
 
 }

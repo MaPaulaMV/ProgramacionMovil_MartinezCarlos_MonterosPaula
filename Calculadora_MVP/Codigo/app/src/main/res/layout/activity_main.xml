@@ -56,7 +56,15 @@
         android:layout_weight="1"
         android:weightSum="4"-->
 
-
+            <Button
+                android:id="@+id/graf"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Gr"
+                android:textAllCaps="false"
+                android:textColor="@color/botonTxt"
+                android:textSize="40dp" />
             <Button
                 android:id="@+id/borrar"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"

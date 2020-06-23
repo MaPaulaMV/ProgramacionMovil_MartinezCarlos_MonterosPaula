@@ -12,8 +12,13 @@
  */
 package com.example.calculadora_mvp;
 
+import android.graphics.Color;
 import android.graphics.Path;
 import android.util.Log;
+
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -544,6 +549,37 @@ public class Modelo implements iCalculadora.iModelo{
             }
             iPresentador.mostrarPantallaP(scalculation,sanswer);
         }
+    }
+
+    @Override
+    public void onClickGraficarM(String funcion) {
+
+        double x, y;
+        x=-20;
+
+
+        DataPoint[] points = new DataPoint[400];
+        for (int i = 0; i < 400; i++) {
+            if (funcion.equals("Sin(x)")){
+                y=operacion.seno(new Numero(Double.valueOf(x))).getValor();
+                points[i] = new DataPoint(x, y);
+            }
+            else {
+                y=operacion.serieTaylor(new Numero(Double.valueOf(x))).getValor();
+                points[i] = new DataPoint(x, y);
+            }
+
+            x=x+0.1;
+        }
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(points);
+        if (funcion.equals("Sin(x)")){
+            series.setColor(Color.BLUE);
+        }
+        else {
+            series.setColor(Color.RED);
+        }
+
+        iPresentador.enviarPuntosP(series);
     }
 
     /**

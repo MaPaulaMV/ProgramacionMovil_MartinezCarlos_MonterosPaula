@@ -13,6 +13,9 @@
 package com.example.calculadora_mvp;
 import android.util.Log;
 
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 /**
  * Clase que actúa como intermediario entre la Vista y
  * el Modelo de la aplicación, implementa la interfaz iCalculadora.iPresentador.
@@ -23,6 +26,7 @@ import android.util.Log;
 public class Presentador implements iCalculadora.iPresentador {
     private iCalculadora.iVista iVista;
     private iCalculadora.iModelo iModelo;
+    private iCalculadora.iVistaGraficadora graficadora;
 
     /**
      * Constructor vacío de la clase Presentador.
@@ -38,6 +42,19 @@ public class Presentador implements iCalculadora.iPresentador {
     public Presentador(iCalculadora.iVista iVista) {
         this.iVista = iVista;
         this.iModelo=new Modelo(this);
+    }
+
+    public Presentador(iCalculadora.iVistaGraficadora iVistaGraficadora) {
+        this.graficadora = iVistaGraficadora;
+        this.iModelo=new Modelo(this);
+    }
+
+    public iCalculadora.iVistaGraficadora getGraficadora() {
+        return graficadora;
+    }
+
+    public void setGraficadora(iCalculadora.iVistaGraficadora graficadora) {
+        this.graficadora = graficadora;
     }
 
     /**
@@ -350,5 +367,29 @@ public class Presentador implements iCalculadora.iPresentador {
             Log.e("ERROR "+tipo, e.getMessage());
         }
     }
+
+    @Override
+    public void onClickGraficarP(String funcion) {
+        try{
+            if(graficadora!=null){
+                iModelo.onClickGraficarM(funcion);
+            }
+        }catch (Exception e){
+            Log.e("ERROR "+funcion, e.getMessage());
+        }
+    }
+
+    @Override
+    public void enviarPuntosP(LineGraphSeries<DataPoint> puntos) {
+        try{
+            if(graficadora!=null){
+                graficadora.graficar(puntos);
+            }
+        }catch (Exception e){
+            Log.e("ERROR ", e.getMessage());
+        }
+    }
+
+
 
 }

@@ -14,6 +14,7 @@ package com.example.calculadora_mvp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,7 +39,7 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             btnsuma,btnresta,btnmult,btndiv,
             btnmplus,btnmrest,btnigual,btnpow,
             btnfact, btnmr, btnroot,btnlog,btnln,
-            btnsin,btncos,btnpi,btnbin,btnoct,btnhex,btndec;
+            btnsin,btncos,btnpi,btnbin,btnoct,btnhex,btndec, btngraf;
     private Button btnclear, btnmod,btnmm;
     private  ImageButton btndel;
 
@@ -88,6 +89,7 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
         btnoct=(Button)findViewById(R.id.oct);
         btnhex=(Button)findViewById(R.id.hex);
         btndec=(Button)findViewById(R.id.dec);
+        btngraf=(Button)findViewById(R.id.graf);
 
         /**
          * Setea el método onClick para que se envíen los parámetros y datos al presentador para poder
@@ -469,6 +471,14 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             @Override
             public void onClick(View v) {
                 iPresentador.onClickConvertP(btndec.getText().toString());
+            }
+        });
+
+        btngraf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),GraficadoraActivity.class);
+                startActivityForResult(intent,0);
             }
         });
 
