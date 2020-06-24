@@ -474,6 +474,9 @@ public class Vista extends AppCompatActivity implements iCalculadora.iVista{
             }
         });
 
+        /**
+         * Redirecciona a la vista para mostrar las gráficas de funciones trigonométricas.
+         */
         btngraf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

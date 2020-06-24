@@ -49,10 +49,20 @@ public class Presentador implements iCalculadora.iPresentador {
         this.iModelo=new Modelo(this);
     }
 
+    /**
+     * Método que retorna el valor del atributo graficadora de la clase Presentador.
+     *
+     * @return Objeto que implementa la interfaz iCalculadora.iVistaGraficadora.
+     */
     public iCalculadora.iVistaGraficadora getGraficadora() {
         return graficadora;
     }
 
+    /**
+     * Método que setea el valor del atributo graficadora de la clase Presentador.
+     *
+     * @param graficadora Objeto que implemente la interfaz iCalculadora.iVistaGraficadora.
+     */
     public void setGraficadora(iCalculadora.iVistaGraficadora graficadora) {
         this.graficadora = graficadora;
     }
@@ -368,6 +378,12 @@ public class Presentador implements iCalculadora.iPresentador {
         }
     }
 
+    /**
+     * Método que indica al modelo que realice una gráfica de una
+     * función determinada.
+     *
+     * @param funcion Nombre de la función a graficar
+     */
     @Override
     public void onClickGraficarP(String funcion) {
         try{
@@ -379,6 +395,12 @@ public class Presentador implements iCalculadora.iPresentador {
         }
     }
 
+    /**
+     * Método que envia una serie de puntos a calculados por el modelo
+     * a la vista para que se grafique la función.
+     *
+     * @param puntos Serie de puntos (X,Y)
+     */
     @Override
     public void enviarPuntosP(LineGraphSeries<DataPoint> puntos) {
         try{

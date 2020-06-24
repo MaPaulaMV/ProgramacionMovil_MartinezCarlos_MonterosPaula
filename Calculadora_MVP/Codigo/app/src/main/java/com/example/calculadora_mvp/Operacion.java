@@ -355,14 +355,13 @@ public class Operacion {
 
     /**
      * Método que realiza el cálculo de la serie de Taylor para obtener el valor
-     * del coseno de un número.
+     * del coseno de un número para realizar la grafica de la función.
      *
      * @param x ángulo en grados
      * @return Coseno del ángulo
      */
-    static Numero serieTaylorC(Numero x) {
+    static Numero serieTaylorG(Numero x) {
         double sumando, sumatoria = 0, precision = 0.0001d;
-        //double rad = x.getValor() * Math.PI/180;
         double rad = x.getValor();
 
         int n = 0;
@@ -383,7 +382,7 @@ public class Operacion {
      * @param numero Número
      * @return Valor del factorial de un número
      */
-    static double factorialC(int numero) {
+    static double factorialG(int numero) {
         double factorial = 1.0d;
 
         while (numero != 0) {
@@ -395,12 +394,12 @@ public class Operacion {
 
     /**
      * Método que calcula el seno de un ángulo ingresado en
-     * grados.
+     * grados para realizar la grafica de la función.
      *
      * @param valor ángulo en Grados
      * @return Seno de un ángulo
      */
-    static Numero senoC (Numero valor)
+    static Numero senoG (Numero valor)
     {
         //double rad = valor.getValor() * Math.PI/180;
         double rad = valor.getValor();
@@ -414,9 +413,9 @@ public class Operacion {
             posicion = i * 2 + 1;
 
             if (i % 2 == 0) {
-                resultado += Math.pow(rad, posicion) / factorial(posicion);
+                resultado += Math.pow(rad, posicion) / factorialG(posicion);
             } else {
-                resultado -= Math.pow(rad, posicion) / factorial(posicion);
+                resultado -= Math.pow(rad, posicion) / factorialG(posicion);
             }
 
         }

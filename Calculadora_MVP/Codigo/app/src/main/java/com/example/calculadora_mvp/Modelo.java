@@ -551,6 +551,12 @@ public class Modelo implements iCalculadora.iModelo{
         }
     }
 
+    /**
+     * Método que realiza el cálculo de los puntos "Y" para un conjuto definido
+     * de puntos X positivos y negativos, para poder realizar la gráfica de la función.
+     *
+     * @param funcion Nombre de la función trigonométrica
+     */
     @Override
     public void onClickGraficarM(String funcion) {
 
@@ -561,14 +567,13 @@ public class Modelo implements iCalculadora.iModelo{
         DataPoint[] points = new DataPoint[400];
         for (int i = 0; i < 400; i++) {
             if (funcion.equals("Sin(x)")){
-                y=operacion.seno(new Numero(Double.valueOf(x))).getValor();
+                y=operacion.senoG(new Numero(Double.valueOf(x))).getValor();
                 points[i] = new DataPoint(x, y);
             }
             else {
-                y=operacion.serieTaylor(new Numero(Double.valueOf(x))).getValor();
+                y=operacion.serieTaylorG(new Numero(Double.valueOf(x))).getValor();
                 points[i] = new DataPoint(x, y);
             }
-
             x=x+0.1;
         }
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(points);
