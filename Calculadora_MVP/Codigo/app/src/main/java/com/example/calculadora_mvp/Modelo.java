@@ -438,7 +438,10 @@ public class Modelo implements iCalculadora.iModelo{
      */
     @Override
     public void onClickMrM() {
-        iPresentador.mostrarMrP(temp2.getValor().toString());
+        scalculation+=temp2.getValor().toString();
+
+        iPresentador.mostrarPantallaP(scalculation,sanswer);
+        //iPresentador.mostrarMrP(temp2.getValor().toString());
     }
 
     /**

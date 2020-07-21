@@ -12,10 +12,6 @@
  */
 package com.example.calculadora_mvp;
 
-
-import android.util.Log;
-
-import java.security.spec.ECField;
 import java.util.Stack;
 
 /**
@@ -37,10 +33,7 @@ public class PrefijoInfijo {
     public static String Infijo2PosfijoTxt(String infijo) {
         String postfij = null;
         String expr = depurar(infijo);
-
         String[] arrayInfix = expr.split(" ");
-
-
         Stack<String> E = new Stack<String>();
         Stack<String> P = new Stack<String>();
         Stack<String> S = new Stack<String>();
@@ -48,9 +41,7 @@ public class PrefijoInfijo {
         for (int i = arrayInfix.length - 1; i >= 0; i--) {
             E.push(arrayInfix[i]);
         }
-
         try {
-
             while (!E.isEmpty()) {
 
                 switch (pref(E.peek())) {

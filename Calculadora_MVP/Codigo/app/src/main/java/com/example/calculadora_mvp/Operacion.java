@@ -187,7 +187,6 @@ public class Operacion {
         }
         double contador=cont;
         return new Numero(valor/this.exponencial(new Numero(10.0),new Numero(contador)).getValor());
-        //return new Numero( Math.log10(num1.getValor()));
     }
 
     /**
@@ -227,8 +226,8 @@ public class Operacion {
      */
     static Numero serieTaylor(Numero x) {
         double sumando, sumatoria = 0, precision = 0.0001d;
-        //double rad = x.getValor() * Math.PI/180;
-        double rad = x.getValor();
+        double rad = x.getValor() * Math.PI/180;
+        //double rad = x.getValor();
 
         int n = 0;
 
@@ -267,8 +266,8 @@ public class Operacion {
      */
     static Numero seno (Numero valor)
     {
-        //double rad = valor.getValor() * Math.PI/180;
-        double rad = valor.getValor();
+        double rad = valor.getValor() * Math.PI/180;
+        //double rad = valor.getValor();
         double resultado=0;
         int i=0, posicion=0, precision=0;
 
