@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "192242954062",
+    "firebase_url": "https://chatpyc.firebaseio.com",
+    "project_id": "chatpyc",
+    "storage_bucket": "chatpyc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:192242954062:android:f2174171123aaa0affb81f",
+        "android_client_info": {
+          "package_name": "com.example.chatpc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "192242954062-5r30tq6b8skufahrd0tqist6mmrh4rmc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJJqAX9ZlCvsjO1B1pwzxKbAx28-UGjLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "192242954062-5r30tq6b8skufahrd0tqist6mmrh4rmc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

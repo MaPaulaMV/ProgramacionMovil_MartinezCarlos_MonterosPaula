@@ -17,31 +17,31 @@
         android:textColor="@color/negro"
         android:gravity="center"/>
 
-<com.google.android.material.textfield.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <EditText
-        android:id="@+id/txtRegNombre"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_marginTop="20dp"
-        android:hint="Nombre" />
-</com.google.android.material.textfield.TextInputLayout>
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/txtRegNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:layout_marginTop="20dp"
+            android:hint="Nombre" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-<com.google.android.material.textfield.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <EditText
-        android:id="@+id/txtRegApellido"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginTop="20dp"
-        android:inputType="textPersonName"
-        android:hint="Apellido" />
-</com.google.android.material.textfield.TextInputLayout>
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/txtRegApellido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginTop="20dp"
+            android:inputType="textPersonName"
+            android:hint="Apellido" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <ImageButton
@@ -57,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-       >
+        >
 
     </ImageView>
 
