@@ -43,8 +43,6 @@ public class iModelo implements iChat.iModelo {
     private iPresentador iPresentador;
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
-    private DatabaseReference databaseReferenceBuscarUsuario;
-    private DatabaseReference databaseReferenceMensaje;
     private DatabaseReference databaseReferenceSala;
     private FirebaseStorage storage;
     private StorageReference storageReference;
