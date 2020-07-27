@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     EditText txtmensaje;
     ImageButton btnenviar, btnfoto;
     Intent intent;
-
+    private iPresentador iPresentador;
     private FirebaseAuth firebaseAuth;
     private AdapterMensaje adapterMensajes;
     private FirebaseDatabase database;
@@ -70,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
         mensajes.setAdapter(adapterMensajes);
 
         intent = getIntent();
-        final String user_id = intent.getStringExtra("userid");//id del usuario con el que se va a chatear
+        iPresentador.getiModelo().setUser_id(intent.getStringExtra("userid"));
+        //final String user_id = intent.getStringExtra("userid");//id del usuario con el que se va a chatear
 
         database = FirebaseDatabase.getInstance();
         firebaseAuth=FirebaseAuth.getInstance();
@@ -149,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
        iPresentador.enviarFotoP(requestCode,resultCode,data);
     }
 
-    public void salaExisente(){
+   /* public void salaExisente(){
 
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -178,5 +179,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });//PARA LOS MENSAJES
-    }
+    }*/
 }

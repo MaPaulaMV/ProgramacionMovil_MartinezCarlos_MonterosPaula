@@ -38,6 +38,11 @@ public class iPresentador implements  iChat.iPresentador {
         this.iModelo=new iModelo(this);
     }
 
+    public iPresentador(MainActivity iVistaMain){
+        this.iVistaMain = iVistaMain;
+        this.iModelo=new iModelo(this);
+    }
+
     public LoginActivity getiVistaLogin() {
         return iVistaLogin;
     }

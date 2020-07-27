@@ -43,6 +43,9 @@ public class iModelo implements iChat.iModelo {
     private iPresentador iPresentador;
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
+    private DatabaseReference databaseReferenceBuscarUsuario;
+    private DatabaseReference databaseReferenceMensaje;
+    private DatabaseReference databaseReferenceSala;
     private FirebaseStorage storage;
     private StorageReference storageReference;
     private List<Usuario> usuarioList;
@@ -61,14 +64,23 @@ public class iModelo implements iChat.iModelo {
         this.iPresentador = iPresentador;
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReferenceBuscarUsuario = FirebaseDatabase.getInstance().getReference("Usuarios").child(firebaseAuth.getCurrentUser().getUid());
+        databaseReferenceMensaje = FirebaseDatabase.getInstance().getReference("chat");
+        databaseReferenceSala = FirebaseDatabase.getInstance().getReference("chat");
         storage=FirebaseStorage.getInstance();
         usuarioList= new ArrayList<>();
     }
 
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
     @Override
     public void registrarUsuarioM(final String nombre, final String apellido, final Uri u, Activity activity) {
-
-
         firebaseAuth.signInAnonymously().addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
