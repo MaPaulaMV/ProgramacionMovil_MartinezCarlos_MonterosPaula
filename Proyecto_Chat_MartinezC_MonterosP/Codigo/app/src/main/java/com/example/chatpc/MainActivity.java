@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     EditText txtmensaje;
     ImageButton btnenviar, btnfoto;
     Intent intent;
-
+    private iPresentador iPresentador;
     private FirebaseAuth firebaseAuth;
     private AdapterMensaje adapterMensajes;
     private FirebaseDatabase database;
@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        iPresentador=new iPresentador(this);
+
         fotoPerfil = (CircleImageView) findViewById(R.id.perfil);
         nombreUsuario = (TextView) findViewById(R.id.nombre);
         mensajes = (RecyclerView) findViewById(R.id.mensajes);
@@ -76,29 +78,26 @@ public class MainActivity extends AppCompatActivity {
         mensajes.setAdapter(adapterMensajes);
 
         intent = getIntent();
-        final String user_id = intent.getStringExtra("userid");//id del usuario con el que se va a chatear
+        iPresentador.getiModelo().setUser_id(intent.getStringExtra("userid"));
+        //final String user_id = intent.getStringExtra("userid");//id del usuario con el que se va a chatear
 
-        database = FirebaseDatabase.getInstance();
-        firebaseAuth=FirebaseAuth.getInstance();
-        final String chat_id =firebaseAuth.getUid() + user_id;//yo + tu   tu + yo
-        final String chat_id2 = user_id + firebaseAuth.getUid();
+        //database = FirebaseDatabase.getInstance();
+        //firebaseAuth=FirebaseAuth.getInstance();
+        //final String chat_id =firebaseAuth.getUid() + user_id;//yo + tu   tu + yo
+        //final String chat_id2 = user_id + firebaseAuth.getUid();
 
 
-        databaseReferenceUsuario = database.getReference("Usuarios").child(user_id);
-        databaseReferenceBuscarUsuario = database.getReference("Usuarios").child(firebaseAuth.getCurrentUser().getUid());
-        databaseReferenceMensaje = database.getReference("chat");
+        //databaseReferenceUsuario = database.getReference("Usuarios").child(user_id);
+        //databaseReferenceBuscarUsuario = database.getReference("Usuarios").child(firebaseAuth.getCurrentUser().getUid());
+        //databaseReferenceMensaje = database.getReference("chat");
         storage=FirebaseStorage.getInstance();
 
 
         btnenviar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar c = Calendar.getInstance();
-                SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-                String formattedDate = df.format(c.getTime());
-                databaseReference.push().setValue(new Mensaje(txtmensaje.getText().toString(), nombre_u +" " + apellid_u,foto_u,"1",formattedDate));
-
-                txtmensaje.setText("");
+             @Override
+            public void onClick(View view) {
+                 iPresentador.enviarMensajeP(txtmensaje.getText().toString(),"1");
+                 txtmensaje.setText("");
             }
         });
 
@@ -120,7 +119,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        databaseReferenceBuscarUsuario.addValueEventListener(new ValueEventListener() {
+        iPresentador.perfilusuarioP();
+        iPresentador.receptorInfoP(nombreUsuario,fotoPerfil,getApplicationContext());
+        iPresentador.crearSesionSalaP(adapterMensajes);
+
+       /* databaseReferenceBuscarUsuario.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Usuario usuario = dataSnapshot.getValue(Usuario.class);
@@ -133,9 +136,9 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
-        databaseReferenceUsuario.addValueEventListener(new ValueEventListener() {
+        /*databaseReferenceUsuario.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Usuario usuario = dataSnapshot.getValue(Usuario.class);
@@ -147,9 +150,9 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });//PARA MOSTRAR EL NOMBRE Y FOTO DEL USUARIO QUE SE ESCOGIO
+        });//PARA MOSTRAR EL NOMBRE Y FOTO DEL USUARIO QUE SE ESCOGIO*/
 
-        databaseReferenceMensaje.addListenerForSingleValueEvent(new ValueEventListener() {
+       /* databaseReferenceMensaje.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Boolean bandera = false;
@@ -170,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
     }
     private  void  setScrollbar(){
@@ -212,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void salaExisente(){
+   /* public void salaExisente(){
 
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -241,5 +244,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });//PARA LOS MENSAJES
-    }
+    }*/
 }

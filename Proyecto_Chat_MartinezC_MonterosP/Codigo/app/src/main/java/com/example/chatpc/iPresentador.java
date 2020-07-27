@@ -15,6 +15,7 @@ import java.util.List;
 public class iPresentador implements  iChat.iPresentador {
     private LoginActivity iVistaLogin;
     private HomeActivity iVistaHome;
+    private MainActivity iVistaMain;
     private iModelo iModelo;
 
     public iPresentador(){
@@ -27,6 +28,11 @@ public class iPresentador implements  iChat.iPresentador {
     }
     public iPresentador(HomeActivity iVistaHome){
         this.iVistaHome = iVistaHome;
+        this.iModelo=new iModelo(this);
+    }
+
+    public iPresentador(MainActivity iVistaMain){
+        this.iVistaMain = iVistaMain;
         this.iModelo=new iModelo(this);
     }
 
@@ -102,6 +108,50 @@ public class iPresentador implements  iChat.iPresentador {
                iModelo.leerUsuariosM(context, users);
             }
         }catch (Exception e){
+            Log.e("ERROR", e.getMessage());
+        }
+    }
+
+    @Override
+    public void enviarMensajeP(String mensaje, String tipo) {
+        try {
+            if(iVistaMain!=null){
+                iModelo.enviarMensajeM(mensaje, tipo);
+            }
+        }catch(Exception e){
+            Log.e("ERROR", e.getMessage());
+        }
+    }
+
+    @Override
+    public void perfilusuarioP() {
+        try {
+            if(iVistaMain!=null){
+                iModelo.perfilusuarioM();
+            }
+        }catch(Exception e){
+            Log.e("ERROR", e.getMessage());
+        }
+    }
+
+    @Override
+    public void receptorInfoP(TextView textView, ImageView imageView, Context context) {
+        try {
+            if(iVistaMain!=null){
+                iModelo.receptorInfoM(textView,imageView,context);
+            }
+        }catch(Exception e){
+            Log.e("ERROR", e.getMessage());
+        }
+    }
+
+    @Override
+    public void crearSesionSalaP(AdapterMensaje adapterMensaje) {
+        try {
+            if(iVistaMain!=null){
+                iModelo.crearSesionSalaM(adapterMensaje);
+            }
+        }catch(Exception e){
             Log.e("ERROR", e.getMessage());
         }
     }

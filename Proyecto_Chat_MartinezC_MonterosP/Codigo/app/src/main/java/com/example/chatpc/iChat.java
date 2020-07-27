@@ -25,6 +25,11 @@ public interface iChat {
         void cerrarSesionP();
         void obtenerInfoP(TextView textView, ImageView imageView, Context context);
         void leerUsuariosP(Context context, RecyclerView users);
+        void enviarMensajeP(String mensaje, String tipo);
+        void perfilusuarioP();
+        void receptorInfoP(TextView textView, ImageView imageView,Context context);
+        void crearSesionSalaP(AdapterMensaje adapterMensaje);
+
 
     }
 
@@ -33,5 +38,9 @@ public interface iChat {
         void cerrarSesionM();
         void obtenerInfoM(TextView textView, ImageView imageView, Context context);
         void leerUsuariosM(Context context, RecyclerView users);
+        void enviarMensajeM(String mensaje, String tipo);
+        void perfilusuarioM();
+        void receptorInfoM(TextView textView, ImageView imageView,Context context);
+        void crearSesionSalaM(AdapterMensaje adapterMensaje);
     }
 }
