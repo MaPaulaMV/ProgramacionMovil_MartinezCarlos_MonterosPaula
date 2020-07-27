@@ -17,11 +17,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -31,10 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -55,15 +48,16 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference databaseReferenceBuscarUsuario;
     private DatabaseReference databaseReferenceMensaje;
     private FirebaseStorage storage;
-    private StorageReference storageReference;
 
-    private String nombre_u="", apellid_u="", foto_u="";
+    private iPresentador iPresentador;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        iPresentador = new iPresentador(this);
         fotoPerfil = (CircleImageView) findViewById(R.id.perfil);
         nombreUsuario = (TextView) findViewById(R.id.nombre);
         mensajes = (RecyclerView) findViewById(R.id.mensajes);
@@ -80,12 +74,10 @@ public class MainActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         firebaseAuth=FirebaseAuth.getInstance();
-        final String chat_id =firebaseAuth.getUid() + user_id;//yo + tu   tu + yo
-        final String chat_id2 = user_id + firebaseAuth.getUid();
 
 
         databaseReferenceUsuario = database.getReference("Usuarios").child(user_id);
-        databaseReferenceBuscarUsuario = database.getReference("Usuarios").child(firebaseAuth.getCurrentUser().getUid());
+
         databaseReferenceMensaje = database.getReference("chat");
         storage=FirebaseStorage.getInstance();
 
@@ -93,11 +85,7 @@ public class MainActivity extends AppCompatActivity {
         btnenviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar c = Calendar.getInstance();
-                SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-                String formattedDate = df.format(c.getTime());
-                databaseReference.push().setValue(new Mensaje(txtmensaje.getText().toString(), nombre_u +" " + apellid_u,foto_u,"1",formattedDate));
-
+                iPresentador.enviarMensajeP(txtmensaje.getText().toString(), "1");
                 txtmensaje.setText("");
             }
         });
@@ -112,44 +100,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        adapterMensajes.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+        /*adapterMensajes.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
                 super.onItemRangeInserted(positionStart, itemCount);
                 setScrollbar();
             }
-        });
+        });*/
 
-        databaseReferenceBuscarUsuario.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Usuario usuario = dataSnapshot.getValue(Usuario.class);
-                nombre_u = usuario.getNombre();
-                apellid_u = usuario.getApellido();
-                foto_u = usuario.getFoto();
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+        iPresentador.infoUsuarioP();
+        iPresentador.infoContactoP(user_id,nombreUsuario,fotoPerfil,getApplicationContext());
+        iPresentador.leerMensajesP(getApplicationContext(),mensajes);
 
-            }
-        });
-
-        databaseReferenceUsuario.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Usuario usuario = dataSnapshot.getValue(Usuario.class);
-                nombreUsuario.setText(usuario.getNombre() + " " + usuario.getApellido());
-                Glide.with(MainActivity.this).load(usuario.getFoto()).into(fotoPerfil);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });//PARA MOSTRAR EL NOMBRE Y FOTO DEL USUARIO QUE SE ESCOGIO
-
-        databaseReferenceMensaje.addListenerForSingleValueEvent(new ValueEventListener() {
+        /*databaseReferenceMensaje.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Boolean bandera = false;
@@ -170,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
     }
     private  void  setScrollbar(){
@@ -182,34 +146,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
 
-        if (requestCode==1 && resultCode == RESULT_OK && data!=null ){
-            Uri u = data.getData();
-            storageReference = storage.getReference("imagenes");
-            final StorageReference foto = storageReference.child(u.getLastPathSegment());
-
-            foto.putFile(u).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if(!task.isSuccessful()){
-                        throw  new Exception();
-                    }
-                    return foto.getDownloadUrl();
-                }
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()){
-                        Calendar c = Calendar.getInstance();
-                        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-                        String formattedDate = df.format(c.getTime());
-                        Mensaje m = new Mensaje(" ", nombre_u +" " + apellid_u,foto_u,"2",formattedDate,task.getResult().toString());
-                        // Mensaje m = new Mensaje("Imagen...", nombreUsuario.getText().toString(), "","2","",task.getResult().toString());
-                        databaseReference.push().setValue(m);
-                    }
-                }
-            });
-
-        }
+       iPresentador.enviarFotoP(requestCode,resultCode,data);
     }
 
     public void salaExisente(){

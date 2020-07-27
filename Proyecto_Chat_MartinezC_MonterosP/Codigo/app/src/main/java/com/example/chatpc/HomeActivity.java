@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class HomeActivity extends AppCompatActivity implements iChat.iVistaHome{
+public class HomeActivity extends AppCompatActivity{
 
     private ImageButton btnCerrasSesion;
     private TextView txtNombres;
