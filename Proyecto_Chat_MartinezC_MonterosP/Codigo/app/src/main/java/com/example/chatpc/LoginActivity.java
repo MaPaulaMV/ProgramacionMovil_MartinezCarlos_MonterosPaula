@@ -30,7 +30,7 @@ import com.google.firebase.storage.UploadTask;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements iChat.iVistaLogin{
 
     private EditText txtNombre;
     private EditText txtApellido;
@@ -40,31 +40,28 @@ public class LoginActivity extends AppCompatActivity {
 
     private  String nombre="", apellido="", fotoperfil="";
     private Uri u;
+    private iPresentador iPresentador;
 
-    FirebaseAuth firebaseAuth;
-    DatabaseReference databaseReference;
-    private FirebaseStorage storage;
-    private StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        iPresentador = new iPresentador(this);
         txtNombre = (EditText)findViewById(R.id.txtRegNombre);
         txtApellido = (EditText)findViewById(R.id.txtRegApellido);
         btnIngresar = (Button) findViewById(R.id.btnRegIngresar);
         btnFoto = (ImageButton) findViewById(R.id.btnRegImagen);
         foto = (ImageView) findViewById(R.id.imagenregistro);
-        firebaseAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        storage=FirebaseStorage.getInstance();
 
-        btnIngresar.setOnClickListener(new View.OnClickListener() {
+
+            btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 nombre=txtNombre.getText().toString();
                 apellido=txtApellido.getText().toString();
-                registrarUsuario();
+                iPresentador.registrarUsuarioP(nombre,apellido,u,new LoginActivity());
+                btnIngresar.setEnabled(false);
             }
         });
 
@@ -76,66 +73,11 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public  void registrarUsuario(){
-        btnIngresar.setEnabled(false);
-        firebaseAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
 
-                    storageReference = storage.getReference("perfiles");
-                    final StorageReference foto = storageReference.child(u.getLastPathSegment() + Math.random()*10);
-
-                    foto.putFile(u).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                        @Override
-                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                            if(!task.isSuccessful()){
-                                throw  new Exception();
-                            }
-                            return foto.getDownloadUrl();
-                        }
-                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Uri> task) {
-                            if (task.isSuccessful()){
-                                fotoperfil = task.getResult().toString();
-                                String id = firebaseAuth.getCurrentUser().getUid();
-                                Map<String,Object> map = new HashMap<>();
-                                map.put("nombre",nombre);
-                                map.put("apellido",apellido);
-                                map.put("foto",fotoperfil);
-
-                                databaseReference.child("Usuarios").child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task2) {
-                                        if(task2.isSuccessful()){
-                                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                                            finish();
-                                        }
-                                        else {
-                                            Toast.makeText(LoginActivity.this,"ERROR AL GUARDAR EN LA BASE", Toast.LENGTH_LONG).show();
-                                            btnIngresar.setEnabled(true);
-                                        }
-                                    }
-                                });
-                            }
-                            else {
-                                Toast.makeText(LoginActivity.this,"ERROR AL SUBIR FOTO", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    });
-                }else {
-                    Toast.makeText(LoginActivity.this,"ERROR AL INGRESAR", Toast.LENGTH_LONG).show();
-                    btnIngresar.setEnabled(true);
-                }
-            }
-        });
-    }
 
     public void subirFoto(){
         Intent i = new Intent(Intent.ACTION_GET_CONTENT);
         i.setType("image/*");
-
         i.putExtra(Intent.EXTRA_LOCAL_ONLY,true);
         startActivityForResult(Intent.createChooser(i,"Selecciona foto"),1);
     }
@@ -143,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (firebaseAuth.getCurrentUser()!=null){
+        if (iPresentador.getiModelo().firebaseAuth.getCurrentUser() !=null){
             startActivity(new Intent(LoginActivity .this, HomeActivity.class));
             finish();
         }
@@ -158,4 +100,15 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void cambiarActivityV(boolean confirmacion, String mensaje) {
+        if (confirmacion){
+            startActivity(new Intent(this, HomeActivity.class));
+            finish();
+        }else {
+            btnIngresar.setEnabled(true);
+            Toast.makeText(getApplicationContext(),mensaje,Toast.LENGTH_LONG).show();
+        }
+
+    }
 }
