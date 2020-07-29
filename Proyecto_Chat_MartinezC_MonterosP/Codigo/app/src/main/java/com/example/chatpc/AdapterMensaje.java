@@ -1,3 +1,15 @@
+/*
+ * ESPE - DCC - PROGRAMACIÓN MÓVIL
+ * NRC: 6112
+ *
+ * Sistema: CHATP&C
+ * Creado 16/07/2020
+ *
+ * Los contenidos de este archivo son propiedad privada y estan protegidos por
+ * la licencia BSD
+ *
+ * Se puede utilizar, reproducir o copiar el contenido de este archivo.
+ */
 package com.example.chatpc;
 
 import android.content.Context;
@@ -38,12 +50,12 @@ public class AdapterMensaje extends RecyclerView.Adapter<HolderMensaje> {
         holder.getNombre().setText(list.get(position).getNombre());
         holder.getMensaje().setText(list.get(position).getMensaje());
         holder.getHora().setText(list.get(position).getHora());
-        Glide.with(context).load(list.get(position).getFotoperfil()).into(holder.getFotomensaje());
+        Glide.with(context).load(list.get(position).getFotoPerfil()).into(holder.getFotomensaje());
 
-        if(list.get(position).getTipomensaje().equals("2")){
+        if("2".equals(list.get(position).getTipoMensaje())){
             holder.getImagenmensaje().setVisibility(View.VISIBLE);
             holder.getMensaje().setVisibility(View.VISIBLE);
-            Glide.with(context).load(list.get(position).getUrlfoto()).into(holder.getImagenmensaje());
+            Glide.with(context).load(list.get(position).getUrlFoto()).into(holder.getImagenmensaje());
 
         }else{
             holder.getImagenmensaje().setVisibility(View.GONE);

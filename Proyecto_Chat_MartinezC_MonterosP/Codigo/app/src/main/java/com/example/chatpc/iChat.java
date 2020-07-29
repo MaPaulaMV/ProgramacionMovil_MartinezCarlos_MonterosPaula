@@ -1,3 +1,15 @@
+/*
+ * ESPE - DCC - PROGRAMACIÓN MÓVIL
+ * NRC: 6112
+ *
+ * Sistema: CHATP&C
+ * Creado 16/07/2020
+ *
+ * Los contenidos de este archivo son propiedad privada y estan protegidos por
+ * la licencia BSD
+ *
+ * Se puede utilizar, reproducir o copiar el contenido de este archivo.
+ */
 package com.example.chatpc;
 import android.app.Activity;
 import android.content.Context;
@@ -11,17 +23,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+/**
+ * Interfaz principal del programa, donde se declara todos los métodos
+ * que se van a usar para que puedan ser implementados por las diferentes clases.
+ *
+ * @author Carlos Martínez
+ * @author Paula Monteros
+ */
 public interface iChat {
 
+    /**
+     * Interfaz iVistaLogin que declara los métodos que van a ser utilizados por las clases
+     * que implementen esta interfaz.
+     */
     interface iVistaLogin{
         void cambiarActivityV(boolean confirmacion, String mensaje);
     }
 
-    interface iVistaMain{
-        void salaExistenteV();
-
-    }
-
+    /**
+     * Interfaz iPresentador que declara los métodos que van a ser utilizados por las clases
+     * que implementen esta interfaz.
+     */
     interface iPresentador{
         void cambiarActivityP(boolean confirmacion, String mensaje);
         void registrarUsuarioP(String nombre, String apellido, Uri u, Activity activity);
@@ -36,6 +58,10 @@ public interface iChat {
 
     }
 
+    /**
+     * Interfaz iModelo que declara los métodos que van a ser utilizados por las clases
+     * que implementen esta interfaz.
+     */
     interface iModelo{
         void registrarUsuarioM(String nombre, String apellido, Uri u, Activity activity);
         void cerrarSesionM();

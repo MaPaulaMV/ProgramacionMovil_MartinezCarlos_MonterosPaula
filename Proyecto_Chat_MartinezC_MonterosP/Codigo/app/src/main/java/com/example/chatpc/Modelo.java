@@ -1,3 +1,15 @@
+/*
+ * ESPE - DCC - PROGRAMACIÓN MÓVIL
+ * NRC: 6112
+ *
+ * Sistema: CHATP&C
+ * Creado 16/07/2020
+ *
+ * Los contenidos de este archivo son propiedad privada y estan protegidos por
+ * la licencia BSD
+ *
+ * Se puede utilizar, reproducir o copiar el contenido de este archivo.
+ */
 package com.example.chatpc;
 
 import android.app.Activity;
@@ -5,10 +17,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -39,8 +49,8 @@ import java.util.List;
 import java.util.Map;
 
 
-public class iModelo implements iChat.iModelo {
-    private iPresentador iPresentador;
+public class Modelo implements iChat.iModelo {
+    private Presentador Presentador;
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
     private DatabaseReference databaseReferenceSala;
@@ -55,11 +65,11 @@ public class iModelo implements iChat.iModelo {
     private DatabaseReference databaseReferenceUsuario;
     private DatabaseReference databaseReferenceMensaje;
 
-    public iModelo(){
+    public Modelo(){
 
     }
-    public iModelo(iPresentador iPresentador) {
-        this.iPresentador = iPresentador;
+    public Modelo(Presentador Presentador) {
+        this.Presentador = Presentador;
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReferenceBuscarUsuario = FirebaseDatabase.getInstance().getReference("Usuarios").child(firebaseAuth.getCurrentUser().getUid());
@@ -108,22 +118,22 @@ public class iModelo implements iChat.iModelo {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task2) {
                                         if(task2.isSuccessful()){
-                                            iPresentador.cambiarActivityP(true, "OKEY BOOMER");
+                                            Presentador.cambiarActivityP(true, "OKEY BOOMER");
                                         }
                                         else {
-                                            iPresentador.cambiarActivityP(false, "ERROR EN LA BASE");
+                                            Presentador.cambiarActivityP(false, "ERROR EN LA BASE");
 
                                         }
                                     }
                                 });
                             }
                             else {
-                                iPresentador.cambiarActivityP(false, "ERROR EN SUBIR LA FOTO");
+                                Presentador.cambiarActivityP(false, "ERROR EN SUBIR LA FOTO");
                             }
                         }
                     });
                 }else {
-                    iPresentador.cambiarActivityP(false, "ERROR AL CREAR USUARIO");
+                    Presentador.cambiarActivityP(false, "ERROR AL CREAR USUARIO");
 
 
                 }
