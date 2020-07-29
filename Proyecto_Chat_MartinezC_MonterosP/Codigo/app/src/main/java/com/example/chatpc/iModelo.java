@@ -329,6 +329,7 @@ public class iModelo implements iChat.iModelo {
 
         mensajes.setAdapter(adapterMensajes);
     }
+
     public void salaExisente(){
 
         databaseReference2.addChildEventListener(new ChildEventListener() {
@@ -359,7 +360,6 @@ public class iModelo implements iChat.iModelo {
             }
         });
     }
-
 
     public FirebaseAuth getFirebaseAuth() {
         return firebaseAuth;

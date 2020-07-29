@@ -1,6 +1,7 @@
 package com.example.chatpc;
 
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference databaseReferenceBuscarUsuario;
     private DatabaseReference databaseReferenceMensaje;
     private FirebaseStorage storage;
+    String msj;
 
 
 
@@ -106,29 +110,7 @@ public class MainActivity extends AppCompatActivity {
         iPresentador.infoUsuarioP();
         iPresentador.infoContactoP(user_id,nombreUsuario,fotoPerfil,getApplicationContext());
         iPresentador.leerMensajesP(getApplicationContext(),mensajes);
-
-        /*databaseReferenceMensaje.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Boolean bandera = false;
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    if(postSnapshot.getKey().equals(chat_id) || postSnapshot.getKey().equals(chat_id2) ){
-                        databaseReference = database.getReference("chat").child(postSnapshot.getKey());
-                        salaExisente();
-                        bandera = true;
-                        break;
-                    }
-                }
-                if (!bandera){
-                    databaseReference = database.getReference("chat").child(chat_id);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
+        
 
     }
     private  void  setScrollbar(){
@@ -143,34 +125,4 @@ public class MainActivity extends AppCompatActivity {
        iPresentador.enviarFotoP(requestCode,resultCode,data);
     }
 
-   /* public void salaExisente(){
-
-        databaseReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Mensaje m = dataSnapshot.getValue(Mensaje.class);
-                adapterMensajes.addMensaje(m);
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });//PARA LOS MENSAJES
-    }*/
 }
