@@ -1,3 +1,15 @@
+/*
+ * ESPE - DCC - PROGRAMACIÓN MÓVIL
+ * NRC: 6112
+ *
+ * Sistema: CHATP&C
+ * Creado 16/07/2020
+ *
+ * Los contenidos de este archivo son propiedad privada y estan protegidos por
+ * la licencia BSD
+ *
+ * Se puede utilizar, reproducir o copiar el contenido de este archivo.
+ */
 package com.example.chatpc;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,15 +22,26 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * Clase que permite instanciar y manejar todos los elementos de la
+ * vista o interfaz HomeActivity que muestra las salas de chat y usuarios.
+ *
+ * @author Carlos Martínez
+ * @author Paula Monteros
+ */
 public class HomeActivity extends AppCompatActivity{
 
     private ImageButton btnCerrasSesion;
     private TextView txtNombres;
     private ImageView imgHome;
     RecyclerView usuarios;
+    private Presentador Presentador;
 
-    private iPresentador iPresentador;
-
+    /**
+     *  Método que se encarga de inicializar los elemnetos de la vista.
+     *
+     * @param savedInstanceState Objecto HomeActivity actual
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,23 +49,25 @@ public class HomeActivity extends AppCompatActivity{
         txtNombres = (TextView)findViewById(R.id.txtHomeNombre);
         imgHome = (ImageView)findViewById(R.id.imgHome);
         usuarios =(RecyclerView)findViewById(R.id.lista_usuarios);
-        iPresentador = new iPresentador(this);
+        Presentador = new Presentador(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         usuarios.setLayoutManager(linearLayoutManager);
-
-
         btnCerrasSesion = (ImageButton)findViewById(R.id.btnCerrarSesion);
+
+        /**
+         * Botón para cerrar la sesión del usuario acual conetado.
+         */
         btnCerrasSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iPresentador.cerrarSesionP();
+                Presentador.cerrarSesionP();
                 startActivity(new Intent(HomeActivity.this,LoginActivity.class));
                 finish();
             }
         });
 
-        iPresentador.obtenerInfoP(txtNombres,imgHome, getApplicationContext());
-        iPresentador.leerUsuariosP(getApplicationContext(), usuarios);
+        Presentador.obtenerInfoP(txtNombres,imgHome, getApplicationContext());
+        Presentador.leerUsuariosP(getApplicationContext(), usuarios);
 
     }
 }

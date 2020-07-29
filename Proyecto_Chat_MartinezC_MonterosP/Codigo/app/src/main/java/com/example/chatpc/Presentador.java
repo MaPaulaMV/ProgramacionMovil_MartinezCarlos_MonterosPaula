@@ -1,3 +1,15 @@
+/*
+ * ESPE - DCC - PROGRAMACIÓN MÓVIL
+ * NRC: 6112
+ *
+ * Sistema: CHATP&C
+ * Creado 16/07/2020
+ *
+ * Los contenidos de este archivo son propiedad privada y estan protegidos por
+ * la licencia BSD
+ *
+ * Se puede utilizar, reproducir o copiar el contenido de este archivo.
+ */
 package com.example.chatpc;
 
 import android.app.Activity;
@@ -14,28 +26,35 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class iPresentador implements  iChat.iPresentador {
+/**
+ * Clase que actúa como intermediario entre la Vista y
+ * el Modelo de la aplicación, implementa la interfaz iChat.iPresentador.
+ *
+ * @author Carlos Martínez
+ * @author Paula Monteros
+ */
+public class Presentador implements  iChat.iPresentador {
     private LoginActivity iVistaLogin;
     private HomeActivity iVistaHome;
     private MainActivity iVistaMain;
-    private iModelo iModelo;
+    private Modelo Modelo;
 
-    public iPresentador(){
+    public Presentador(){
 
     }
 
-    public iPresentador(LoginActivity iVistaLogin){
+    public Presentador(LoginActivity iVistaLogin){
         this.iVistaLogin = iVistaLogin;
-        this.iModelo=new iModelo(this);
+        this.Modelo =new Modelo(this);
     }
 
-    public iPresentador(HomeActivity iVistaHome){
+    public Presentador(HomeActivity iVistaHome){
         this.iVistaHome = iVistaHome;
-        this.iModelo=new iModelo(this);
+        this.Modelo =new Modelo(this);
     }
-    public iPresentador(MainActivity iVistaMain){
+    public Presentador(MainActivity iVistaMain){
         this.iVistaMain = iVistaMain;
-        this.iModelo=new iModelo(this);
+        this.Modelo =new Modelo(this);
     }
 
     public LoginActivity getiVistaLogin() {
@@ -46,12 +65,12 @@ public class iPresentador implements  iChat.iPresentador {
         this.iVistaLogin = iVistaLogin;
     }
 
-    public com.example.chatpc.iModelo getiModelo() {
-        return iModelo;
+    public Modelo getModelo() {
+        return Modelo;
     }
 
-    public void setiModelo(com.example.chatpc.iModelo iModelo) {
-        this.iModelo = iModelo;
+    public void setModelo(Modelo modelo) {
+        this.Modelo = modelo;
     }
 
     @Override
@@ -69,7 +88,7 @@ public class iPresentador implements  iChat.iPresentador {
     public void registrarUsuarioP(String nombre, String apellido, Uri u, Activity activity) {
         try{
             if(iVistaLogin!=null){
-                iModelo.registrarUsuarioM( nombre,  apellido,  u, activity);
+                Modelo.registrarUsuarioM( nombre,  apellido,  u, activity);
             }
         }catch (Exception e){
             Log.e("ERROR", e.getMessage());
@@ -80,7 +99,7 @@ public class iPresentador implements  iChat.iPresentador {
     public void cerrarSesionP() {
         try{
             if(iVistaHome!=null){
-                iModelo.cerrarSesionM();
+                Modelo.cerrarSesionM();
             }
         }catch (Exception e){
             Log.e("ERROR", e.getMessage());
@@ -92,7 +111,7 @@ public class iPresentador implements  iChat.iPresentador {
         List<String> adapterUsuario=new ArrayList<String>();
         try{
             if(iVistaHome!=null){
-                iModelo.obtenerInfoM(textView, imageView, context);
+                Modelo.obtenerInfoM(textView, imageView, context);
 
             }
 
@@ -107,7 +126,7 @@ public class iPresentador implements  iChat.iPresentador {
         AdapterUsuario adapterUsuario = null;
         try{
             if(iVistaHome!=null){
-               iModelo.leerUsuariosM(context, users);
+               Modelo.leerUsuariosM(context, users);
             }
         }catch (Exception e){
             Log.e("ERROR", e.getMessage());
@@ -118,7 +137,7 @@ public class iPresentador implements  iChat.iPresentador {
     public void enviarMensajeP(String mensaje, String tipo) {
         try{
             if(iVistaMain!=null){
-                iModelo.enviarMensajeM(mensaje, tipo);
+                Modelo.enviarMensajeM(mensaje, tipo);
 
             }
 
@@ -131,7 +150,7 @@ public class iPresentador implements  iChat.iPresentador {
     public void enviarFotoP(int requestCode, int resultCode, @Nullable Intent data) {
         try{
             if(iVistaMain!=null){
-                iModelo.enviarFotoM(requestCode, resultCode,data);
+                Modelo.enviarFotoM(requestCode, resultCode,data);
 
             }
 
@@ -144,7 +163,7 @@ public class iPresentador implements  iChat.iPresentador {
     public void infoUsuarioP() {
         try{
             if(iVistaMain!=null){
-                iModelo.infoUsuarioM();
+                Modelo.infoUsuarioM();
 
             }
 
@@ -157,7 +176,7 @@ public class iPresentador implements  iChat.iPresentador {
     public void infoContactoP(String user_id,TextView textView, ImageView imageView, Context context) {
         try{
             if(iVistaMain!=null){
-                iModelo.infoContactoM(user_id,textView,imageView,context);
+                Modelo.infoContactoM(user_id,textView,imageView,context);
 
             }
 
@@ -170,7 +189,7 @@ public class iPresentador implements  iChat.iPresentador {
     public void leerMensajesP(Context context, RecyclerView mensajes) {
         try{
             if(iVistaMain!=null){
-                iModelo.leerMensajesM(context,mensajes);
+                Modelo.leerMensajesM(context,mensajes);
             }
         }catch (Exception e){
             Log.e("ERROR", e.getMessage());

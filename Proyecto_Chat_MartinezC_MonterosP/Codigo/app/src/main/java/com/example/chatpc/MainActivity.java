@@ -1,31 +1,40 @@
+/*
+ * ESPE - DCC - PROGRAMACIÓN MÓVIL
+ * NRC: 6112
+ *
+ * Sistema: CHATP&C
+ * Creado 16/07/2020
+ *
+ * Los contenidos de este archivo son propiedad privada y estan protegidos por
+ * la licencia BSD
+ *
+ * Se puede utilizar, reproducir o copiar el contenido de este archivo.
+ */
 package com.example.chatpc;
-
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
+/**
+ * Clase que permite instanciar y manejar todos los elementos de la
+ * vista o interfaz MainActivity que muestra una sala de chat entre 2 usuarios.
+ *
+ * @author Carlos Martínez
+ * @author Paula Monteros
+ */
 public class MainActivity extends AppCompatActivity {
 
     CircleImageView fotoPerfil;
@@ -34,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     EditText txtmensaje;
     ImageButton btnenviar, btnfoto;
     Intent intent;
-    private iPresentador iPresentador;
+    private Presentador Presentador;
     private FirebaseAuth firebaseAuth;
     private AdapterMensaje adapterMensajes;
     private FirebaseDatabase database;
@@ -45,12 +54,11 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseStorage storage;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        iPresentador = new iPresentador(this);
+        Presentador = new Presentador(this);
         fotoPerfil = (CircleImageView) findViewById(R.id.perfil);
         nombreUsuario = (TextView) findViewById(R.id.nombre);
         mensajes = (RecyclerView) findViewById(R.id.mensajes);
@@ -63,114 +71,65 @@ public class MainActivity extends AppCompatActivity {
         mensajes.setAdapter(adapterMensajes);
 
         intent = getIntent();
-        iPresentador.getiModelo().setUser_id(intent.getStringExtra("userid"));
+        Presentador.getModelo().setUser_id(intent.getStringExtra("userid"));
         final String user_id = intent.getStringExtra("userid");//id del usuario con el que se va a chatear
 
         database = FirebaseDatabase.getInstance();
         firebaseAuth=FirebaseAuth.getInstance();
 
-
         databaseReferenceUsuario = database.getReference("Usuarios").child(user_id);
-
         databaseReferenceMensaje = database.getReference("chat");
         storage=FirebaseStorage.getInstance();
 
-
+        /**
+         * Botón que llama al presentador para enviar los datos del mensaje.
+         */
         btnenviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iPresentador.enviarMensajeP(txtmensaje.getText().toString(), "1");
-                txtmensaje.setText("");
+            Presentador.enviarMensajeP(txtmensaje.getText().toString(), "1");
+            txtmensaje.setText("");
             }
         });
 
+        /**
+         * Botón que permite abrir la galería del teléfono para seleccionar una foto.
+         */
         btnfoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_GET_CONTENT);
-                i.setType("image/*");
-                i.putExtra(Intent.EXTRA_LOCAL_ONLY,true);
-                startActivityForResult(Intent.createChooser(i,"Selecciona foto"),1);
+            Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+            i.setType("image/*");
+            i.putExtra(Intent.EXTRA_LOCAL_ONLY,true);
+            startActivityForResult(Intent.createChooser(i,"Selecciona foto"),1);
             }
         });
 
-        /*adapterMensajes.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-            @Override
-            public void onItemRangeInserted(int positionStart, int itemCount) {
-                super.onItemRangeInserted(positionStart, itemCount);
-                setScrollbar();
-            }
-        });*/
-
-
-        iPresentador.infoUsuarioP();
-        iPresentador.infoContactoP(user_id,nombreUsuario,fotoPerfil,getApplicationContext());
-        iPresentador.leerMensajesP(getApplicationContext(),mensajes);
-
-        /*databaseReferenceMensaje.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Boolean bandera = false;
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    if(postSnapshot.getKey().equals(chat_id) || postSnapshot.getKey().equals(chat_id2) ){
-                        databaseReference = database.getReference("chat").child(postSnapshot.getKey());
-                        salaExisente();
-                        bandera = true;
-                        break;
-                    }
-                }
-                if (!bandera){
-                    databaseReference = database.getReference("chat").child(chat_id);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
+        Presentador.infoUsuarioP();
+        Presentador.infoContactoP(user_id,nombreUsuario,fotoPerfil,getApplicationContext());
+        Presentador.leerMensajesP(getApplicationContext(),mensajes);
 
     }
+
+    /**
+     * Método Scroll que permite movilizarse o desplazarse por la pantalla para visualizar
+     * los mensajes.
+     */
     private  void  setScrollbar(){
         mensajes.scrollToPosition(adapterMensajes.getItemCount()-1);
     }
 
+    /**
+     * Método que obtiene la data de la foto seleccionada y la envia por medio del
+     * presentador.
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-
-       iPresentador.enviarFotoP(requestCode,resultCode,data);
+       Presentador.enviarFotoP(requestCode,resultCode,data);
     }
-
-   /* public void salaExisente(){
-
-        databaseReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Mensaje m = dataSnapshot.getValue(Mensaje.class);
-                adapterMensajes.addMensaje(m);
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });//PARA LOS MENSAJES
-    }*/
 }
