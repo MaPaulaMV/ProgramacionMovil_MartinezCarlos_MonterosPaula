@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity implements iChat.iVistaLogi
     private Presentador Presentador;
 
     /**
-     * Método que se encarga de inicializar los elemnetos de la vista.
+     * Método que se encarga de inicializar los elementos de la vista.
      *
      * @param savedInstanceState Objeto LoginActivity actual
      */

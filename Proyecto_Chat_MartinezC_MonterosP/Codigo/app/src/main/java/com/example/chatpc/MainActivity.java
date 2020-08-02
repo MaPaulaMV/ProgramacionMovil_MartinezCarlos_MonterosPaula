@@ -53,7 +53,11 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference databaseReferenceMensaje;
     private FirebaseStorage storage;
 
-
+    /**
+     * Método que se encarga de inicializar los elementos de la vista.
+     *
+     * @param savedInstanceState Objeto LoginActivity actual
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
