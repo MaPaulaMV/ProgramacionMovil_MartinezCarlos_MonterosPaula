@@ -23,4 +23,19 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.chatpc", appContext.getPackageName());
     }
+    @Test
+    public void user(){
+        Usuario usuario=new Usuario();
+        assertNotNull(usuario);
+    }
+    @Test
+    public void mensaje(){
+        Mensaje usuario=new Mensaje();
+        assertNotNull(usuario);
+    }
+    @Test
+    public void coneccion(){
+        Modelo modelo=new Modelo();
+        assertNotNull(modelo);
+    }
 }
