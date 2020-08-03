@@ -27,16 +27,36 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+/**
+ * Clase que se encarga de llenar con los datos de los usuarios registrados
+ * los Card View Usuario.
+ *
+ * @author Carlos Martínez
+ * @author Paula Monteros
+ */
 public class AdapterUsuario extends RecyclerView.Adapter<AdapterUsuario.ViewHolder> {
 
     private Context context;
     private List<Usuario> usuarios;
 
+    /**
+     * Constructor con parámetros de la clase AdapterUsuario.
+     *
+     * @param context Context del Activity
+     * @param usuarios Lista de usuarios
+     */
     public AdapterUsuario (Context context, List<Usuario>usuarios){
         this.usuarios = usuarios;
         this.context = context;
     }
 
+    /**
+     * étodo que se encarga de inicializar los elementos del Holder para los Usuarios.
+     *
+     * @param parent ViewGroup
+     * @param viewType Tipo de vista
+     * @return Holder para los card view usuarios.
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,6 +64,11 @@ public class AdapterUsuario extends RecyclerView.Adapter<AdapterUsuario.ViewHold
         return new AdapterUsuario.ViewHolder(view);
     }
 
+    /**
+     *
+     * @param holder Holder de Usuarios
+     * @param position Posición en la lista de usuarios
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Usuario usuario = usuarios.get(position);
@@ -62,12 +87,19 @@ public class AdapterUsuario extends RecyclerView.Adapter<AdapterUsuario.ViewHold
 
     }
 
+    /**
+     * Método que obtiene el número de elementos en la lista.
+     *
+     * @return Número de usuarios en la lista.
+     */
     @Override
     public int getItemCount() {
         return usuarios.size();
     }
 
-
+    /**
+     * Método que obtiene los elementos del card view Usuarios por medio de IDs.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView username;
         public ImageView foto;

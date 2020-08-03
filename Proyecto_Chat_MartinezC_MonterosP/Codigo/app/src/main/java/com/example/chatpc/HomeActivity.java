@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity{
     private Presentador Presentador;
 
     /**
-     *  Método que se encarga de inicializar los elemnetos de la vista.
+     *  Método que se encarga de inicializar los elementos de la vista.
      *
      * @param savedInstanceState Objecto HomeActivity actual
      */

@@ -48,7 +48,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * Clase que contiene toda la lógica del programa, la misma realiza todas las operaciones
+ * e implementa la interfaz iChat.iModelo.
+ *
+ * @author Carlos Martínez
+ * @author Paula Monteros
+ */
 public class Modelo implements iChat.iModelo {
     private Presentador Presentador;
     FirebaseAuth firebaseAuth;
@@ -65,9 +71,18 @@ public class Modelo implements iChat.iModelo {
     private DatabaseReference databaseReferenceUsuario;
     private DatabaseReference databaseReferenceMensaje;
 
+    /**
+     * Constructor vacío de la clase Modelo.
+     */
     public Modelo(){
 
     }
+
+    /**
+     * Constructor con parámetros de la clase Modelo.
+     *
+     * @param Presentador Objecto de la clase Presentador
+     */
     public Modelo(Presentador Presentador) {
         this.Presentador = Presentador;
         firebaseAuth = FirebaseAuth.getInstance();
@@ -79,14 +94,32 @@ public class Modelo implements iChat.iModelo {
         usuarioList= new ArrayList<>();
     }
 
+    /**
+     * Método que obtiene el valor del atributo User_id de la clase Modelo
+     *
+     * @return Id del usuario logeado.
+     */
     public String getUser_id() {
         return user_id;
     }
 
+    /**
+     * Método que setea el valor del atributo User_id de la clase Modelo.
+     *
+     * @param user_id Id del usuario
+     */
     public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
 
+    /**
+     * Realiza el registro del usuario en la base de datos.
+     *
+     * @param nombre Nombre del usuario
+     * @param apellido Apellido del Usuario
+     * @param u Uri de la foto de perfil del Usuario
+     * @param activity Activity
+     */
     @Override
     public void registrarUsuarioM(final String nombre, final String apellido, final Uri u, Activity activity) {
         firebaseAuth.signInAnonymously().addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
@@ -141,14 +174,24 @@ public class Modelo implements iChat.iModelo {
         });
     }
 
+    /**
+     * Método que cierra la sesión del usuario actual.
+     */
     @Override
     public void cerrarSesionM() {
         firebaseAuth.signOut();
     }
 
+    /**
+     * Método que obtiene la información del usuario logeado, para llenar la vista Home con los
+     * datos.
+     *
+     * @param textView TextView del Activity
+     * @param imageView ImageView del activity
+     * @param context Context del Activity
+     */
     @Override
     public void obtenerInfoM(final TextView textView, final ImageView imageView, final Context context) {
-
 
         String id = firebaseAuth.getCurrentUser().getUid();
 
@@ -170,28 +213,15 @@ public class Modelo implements iChat.iModelo {
             }
         });
 
-        /*databaseReference.child("Usuarios").child(id).addValueEventListener( new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.exists()){
-                    String nombre = dataSnapshot.child("nombre").getValue().toString();
-                    String apellido = dataSnapshot.child("apellido").getValue().toString();
-                    String foto = dataSnapshot.child("foto").getValue().toString();
-                    informacion.add(nombre);
-                    informacion.add(apellido);
-                    informacion.add(foto);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
-
     }
 
+    /**
+     * Método que obtiene los datos de todos los usuarios registrados para mostrar en
+     * la vista HomeActivity.
+     *
+     * @param context Context del Activity
+     * @param users RecyclerView del activity.
+     */
     @Override
     public void leerUsuariosM(final Context context, final RecyclerView users) {
         databaseReference.child("Usuarios").addValueEventListener(new ValueEventListener() {
@@ -219,6 +249,12 @@ public class Modelo implements iChat.iModelo {
         });
     }
 
+    /**
+     * Método que envía un mensaje de texto y lo registra en la base.
+     *
+     * @param mensaje Contenido del Mensaje
+     * @param tipo Tipo de Mensaje
+     */
     @Override
     public void enviarMensajeM(String mensaje, String tipo) {
         Calendar c = Calendar.getInstance();
@@ -229,6 +265,13 @@ public class Modelo implements iChat.iModelo {
 
     }
 
+    /**
+     * Método que envía la imagen seleccionada por el usuario.
+     *
+     * @param requestCode Request Code
+     * @param resultCode Result Code
+     * @param data Data de la imagen a enviar
+     */
     @Override
     public void enviarFotoM(int requestCode, int resultCode, @Nullable Intent data) {
 
@@ -262,6 +305,9 @@ public class Modelo implements iChat.iModelo {
         }
     }
 
+    /**
+     * Método que obtiene la información del usuario logeado.
+     */
     @Override
     public void infoUsuarioM() {
         databaseReferenceBuscarUsuario = FirebaseDatabase.getInstance().getReference("Usuarios").child(firebaseAuth.getCurrentUser().getUid());
@@ -281,6 +327,15 @@ public class Modelo implements iChat.iModelo {
         });
     }
 
+    /**
+     * Método que obtiene la información del usuario con el cual se establecerá la sesión o
+     * sala de chat.
+     *
+     * @param user_id Id del usuario
+     * @param textView textView del Activity
+     * @param imageView ImageView del Activity
+     * @param context Context del Activity
+     */
     @Override
     public void infoContactoM(String user_id, final TextView textView, final ImageView imageView, final Context context) {
         this.user_id = user_id;
@@ -300,6 +355,13 @@ public class Modelo implements iChat.iModelo {
         });
     }
 
+    /**
+     * Método que obtienen los mensajes anteriores de una sala de chat, y los
+     * muestra en la vista.
+     *
+     * @param context Context del Activity
+     * @param mensajes RecyclerView del Activity
+     */
     @Override
     public void leerMensajesM(Context context, final RecyclerView mensajes) {
         final String chat_id =firebaseAuth.getUid() + user_id;
@@ -340,6 +402,9 @@ public class Modelo implements iChat.iModelo {
         mensajes.setAdapter(adapterMensajes);
     }
 
+    /**
+     * Método que verifica si la sala de chat entre dos usuarios ya existía anteriormente.
+     */
     public void salaExisente(){
 
         databaseReference2.addChildEventListener(new ChildEventListener() {
@@ -371,10 +436,20 @@ public class Modelo implements iChat.iModelo {
         });
     }
 
+    /**
+     * Método que obtiene el valor del atributo FirebaseAuth de la clase Modelo.
+     *
+     * @return FirebaseAuth
+     */
     public FirebaseAuth getFirebaseAuth() {
         return firebaseAuth;
     }
 
+    /**
+     * Método que setea el valor del atributo FirebaseAuth de la clase Modelo.
+     *
+     * @param firebaseAuth
+     */
     public void setFirebaseAuth(FirebaseAuth firebaseAuth) {
         this.firebaseAuth = firebaseAuth;
     }
