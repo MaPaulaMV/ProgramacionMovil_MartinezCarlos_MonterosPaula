@@ -87,7 +87,7 @@ public class Modelo implements iChat.iModelo {
         this.Presentador = Presentador;
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReferenceBuscarUsuario = FirebaseDatabase.getInstance().getReference("Usuarios").child(firebaseAuth.getCurrentUser().getUid());
+        //databaseReferenceBuscarUsuario = FirebaseDatabase.getInstance().getReference("Usuarios").child(firebaseAuth.getCurrentUser().getUid());
         databaseReferenceMensaje = FirebaseDatabase.getInstance().getReference("chat");
         databaseReferenceSala = FirebaseDatabase.getInstance().getReference("chat");
         storage=FirebaseStorage.getInstance();
