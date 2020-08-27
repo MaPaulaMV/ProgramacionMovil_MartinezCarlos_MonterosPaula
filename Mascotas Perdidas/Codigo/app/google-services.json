@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "514096610342",
+    "firebase_url": "https://mascotas-perdidas-e4e4e.firebaseio.com",
+    "project_id": "mascotas-perdidas-e4e4e",
+    "storage_bucket": "mascotas-perdidas-e4e4e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514096610342:android:07b4f55ee215fb5c44fae7",
+        "android_client_info": {
+          "package_name": "app.ejemplo.carlos.proyecto2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514096610342-j9pslh6fq01ihdhq5ui64q7f03t11n0j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcLNHB2SKxfiw4Wdg7Fer44TaDQhm_r3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514096610342-j9pslh6fq01ihdhq5ui64q7f03t11n0j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

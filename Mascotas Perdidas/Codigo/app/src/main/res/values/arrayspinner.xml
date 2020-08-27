@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="lugares">
+        <item>Bloque A</item>
+        <item>Bloque B</item>
+        <item>Bloque C</item>
+        <item>Bloque D</item>
+        <item>Biblioteca</item>
+        <item>Laboratorios G</item>
+        <item>Laboratorios H</item>
+        <item>Bar principal</item>
+        <item>Coliseo</item>
+        <item>Canchas volley</item>
+        <item>Canchas fútbol</item>
+        <item>Policlinico</item>
+        <item></item>
+    </string-array>
+
+
+
+</resources>

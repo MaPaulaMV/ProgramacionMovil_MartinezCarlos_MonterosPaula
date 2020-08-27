@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#35c189</color>
+    <color name="colorPrimaryDark">#00905c</color>
+    <color name="primary_light">#e8eaf6</color>
+    <color name="colorAccent">#FFC107</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecundaryText">#757575</color>
+    <color name="colorIcons">#FFFFFF</color>
+    <color name="colorDivider">#BDBDBD</color>
+    <color name="card">#e8eaf6</color>
+    <color name="añadir">#FFEA00</color>
+    <color name="intro1">#009eae</color>
+    <color name="intro2">#ffee58</color>
+    <color name="intro3">#26a69a</color>
+    <color name="intro4">#FFEA00</color>
+    <color name="blue_transparent">#805677fc</color>
+    <color name="black_semitransparent">#B2000000</color>
+</resources>
+
