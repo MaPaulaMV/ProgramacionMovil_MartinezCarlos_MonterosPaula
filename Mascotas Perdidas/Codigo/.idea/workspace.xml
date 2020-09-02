@@ -11,60 +11,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="05a79724-7d77-4e8d-aa8c-c8750cc65eb6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icono_login.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icono_p.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/google-services.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/Mascotas Perdidas.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/Codigo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Proyecto.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/AdapterDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/AdapterDatos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Base.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Base.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/CarlosApp.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Descripcion.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Descripcion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/DeportivosFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/DeportivosFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/DocsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/DocsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/EduFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/InfoActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/OtrosFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/PersonalesFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/PrendasFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/InfoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/InfoActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/TecFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/TecFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Intro.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Intros/Intro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Intro1.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Intros/Intro1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Intro2.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Intros/Intro2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Intro3.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Intros/Intro3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Intro4.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Intros/Intro4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/IntroAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/IntroAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/MenuO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Objeto.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Objeto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/SearchActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/SearchActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/first_layout.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/first_layout.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/menumain.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/menumain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_base.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_base.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_descripcion.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_descripcion.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_info.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_intro.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_intro.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_log_in.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_log_in.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_menu_o.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/app_bar_menu_o.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_menu_o.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edu.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_intro1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_intro1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_intro2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_intro2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_intro3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_intro3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_intro4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_intro4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_otros.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_personales.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_prendas.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/nav_header_menu_o.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/nav_header_menumain.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/nav_header_menumain.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/activity_menumain_drawer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/activity_menumain_drawer.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,9 +57,10 @@
     </system>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectId" id="1gKuFwgLkdE2JiNIaOLNg06tZBN" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -96,6 +69,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -189,21 +163,21 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="500" y="180" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864@0.0.1536.864" timestamp="1598130423542" />
-    <state width="1492" height="279" key="GridCell.Tab.0.bottom" timestamp="1598559993551">
+    <state width="1478" height="275" key="GridCell.Tab.0.bottom" timestamp="1598977933967">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1492" height="279" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1598559993551" />
-    <state width="1492" height="279" key="GridCell.Tab.0.center" timestamp="1598559993551">
+    <state width="1478" height="275" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1598977933967" />
+    <state width="1478" height="275" key="GridCell.Tab.0.center" timestamp="1598977933967">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1492" height="279" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1598559993551" />
-    <state width="1492" height="279" key="GridCell.Tab.0.left" timestamp="1598559993550">
+    <state width="1478" height="275" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1598977933967" />
+    <state width="1478" height="275" key="GridCell.Tab.0.left" timestamp="1598977933966">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1492" height="279" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1598559993550" />
-    <state width="1492" height="279" key="GridCell.Tab.0.right" timestamp="1598559993551">
+    <state width="1478" height="275" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1598977933966" />
+    <state width="1478" height="275" key="GridCell.Tab.0.right" timestamp="1598977933967">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1492" height="279" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1598559993551" />
+    <state width="1478" height="275" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1598977933967" />
   </component>
 </project>

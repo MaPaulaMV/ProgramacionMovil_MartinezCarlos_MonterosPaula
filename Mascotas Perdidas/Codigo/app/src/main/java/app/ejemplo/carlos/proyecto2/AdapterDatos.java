@@ -1,3 +1,15 @@
+/*
+ * ESPE - DCC - PROGRAMACIÓN MÓVIL
+ * NRC: 6112
+ *
+ * Sistema: Mascotas Perdidas
+ * Creado 01/09/2020
+ *
+ * Los contenidos de este archivo son propiedad privada y estan protegidos por
+ * la licencia BSD
+ *
+ * Se puede utilizar, reproducir o copiar el contenido de este archivo.
+ */
 package app.ejemplo.carlos.proyecto2;
 
 import android.content.Context;
@@ -20,7 +32,12 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
-
+/**
+ * Clase que representa a un usuario del chat.
+ *
+ * @author Carlos Martínez
+ * @author Paula Monteros
+ */
 public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDatos> {
 
     ArrayList<Objeto> list = new ArrayList<>();

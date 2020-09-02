@@ -1,3 +1,15 @@
+/*
+ * ESPE - DCC - PROGRAMACIÓN MÓVIL
+ * NRC: 6112
+ *
+ * Sistema: Mascotas Perdidas
+ * Creado 01/09/2020
+ *
+ * Los contenidos de este archivo son propiedad privada y estan protegidos por
+ * la licencia BSD
+ *
+ * Se puede utilizar, reproducir o copiar el contenido de este archivo.
+ */
 package app.ejemplo.carlos.proyecto2.Fragments;
 
 import android.content.Intent;
