@@ -11,32 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="05a79724-7d77-4e8d-aa8c-c8750cc65eb6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/Mascotas Perdidas.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/Codigo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Proyecto.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/AdapterDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/AdapterDatos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Base.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Base.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Descripcion.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Descripcion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/DeportivosFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/DeportivosFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/DocsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/DocsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/InfoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/InfoActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/TecFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/Fragments/TecFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/menumain.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/app/ejemplo/carlos/proyecto2/menumain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
